@@ -24,8 +24,8 @@ export const BookSliderCard = ({ data, index }) => {
         <div className="check">
           <Link
             href={{
-              pathname: `/book/${data?.title}`,
-              query: { id: data?._id },
+              pathname: `/book/${data?._id}`,
+              query: { name: data?.title },
             }}
           >
             <p>Khám phá ngay thôi!</p>
@@ -76,8 +76,8 @@ export const BookCard = async ({ data, index }) => {
       <div className="info">
         <Link
           href={{
-            pathname: `/book/${data?.title}`,
-            query: { id: data?._id },
+            pathname: `/book/${data?._id}`,
+            query: { name: data?.title },
           }}
         >
           <h2>{data?.title}</h2>
@@ -96,8 +96,8 @@ export const BookCard = async ({ data, index }) => {
         <div className="bottom">
           <Link
             href={{
-              pathname: `/book/${data?.title}`,
-              query: { id: data?._id },
+              pathname: `/book/${data?._id}`,
+              query: { name: data?.title },
             }}
           >
             <p>Đọc luôn!</p>
@@ -129,8 +129,8 @@ export const BookCard = async ({ data, index }) => {
               </div>
               <Link
                 href={{
-                  pathname: `/book/${data?.title}`,
-                  query: { id: data?._id },
+                  pathname: `/book/${data?._id}`,
+                  query: { name: data?.title },
                 }}
               >
                 <p className="check">Đọc luôn!</p>
@@ -157,8 +157,8 @@ export const BookCardHorizal = ({ data, index }) => {
     <div className="book_card_horizal" key={index}>
       <Link
         href={{
-          pathname: `/book/${data?.title}`,
-          query: { id: data?._id },
+          pathname: `/book/${data?._id}`,
+          query: { name: data?.title },
         }}
       >
         <img src={data.thumbnail} loading="lazy" alt={`banner`} />
@@ -190,8 +190,8 @@ export const BookCategorySliderCard = ({ data, index }) => {
         <div className="check">
           <Link
             href={{
-              pathname: `/book/${data?.title}`,
-              query: { id: data?._id },
+              pathname: `/book/${data?._id}`,
+              query: { name: data?.title },
             }}
           >
             <p>Let's Explore!</p>

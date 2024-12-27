@@ -6,8 +6,8 @@ import { BlogDetailVideo } from "@/components/box/blog/video/blogDetailVideo";
 import { appSvg } from "@/data/svg";
 import React, { Suspense } from "react";
 
-export async function generateMetadata({ searchParams }) {
-  const { id } = await searchParams; // lấy id từ query param
+export async function generateMetadata({ params }) {
+  const { id } = await params; // lấy id từ query param
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
   const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -43,9 +43,9 @@ export async function generateMetadata({ searchParams }) {
   };
 }
 
-const BlogDetail = async ({ searchParams }) => {
+const BlogDetail = async ({ params }) => {
   const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
-  const { id } = await searchParams;
+  const { id } = await params;
 
   const resBlog = await fetch(`${baseUrl}/blogs/${id}`, {
     next: {

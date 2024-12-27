@@ -9,8 +9,8 @@ export const LyricsCard = ({ data, index }) => {
     <div className="lyrics_card" key={index}>
       <Link
         href={{
-          pathname: `/lyrics/${data?.title}`,
-          query: { name: data?.title, id: data?._id },
+          pathname: `/lyrics/${data?._id}`,
+          query: { name: data?.title },
         }}
       >
         <img
@@ -47,7 +47,7 @@ export const LyricsSliderCard = ({ data, index }) => {
         <p>{data.description}</p>
         <Link
           href={{
-            pathname: `lyrics/${data.title}`,
+            pathname: `lyrics/${data._id}`,
             query: { name: data.title, id: data._id },
           }}
           className="check"
@@ -64,8 +64,8 @@ export const LyricsSingerSliderCard = ({ data, index }) => {
     <div className="lyrics_singer_slider_card" key={index}>
       <Link
         href={{
-          pathname: `/lyrics/${data.title}`,
-          query: { name: data.title, id: data._id },
+          pathname: `/lyrics/${data?._id}`,
+          query: { name: data?.title },
         }}
       >
         <img
@@ -83,8 +83,8 @@ export const SingerCard = ({ data, index }) => {
     <div className="singer_card" key={index}>
       <Link
         href={{
-          pathname: `/lyrics/singer/${data.singerName}`,
-          query: { name: data.singerName, id: data._id },
+          pathname: `/lyrics/singer/${data?.singerName}`,
+          query: { name: data?.singerName, id: data?._id },
         }}
       >
         <img
@@ -103,8 +103,8 @@ export const LyricsSingerCardHorizal = ({ data, index }) => {
     <div className="lyrics_singer_card_horizal" key={index}>
       <Link
         href={{
-          pathname: `/lyrics/singer/${data.singerName}`,
-          query: { name: data.singerName, id: data._id },
+          pathname: `/lyrics/singer/${data?.singerName}`,
+          query: { name: data?.singerName, id: data?._id },
         }}
       >
         <img
@@ -123,8 +123,8 @@ export const LyricsCategoryCard = ({ data, index }) => {
     <div className="lyrics_category_card" key={index}>
       <Link
         href={{
-          pathname: `/lyrics/category/${data.categoryName}`,
-          query: { id: data._id, name: data.categoryName },
+          pathname: `/lyrics/category/${data?.categoryName}`,
+          query: { id: data?._id, name: data?.categoryName },
         }}
       >
         <img
@@ -143,8 +143,8 @@ export const LyricsCategoryCountryCard = ({ data, index }) => {
     <div className="lyrics_category_country_card" key={index}>
       <Link
         href={{
-          pathname: `/lyrics/category/country/${data.countryName}`,
-          query: { name: data.countryName, id: data._id },
+          pathname: `/lyrics/category/country/${data?.countryName}`,
+          query: { name: data?.countryName, id: data?._id },
         }}
       >
         <img
@@ -163,8 +163,8 @@ export const LyricsDetailCategorySliderCard = ({ data, index }) => {
     <div className="lyrics_detail_category_slider_card" key={index}>
       <Link
         href={{
-          pathname: `/lyrics/${data._id}`,
-          query: { name: data.title, id: data._id },
+          pathname: `/lyrics/${data?._id}`,
+          query: { name: data?.title },
         }}
       >
         <img
@@ -182,8 +182,8 @@ export const LyricsDetailCategoryCountrySliderCard = ({ data, index }) => {
     <div className="lyrics_detail_category_country_slider_card" key={index}>
       <Link
         href={{
-          pathname: `/lyrics/${data._id}`,
-          query: { name: data.title, id: data._id },
+          pathname: `/lyrics/${data?._id}`,
+          query: { name: data?.title },
         }}
       >
         <img src={data.thumbnailBanner} loading="lazy" alt={`banner`} />

@@ -2,8 +2,8 @@ import BookDetailContent from "@/components/box/book/detailContent/bookDetailCon
 import { appSvg } from "@/data/svg";
 import React, { Suspense } from "react";
 
-export async function generateMetadata({ searchParams }) {
-  const { id } = await searchParams; // lấy id từ query param
+export async function generateMetadata({ params }) {
+  const { id } = await params; // lấy id từ query param
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
   const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -39,8 +39,8 @@ export async function generateMetadata({ searchParams }) {
   };
 }
 
-const BookDetail = async ({ searchParams }) => {
-  const { id } = await searchParams;
+const BookDetail = async ({ params }) => {
+  const { id } = await params;
   const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   const resBook = await fetch(`${baseUrl}/books/${id}`, {
     next: {

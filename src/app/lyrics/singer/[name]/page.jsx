@@ -7,7 +7,7 @@ import { LyricsSingerSlider } from "@/components/box/lyrics/slider/lyricsSlider"
 import LyricsBack from "@/components/box/lyrics/button/lyricsBack";
 
 const DetailSinger = async ({ searchParams }) => {
-  const { name, id } = searchParams;
+  const { name, id } = await searchParams;
   const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
   const lyrics = await fetch(`${baseUrl}/lyrics?singer=${id}`, {

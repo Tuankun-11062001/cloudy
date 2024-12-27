@@ -10,8 +10,8 @@ export const ShopSliderCard = ({ data, index }) => {
         <div className="check">
           <Link
             href={{
-              pathname: `/shop/${data?.title}`,
-              query: { id: data?._id },
+              pathname: `/shop/${data?._id}`,
+              query: { name: data?.title },
             }}
           >
             <p>{data.price}</p>
@@ -32,8 +32,8 @@ export const ShopCategoryDetailSliderCard = ({ data, index }) => {
         <div className="check">
           <Link
             href={{
-              pathname: `/shop/${data?.title}`,
-              query: { id: data?._id },
+              pathname: `/shop/${data?._id}`,
+              query: { id: data?.title },
             }}
           >
             <p> {data.price}!</p>
@@ -74,8 +74,8 @@ export const ShopProductCard = ({ data, index }) => {
     <div className="shop_product_card" key={index}>
       <Link
         href={{
-          pathname: `/shop/${data?.title}`,
-          query: { id: data?._id },
+          pathname: `/shop/${data?._id}`,
+          query: { name: data?.title },
         }}
       >
         <img src={data?.thumbnail} loading="lazy" alt={`banner`} />

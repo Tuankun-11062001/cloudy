@@ -4,7 +4,7 @@ import { LyricsDetailCategoryCountrySlider } from "@/components/box/lyrics/slide
 import React, { Suspense } from "react";
 
 const LyricsDetailCategoryCountry = async ({ searchParams }) => {
-  const { name, id } = searchParams;
+  const { name, id } = await searchParams;
   const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   const lyricsCountry = await fetch(`${baseUrl}/lyrics/country/${id}`, {
     next: {

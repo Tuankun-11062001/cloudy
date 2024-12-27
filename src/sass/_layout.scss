@@ -29,6 +29,37 @@ textarea {
   white-space: pre-wrap;
 }
 
+.not_found {
+  @include dynamicAlign(center, center, $direction: column, $gap: $spacing * 2);
+  background: $color_white;
+  border-radius: $spacing * 2;
+  padding: $spacing * 2;
+  h1 {
+    font-size: $spacing * 2;
+    color: $color_black;
+  }
+  .g {
+    @include dynamicAlign(center, center);
+    a {
+      padding: $spacing $spacing * 2;
+      border-radius: $spacing;
+      background: $color_gray;
+      @include transition;
+      color: $color_black;
+      &:hover {
+        background-color: $color_pink;
+        color: $color_white;
+      }
+    }
+  }
+  body.darkmode & {
+    background: $color_gray_dark;
+    h1 {
+      color: $color_white;
+    }
+  }
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   background: $color_gray;

@@ -9,8 +9,8 @@ import BoxOther from "@/components/box/lyrics/song/info/boxOther";
 import { appSvg } from "@/data/svg";
 import LyricsBack from "@/components/box/lyrics/button/lyricsBack";
 
-export async function generateMetadata({ searchParams }) {
-  const { id } = await searchParams; // lấy id từ query param
+export async function generateMetadata({ params }) {
+  const { id } = await params; // lấy id từ query param
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
   const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -50,8 +50,8 @@ export async function generateMetadata({ searchParams }) {
   };
 }
 
-const LyricsSong = async ({ searchParams }) => {
-  const { id } = await searchParams;
+const LyricsSong = async ({ params }) => {
+  const { id } = await params;
 
   // await searchParams ở đây nếu cần
 

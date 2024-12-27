@@ -4,7 +4,7 @@ import { LyricsDetailCategorySlider } from "@/components/box/lyrics/slider/lyric
 import React from "react";
 
 const LyricsDetailCategory = async ({ searchParams }) => {
-  const { name, id } = searchParams;
+  const { name, id } = await searchParams;
   const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
   const lyricsCategory = await fetch(`${baseUrl}/lyrics/category/${id}`, {

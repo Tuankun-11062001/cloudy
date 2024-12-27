@@ -47,7 +47,7 @@
   .left {
     order: 2;
     width: 100%;
-    height: $spacing * 85;
+    margin-bottom: $spacing * 10;
     h1 {
       font-size: $spacing * 1.4;
       color: $color_white;
@@ -76,6 +76,7 @@
       width: 50%;
       height: $spacing * 85;
       overflow: auto;
+      margin-bottom: unset;
     }
 
     .right_slider {

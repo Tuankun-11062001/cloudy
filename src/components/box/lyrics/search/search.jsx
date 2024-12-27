@@ -40,8 +40,8 @@ const Search = () => {
           <div className="item" key={item._id || index}>
             <Link
               href={{
-                pathname: `/lyrics/${item?.title}`,
-                query: { name: item?.title, id: item?._id },
+                pathname: `/lyrics/${item?._id}`,
+                query: { name: item?.title },
               }}
             >
               <img src={item.thumbnail} loading="lazy" alt={`banner`} />

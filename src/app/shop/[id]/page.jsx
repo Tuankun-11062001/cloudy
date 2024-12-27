@@ -7,8 +7,8 @@ import { appSvg } from "@/data/svg";
 import Head from "next/head";
 import React from "react";
 
-export async function generateMetadata({ searchParams }) {
-  const { id } = await searchParams; // lấy id từ query param
+export async function generateMetadata({ params }) {
+  const { id } = await params; // lấy id từ query param
   const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
   const resProduct = await fetch(`${baseUrl}/shop/${id}`, {
@@ -43,8 +43,8 @@ export async function generateMetadata({ searchParams }) {
   };
 }
 
-const ShopDetail = async ({ params, searchParams }) => {
-  const { id } = await searchParams;
+const ShopDetail = async ({ params }) => {
+  const { id } = await params;
   const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   const resProduct = await fetch(`${baseUrl}/shop/${id}`, {
     next: {

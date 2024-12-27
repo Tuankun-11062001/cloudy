@@ -11,8 +11,8 @@ export const BlogMostViewCard = ({ data }) => {
       <h2>
         <Link
           href={{
-            pathname: `/blog/${data.title}`,
-            query: { id: data._id },
+            pathname: `/blog/${data._id}`,
+            query: { name: data.title },
           }}
         >
           <abbr title={data.title}>{data.title}</abbr>
@@ -43,8 +43,8 @@ export const BlogCardHorizontal = ({ data, index }) => {
         <h2>
           <Link
             href={{
-              pathname: `/blog/${data.title}`,
-              query: { id: data._id },
+              pathname: `/blog/${data._id}`,
+              query: { name: data.title },
             }}
           >
             {data.title}
@@ -85,8 +85,8 @@ export const BlogCardVertical = ({ data, nameCategory, index }) => {
         <h3>
           <Link
             href={{
-              pathname: `/blog/${data.title}`,
-              query: { id: data._id },
+              pathname: `/blog/${data._id}`,
+              query: { name: data.title },
             }}
           >
             {data.title}
@@ -123,8 +123,8 @@ export const BlogCardVertical = ({ data, nameCategory, index }) => {
           <div className="blog_card_vertical_detail_content_bottom">
             <Link
               href={{
-                pathname: `/blog/${data.title}`,
-                query: { id: data._id },
+                pathname: `/blog/${data._id}`,
+                query: { name: data.title },
               }}
             >
               <p className="blog_card_vertical_detail_content_bottom_check">
@@ -212,7 +212,7 @@ export const BoxSliderBlog = ({ data, index }) => {
           <Link
             href={{
               pathname: `/blog/${data._id}`,
-              query: { name: data.title, id: data._id },
+              query: { name: data.title },
             }}
           >
             <p className="check">Check it out {appSvg.arrowDown}</p>
@@ -245,7 +245,7 @@ export const BoxBlogCategorySlider = ({ data, index }) => {
         <Link
           href={{
             pathname: `/blog/${data._id}`,
-            query: { name: data.title, id: data._id },
+            query: { name: data.title },
           }}
         >
           <p className="check">Check it out!</p>

@@ -20,8 +20,8 @@ const BoxLyricsTrending = async () => {
         {res.data.map((trending, indx) => (
           <Link
             href={{
-              pathname: `/lyrics/${trending.title}`,
-              query: { id: trending._id },
+              pathname: `/lyrics/${trending?._id}`,
+              query: { name: trending?.title },
             }}
             key={trending._id || indx}
           >
