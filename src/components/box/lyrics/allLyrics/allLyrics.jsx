@@ -16,7 +16,8 @@ const AllLyrics = () => {
       `${stringQuery ? stringQuery + "&" : "?"}page=${pageNumber}`
     );
     const newProducts = res.data.data;
-    setTotalPages(res.data.pagination.totalPages);
+    console.log("ré", res.data);
+    setTotalPages(res.data?.pagination?.totalPages);
     setProducts(newProducts);
 
     setLoading(false);

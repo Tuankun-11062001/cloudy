@@ -13,7 +13,7 @@ export const lyricsApi = {
   },
   getFillterLyrics: async (data) => {
     try {
-      const res = axios.get(`${API}/lyrics${data}`);
+      const res = axios.get(`${API}/lyrics/filter${data}`);
       return res;
     } catch (error) {
       return error;
