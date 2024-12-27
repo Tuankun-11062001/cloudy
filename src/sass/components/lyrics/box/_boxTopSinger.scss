@@ -1,0 +1,127 @@
+.box_top_singer {
+  margin-top: $spacing;
+  &_head {
+    @include dynamicAlign($justify: space-between, $align: center);
+    padding: $spacing * 2 0;
+    h2 {
+      font-size: $spacing * 1.6;
+      font-weight: 600;
+      color: $color_black;
+    }
+    a {
+      color: $color_gray_normal;
+      font-size: $spacing * 1.4;
+      @include transition;
+      &:hover {
+        color: $color_pink;
+      }
+    }
+  }
+  &_list {
+    @include dynamicAlign($gap: $spacing * 2, $wrap: wrap);
+
+    .item {
+      @include dynamicAlign($direction: column, $align: center);
+      @include transition();
+      width: calc((100% / 2) - $spacing * 2);
+      cursor: pointer;
+
+      img {
+        width: 100%;
+        height: $spacing * 15;
+        object-fit: cover;
+        border-radius: $spacing;
+      }
+
+      h3 {
+        font-size: $spacing * 1.4;
+        width: 100%;
+        text-align: center;
+        font-weight: 600;
+        border-radius: $spacing - 0.5;
+        padding: $spacing - 0.5;
+        @include transition();
+        color: $color_black;
+      }
+
+      &:hover {
+        h3 {
+          background: $color_white;
+        }
+      }
+    }
+  }
+
+  @include sm {
+    &_head {
+      h2 {
+        font-size: $spacing * 1.8;
+      }
+    }
+    &_list {
+      .item {
+        width: calc((100% / 3) - $spacing * 2);
+      }
+    }
+  }
+
+  @include md {
+    &_head {
+      h2 {
+        font-size: $spacing * 1.8;
+      }
+    }
+    &_list {
+      .item {
+        width: calc((100% / 4) - $spacing * 2);
+      }
+    }
+  }
+
+  @include xl {
+    &_head {
+      h2 {
+        font-size: $spacing * 2;
+      }
+      a {
+        font-size: $spacing * 1.6;
+      }
+    }
+    &_list {
+      .item {
+        width: calc((100% / 5) - $spacing * 2);
+        h3 {
+          font-size: $spacing * 1.6;
+        }
+      }
+    }
+  }
+  body.darkmode & {
+    &_head {
+      h2 {
+        color: $color_white;
+      }
+
+      a {
+        color: $color_gray;
+        &:hover {
+          color: $color_white;
+        }
+      }
+    }
+
+    &_list {
+      .item {
+        h3 {
+          color: $color_white;
+        }
+        &:hover {
+          h3 {
+            color: $color_blue_dark;
+            background: $color_white;
+          }
+        }
+      }
+    }
+  }
+}

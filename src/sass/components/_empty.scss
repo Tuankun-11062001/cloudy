@@ -1,0 +1,22 @@
+.empty {
+  @include dynamicAlign($direction: column, $align: center);
+  width: 100%;
+  padding: 2rem;
+  animation: animateEmpty 0.5s linear;
+  @keyframes animateEmpty {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  img {
+    width: 30%;
+    object-fit: contain;
+  }
+  p {
+    font-size: $font_size + 0.4rem;
+    color: $color_gray;
+  }
+}

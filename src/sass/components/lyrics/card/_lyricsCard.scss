@@ -1,0 +1,437 @@
+.lyrics_card {
+  border-radius: $spacing;
+  cursor: pointer;
+  @include transition();
+  position: relative;
+  img {
+    width: 100%;
+    height: $spacing * 15;
+    object-fit: cover;
+    border-radius: $spacing;
+  }
+
+  &_content {
+    @include dynamicAlign($direction: column, $gap: $spacing - 0.5);
+    padding: 0 $spacing;
+
+    h3 {
+      font-size: $spacing * 1.4;
+      font-weight: 600;
+      color: $color_black;
+      @include longText($line: 2);
+    }
+    p {
+      font-size: $spacing * 1.2;
+      color: $color_gray_normal;
+    }
+  }
+
+  &:hover {
+    background: $color_white;
+  }
+
+  @include sm {
+    padding: $spacing;
+    h3 {
+      font-size: $spacing * 1.6;
+    }
+    p {
+      font-size: $spacing * 1.4;
+    }
+  }
+
+  @include xl {
+    img {
+      width: 100%;
+    }
+  }
+  body.darkmode & {
+    &_content {
+      h3 {
+        color: $color_white;
+      }
+    }
+    &:hover {
+      background: $color_gray_dark;
+    }
+  }
+}
+
+.singer_card {
+  border-radius: $spacing * 2;
+  position: relative;
+  background: $color_white;
+  transform: scale(0.9);
+  padding: $spacing;
+  @include transition($second: 0.5s);
+  &:hover {
+    transform: scale(1);
+  }
+  img {
+    width: 100%;
+    height: $spacing * 10;
+    object-fit: cover;
+    border-radius: $spacing;
+  }
+  p {
+    color: $color_gray_normal;
+    font-size: $spacing * 1.4;
+    text-align: center;
+    margin-top: $spacing;
+  }
+  @include sm {
+    img {
+      height: $spacing * 13;
+    }
+  }
+  @include xl {
+    padding: $spacing * 2;
+    img {
+      height: $spacing * 20;
+    }
+    p {
+      font-size: $spacing * 1.8;
+    }
+  }
+  // darkmode
+
+  body.darkmode & {
+    background: $color_gray_dark;
+    p {
+      color: $color_white;
+    }
+  }
+}
+
+.lyrics_singer_slider_card {
+  width: 100dvw;
+  height: 100%;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @include xl {
+    width: 80dvw;
+    height: 100%;
+  }
+}
+
+.lyrics_singer_card_horizal {
+  a {
+    @include dynamicAlign(
+      $align: center,
+      $gap: $spacing * 2,
+      $direction: column
+    );
+    color: $color_black;
+    font-size: $spacing * 1.4;
+  }
+  &:hover {
+    background: $color_white;
+  }
+  border-radius: $spacing;
+  padding: $spacing;
+  background: rgba($color_white, 0.5);
+  cursor: pointer;
+  @include transition;
+  img {
+    width: $spacing * 5;
+    height: $spacing * 5;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  @include xl {
+    a {
+      @include dynamicAlign($align: center, $gap: $spacing * 2);
+    }
+  }
+  body.darkmode & {
+    background: $color_gray_dark;
+    a {
+      color: $color_white;
+    }
+    &:hover {
+      background: $color_white;
+      a {
+        color: $color_blue_dark;
+      }
+    }
+  }
+}
+
+.lyrics_slider_card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  img {
+    width: 100dvw;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &.active {
+    .info {
+      &_head {
+        opacity: 1;
+        margin-left: 0;
+      }
+      h2 {
+        opacity: 1;
+        margin-left: 0;
+      }
+      p {
+        opacity: 1;
+        margin-left: 0;
+      }
+    }
+  }
+
+  .info {
+    @include dynamicPosition($pos: absolute, $bottom: 5%, $left: 5%);
+    z-index: 3;
+    width: 70%;
+    @include dynamicAlign($direction: column);
+
+    &_head {
+      @include dynamicAlign($align: center);
+      color: $color_white;
+      span {
+        &:nth-child(2):before,
+        &:nth-child(2):after {
+          content: "\A";
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background: $color_white;
+          display: inline-block;
+          margin: 0 $spacing - 0.5;
+        }
+      }
+      font-size: $spacing * 1.1;
+      transition: 0.5s;
+      transition-delay: 1.2s;
+      margin-left: $spacing * 3;
+      opacity: 0;
+    }
+    h2 {
+      color: $color_white;
+      font-size: $spacing * 2;
+      opacity: 0;
+      transition: 1s;
+      transition-delay: 1.5s;
+      margin-left: $spacing * 3;
+    }
+
+    p {
+      font-size: $spacing * 1.4;
+      color: $color_white;
+      opacity: 0;
+      transition: 1s;
+      transition-delay: 1.7s;
+      margin-left: $spacing * 3;
+      width: 95%;
+      @include longText($line: 2);
+    }
+    .check {
+      width: max-content;
+      @include button(
+        $color: $color_gray_normal,
+        $background_hover: $color_pink,
+        $color_hover: $color_white,
+        $font_size: $spacing * 1.2,
+        $padding: $spacing - 0.3 $spacing
+      );
+    }
+  }
+
+  @include sm {
+    .info {
+      @include dynamicPosition($pos: absolute, $bottom: 15%, $left: 5%);
+      &_head {
+        span {
+          &:nth-child(2):before,
+          &:nth-child(2):after {
+            content: "\A";
+            width: 5px;
+            height: 5px;
+          }
+        }
+        font-size: $spacing * 1.4;
+      }
+      .check {
+        @include button(
+          $color: $color_gray_normal,
+          $background_hover: $color_pink,
+          $color_hover: $color_white,
+          $font_size: $spacing * 1.4,
+          $padding: $spacing
+        );
+      }
+    }
+  }
+
+  @include xl {
+    width: 38dvw;
+    img {
+      width: 100%;
+    }
+
+    .info {
+      @include dynamicPosition($pos: absolute, $bottom: 30%, $left: 5%);
+      width: 80%;
+      &_head {
+        span {
+          &:nth-child(2):before,
+          &:nth-child(2):after {
+            content: "\A";
+
+            margin: 0 $spacing;
+          }
+        }
+      }
+      h2 {
+        font-size: $spacing * 2.5;
+      }
+
+      p {
+        font-size: $spacing * 1.6;
+      }
+      .check {
+        width: max-content;
+        @include button(
+          $color: $color_gray_normal,
+          $background_hover: $color_pink,
+          $color_hover: $color_white,
+          $font_size: $spacing * 1.6
+        );
+      }
+    }
+  }
+}
+
+.lyrics_category_card {
+  a {
+    font-size: $spacing * 1.4;
+    @include dynamicAlign($direction: column, $align: center);
+    background: rgba($color_white, 0.7);
+    padding: $spacing * 2;
+    border-radius: $spacing * 2;
+    box-shadow: 0 0 $spacing 0 rgba($color_gray_normal, 0.2);
+    transform: scale(0.95);
+    transition: 0.5s;
+    cursor: pointer;
+    color: $color_black;
+    text-decoration: none;
+  }
+  img {
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+  }
+  &:hover {
+    a {
+      transform: scale(1);
+      background: rgba($color_white, 1);
+    }
+  }
+
+  @include xl {
+    a {
+      padding: $spacing * 2 $spacing;
+    }
+    img {
+      width: 60%;
+      height: 60%;
+      object-fit: contain;
+    }
+  }
+  body.darkmode & {
+    a {
+      background: $color_gray_dark;
+      color: $color_white;
+      &:hover {
+        background: $color_white;
+        color: $color_black;
+      }
+    }
+  }
+}
+
+.lyrics_category_country_card {
+  a {
+    @include dynamicAlign($align: center, $direction: column);
+    background: rgba($color_white, 0.7);
+    padding: $spacing $spacing * 3;
+    border-radius: $spacing;
+    @include transition();
+    cursor: pointer;
+    text-decoration: none;
+    color: $color_black;
+    font-size: $spacing * 1.4;
+  }
+  &:hover {
+    box-shadow: 0 0 $spacing 0 rgba($color_white, 0.7);
+    background: $color_white;
+  }
+  img {
+    width: $spacing * 3;
+    height: $spacing * 3;
+    object-fit: contain;
+  }
+  @include xl {
+    a {
+      @include dynamicAlign($align: center);
+      font-size: $spacing * 1.6;
+    }
+  }
+  body.darkmode & {
+    a {
+      background: $color_gray_dark;
+      color: $color_white;
+      &:hover {
+        box-shadow: 0 0 $spacing 0 rgba($color_white, 0.7);
+        border-radius: $spacing;
+        background: $color_blue_dark;
+      }
+    }
+  }
+}
+
+.lyrics_detail_category_slider_card {
+  width: 100dvw;
+  height: 100%;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @include xl {
+    width: 80dvw;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.lyrics_detail_category_country_slider_card {
+  width: 100dvw;
+  height: 100%;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @include xl {
+    width: 80dvw;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

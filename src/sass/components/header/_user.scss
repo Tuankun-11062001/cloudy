@@ -1,0 +1,236 @@
+.header_user {
+  .content_xl {
+    display: none;
+  }
+  .content_mb {
+    display: block;
+    .user {
+      position: relative;
+      .left {
+        @include dynamicAlign($align: center, $gap: $spacing * 2);
+        img {
+          width: $spacing * 3.5;
+          height: $spacing * 3.5;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+        p {
+          svg {
+            width: $spacing * 2;
+            height: $spacing * 2;
+          }
+        }
+      }
+    }
+    body.darkmode & {
+      .user {
+        .left {
+          p {
+            svg {
+              width: $spacing * 2;
+              height: $spacing * 2;
+              path {
+                stroke: $color_white;
+              }
+            }
+          }
+        }
+      }
+      .header_login {
+        svg {
+          path,
+          circle {
+            stroke: $color_gray;
+          }
+        }
+      }
+    }
+  }
+  @include xl {
+    .content_mb {
+      display: none;
+    }
+    .content_xl {
+      display: block;
+    }
+    margin-top: auto;
+    width: 100%;
+
+    .header_login {
+      @include button(
+        $background: $color_blue_dark,
+        $color: $color_white,
+        $color_hover: $color_white,
+        $background_hover: $color_blue_dark,
+        $shadow_hover: 0 0 $spacing * 2 rgba($color_blue_dark, 0.5)
+      );
+      width: 93%;
+      margin: $spacing * 2 $spacing;
+      text-align: center;
+    }
+
+    .user {
+      @include dynamicAlign($justify: space-between, $align: center);
+      margin: $spacing * 2 $spacing;
+      position: relative;
+      .left {
+        @include dynamicAlign();
+
+        img {
+          width: $spacing * 4;
+          height: $spacing * 4;
+          object-fit: cover;
+          border-radius: $spacing * 5;
+        }
+        .info {
+          h3 {
+            font-size: $spacing * 1.6;
+            font-weight: 600;
+          }
+          p {
+            font-size: $spacing * 1.3;
+          }
+        }
+      }
+      .motify {
+        cursor: pointer;
+        svg {
+          pointer-events: none;
+          circle {
+            stroke: $color_blue_dark;
+          }
+        }
+      }
+
+      .sub_menu {
+        @include dynamicPosition(
+          $pos: absolute,
+          $right: -$spacing * 21,
+          $bottom: -$spacing * 10
+        );
+        @include transition();
+
+        &.active {
+          @include dynamicPosition(
+            $pos: absolute,
+            $right: -$spacing * 21,
+            $bottom: 0
+          );
+        }
+
+        @include dynamicAlign($direction: column);
+
+        width: $spacing * 20;
+        padding: $spacing;
+
+        @include glass(
+          $background: rgba($color_white, 0.5),
+          $color: $color_blue_dark
+        );
+
+        a {
+          @include dynamicAlign($align: center);
+          text-decoration: none;
+          color: $color_blue_dark;
+          svg {
+            path {
+              stroke: $color_blue_dark;
+            }
+            circle {
+              stroke: $color_blue_dark;
+            }
+          }
+
+          &:hover {
+            color: $color_pink;
+            svg {
+              path {
+                stroke: $color_pink;
+              }
+              circle {
+                stroke: $color_pink;
+              }
+            }
+          }
+        }
+
+        .exit {
+          @include dynamicAlign();
+          color: $color_blue_dark;
+          cursor: pointer;
+          svg {
+            path {
+              stroke: $color_blue_dark;
+            }
+          }
+
+          &:hover {
+            color: $color_pink;
+            svg {
+              path {
+                stroke: $color_pink;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    body.darkmode & {
+      .user {
+        color: $color_white;
+        svg {
+          circle {
+            stroke: $color_white;
+          }
+        }
+
+        .sub_menu {
+          background: $color_gray_dark;
+          a {
+            color: $color_gray;
+            svg {
+              path {
+                stroke: $color_gray;
+              }
+              circle {
+                stroke: $color_gray;
+              }
+            }
+
+            &:hover {
+              color: $color_white;
+              svg {
+                path {
+                  stroke: $color_white;
+                }
+                circle {
+                  stroke: $color_white;
+                }
+              }
+            }
+          }
+
+          .exit {
+            color: $color_gray;
+            cursor: pointer;
+            svg {
+              path {
+                stroke: $color_gray;
+              }
+            }
+
+            &:hover {
+              color: $color_white;
+              svg {
+                path {
+                  stroke: $color_white;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

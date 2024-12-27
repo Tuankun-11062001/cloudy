@@ -1,0 +1,785 @@
+.lyrics_back {
+  background: $color_white;
+  width: $spacing * 3.5;
+  height: $spacing * 3.5;
+  padding: $spacing $spacing;
+  @include dynamicAlign(center, center);
+  cursor: pointer;
+  @include transition();
+  @include glass($background: $color_white);
+  border-radius: 50%;
+  &:hover {
+    background: $color_pink;
+    svg {
+      path {
+        stroke: $color_white;
+      }
+    }
+  }
+  svg {
+    transform: rotate(90deg);
+    pointer-events: none;
+  }
+  @include xl {
+    width: $spacing * 5;
+    height: $spacing * 5;
+  }
+  body.darkmode & {
+    background: $color_gray_dark;
+    &:hover {
+      background: $color_white;
+      svg {
+        path {
+          stroke: $color_blue_dark;
+        }
+      }
+    }
+    svg {
+      path {
+        stroke: $color_gray;
+      }
+    }
+  }
+}
+
+.lyrics_page {
+  @include dynamicAlign($direction: column, $gap: $spacing * 3);
+  .left {
+    order: 2;
+    width: 100%;
+    height: $spacing * 85;
+    h1 {
+      font-size: $spacing * 1.4;
+      color: $color_white;
+      padding: $spacing $spacing * 2;
+      margin-bottom: $spacing * 2;
+      font-weight: 600;
+      background: $color_pink;
+      width: max-content;
+      border-radius: $spacing;
+    }
+  }
+
+  .right_slider {
+    order: 1;
+
+    // border-radius: $spacing * 3;
+    &_black_art {
+      display: none;
+    }
+  }
+
+  @include xl {
+    @include dynamicAlign();
+
+    .left {
+      width: 50%;
+      height: $spacing * 85;
+      overflow: auto;
+    }
+
+    .right_slider {
+      @include dynamicPosition(
+        $pos: fixed,
+        $top: $spacing * 5,
+        $right: $spacing * 3
+      );
+      overflow: hidden;
+      // border-radius: $spacing * 3;
+      &_black_art {
+        display: block;
+        @include dynamicPosition($pos: absolute, $left: 0, $top: 0);
+        background: url("/lyricsLight.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        object-position: top;
+        mix-blend-mode: lighten;
+      }
+    }
+  }
+
+  // darkmode
+  body.darkmode & {
+    .left {
+      h1 {
+        background: $color_white;
+        color: $color_blue_dark;
+      }
+    }
+
+    .right_slider {
+      &_black_art {
+        background: url("/lyricsDark1.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        mix-blend-mode: darken;
+      }
+    }
+  }
+}
+
+.lyrics_singer {
+  @include dynamicAlign($direction: column, $gap: $spacing * 3);
+  &_banner {
+    height: $spacing * 20;
+    border-radius: $spacing * 2;
+    overflow: hidden;
+    width: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &_g {
+    @include dynamicAlign($direction: column, $gap: $spacing * 2);
+    width: 100%;
+    h2 {
+      font-size: $spacing * 1.6;
+      font-weight: 400;
+      font-style: italic;
+      color: $color_black;
+    }
+    &_list {
+      width: 100%;
+      @include dynamicAlign($wrap: wrap, $gap: $spacing);
+      .singer_card {
+        width: calc((100% / 2) - $spacing);
+      }
+    }
+  }
+  @include sm {
+    &_banner {
+      height: $spacing * 30;
+    }
+
+    &_g {
+      h2 {
+        font-size: $spacing * 1.8;
+      }
+      &_list {
+        @include dynamicAlign($wrap: wrap, $gap: $spacing);
+        .singer_card {
+          width: calc((100% / 3) - $spacing);
+        }
+      }
+    }
+  }
+
+  @include md {
+    &_g {
+      &_list {
+        @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+        .singer_card {
+          width: calc((100% / 5) - $spacing * 2);
+        }
+      }
+    }
+  }
+  @include xl {
+    &_banner {
+      height: $spacing * 35;
+    }
+
+    &_g {
+      h2 {
+        font-size: $spacing * 2;
+      }
+      &_list {
+        .singer_card {
+          width: calc((100% / 7) - $spacing * 2);
+        }
+      }
+    }
+  }
+  // dark mode
+  body.darkmode & {
+    &_g {
+      h2 {
+        color: $color_white;
+      }
+    }
+  }
+}
+
+.lyrics_singer_detail {
+  @include dynamicAlign($direction: column, $gap: $spacing * 2);
+  &_head {
+    @include dynamicAlign($align: center);
+    h1 {
+      font-size: $spacing * 1.6;
+      font-style: italic;
+      font-weight: 400;
+    }
+  }
+  &_list {
+    @include dynamicAlign($wrap: wrap, $gap: $spacing);
+    width: 100%;
+    .lyrics_card {
+      width: calc((100% / 2) - $spacing);
+    }
+  }
+
+  &_more {
+    width: 100%;
+    h2 {
+      font-size: $spacing * 1.6;
+      font-weight: 500;
+      font-style: italic;
+      margin-bottom: $spacing * 2;
+      color: $color_black;
+    }
+    &_list {
+      @include dynamicAlign($wrap: wrap, $gap: $spacing * 2, $justify: center);
+      .lyrics_singer_card_horizal {
+        width: calc((100% / 2) - $spacing * 2);
+      }
+    }
+  }
+
+  @include sm {
+    &_head {
+      span {
+        font-size: $spacing * 1.8;
+      }
+    }
+    &_list {
+      @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+      width: 100%;
+      .lyrics_card {
+        width: calc((100% / 2) - $spacing * 2);
+      }
+    }
+  }
+
+  @include md {
+    &_head {
+      span {
+        font-size: $spacing * 1.8;
+      }
+    }
+    &_list {
+      @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+      width: 100%;
+      .lyrics_card {
+        width: calc((100% / 4) - $spacing * 2);
+      }
+    }
+
+    &_more {
+      &_list {
+        @include dynamicAlign(
+          $wrap: wrap,
+          $gap: $spacing * 2,
+          $justify: center
+        );
+        .lyrics_singer_card_horizal {
+          width: calc((100% / 5) - $spacing * 2);
+        }
+      }
+    }
+  }
+
+  @include xl {
+    &_list {
+      .lyrics_card {
+        width: calc((100% / 6) - $spacing * 2);
+      }
+    }
+
+    &_more {
+      h2 {
+        font-size: $spacing * 2;
+      }
+      &_list {
+        @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+        .lyrics_singer_card_horizal {
+          width: calc((100% / 6) - $spacing * 2);
+        }
+      }
+    }
+  }
+  body.darkmode & {
+    &_more {
+      h2 {
+        color: $color_white;
+      }
+    }
+  }
+}
+
+.lyrics_song {
+  .lyrics_back {
+    margin-bottom: $spacing * 2;
+  }
+  &_content {
+    @include dynamicAlign($direction: column);
+    @include transition();
+
+    &_left {
+      order: 1;
+      width: 100%;
+      @include transition();
+      &_other {
+        @include dynamicAlign($align: center);
+        margin-top: $spacing * 2;
+        background: $color_white;
+        padding: $spacing;
+        border-radius: $spacing;
+        &_g {
+          flex: 1;
+          position: relative;
+          .cloudy {
+            cursor: pointer;
+            @include dynamicAlign(center, center);
+            &.active {
+              svg {
+                path {
+                  fill: $color_pink;
+                }
+              }
+            }
+          }
+          h3 {
+            text-align: center;
+            font-weight: 500;
+            font-size: $spacing * 1.4;
+          }
+          p {
+            margin-top: $spacing;
+
+            @include dynamicAlign($align: center, $justify: center);
+          }
+        }
+      }
+    }
+    &_middle {
+      order: 2;
+      width: 100%;
+    }
+    &_right {
+      width: 100%;
+      order: 3;
+    }
+  }
+  @include xl {
+    &_content {
+      @include dynamicAlign();
+
+      &.user_lyrics_layout {
+        .lyrics_song_content {
+          &_left {
+            flex: 0.1;
+            @include transition();
+            .box_detail_song {
+              &_head {
+                abbr {
+                  width: 100%;
+                }
+                h1 {
+                  font-size: $spacing * 1.6;
+                  display: none;
+                }
+              }
+              &_content {
+                display: none;
+              }
+            }
+
+            .box_video_song {
+              &_content {
+                @include dynamicAlign($direction: column);
+                &_video {
+                  height: 0;
+                }
+                &_info {
+                  p {
+                    display: none;
+                  }
+                }
+              }
+            }
+
+            .lyrics_song_content_left_other {
+              display: none;
+            }
+          }
+          &_middle {
+            flex: 0.7;
+          }
+          &_right {
+            flex: 1;
+          }
+        }
+      }
+
+      &_left {
+        flex: 0.5;
+
+        &_other {
+          padding: $spacing * 2;
+
+          &_g {
+            h3 {
+              font-size: $spacing * 1.6;
+            }
+          }
+        }
+      }
+      &_middle {
+        flex: 1;
+      }
+      &_right {
+        flex: 0.4;
+      }
+    }
+  }
+  body.darkmode & {
+    &_head {
+      background: $color_gray_dark;
+      &:hover {
+        background: $color_white;
+        svg {
+          path {
+            stroke: $color_blue_dark;
+          }
+        }
+      }
+      svg {
+        path {
+          stroke: $color_white;
+        }
+      }
+    }
+    &_content {
+      &_left {
+        &_other {
+          background: $color_gray_dark;
+          color: $color_white;
+          svg {
+            path {
+              fill: $color_white;
+            }
+            &:last-child {
+              path {
+                stroke: $color_white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.lyrics_category_page {
+  &_banner {
+    margin-top: $spacing * 2;
+    width: 100%;
+    height: $spacing * 15;
+    img {
+      border-radius: $spacing;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .country {
+    margin-top: $spacing * 5;
+    h2 {
+      font-size: $spacing * 1.6;
+      font-weight: 500;
+      margin-bottom: $spacing * 2;
+      color: $color_black;
+    }
+    &_list {
+      @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+      .lyrics_category_country_card {
+        width: calc((100% / 2) - $spacing * 2);
+      }
+    }
+  }
+
+  .type {
+    margin-top: $spacing * 2;
+    h2 {
+      font-size: $spacing * 1.6;
+      font-weight: 500;
+      margin-bottom: $spacing * 2;
+    }
+    &_list {
+      @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+      .lyrics_category_card {
+        width: calc((100% / 2) - $spacing * 2);
+      }
+    }
+  }
+
+  @include sm {
+    &_banner {
+      height: $spacing * 20;
+    }
+    .country {
+      &_list {
+        .lyrics_category_country_card {
+          width: calc((100% / 3) - $spacing * 2);
+        }
+      }
+    }
+    .type {
+      &_list {
+        .lyrics_category_card {
+          width: calc((100% / 3) - $spacing * 2);
+        }
+      }
+    }
+  }
+
+  @include md {
+    &_banner {
+      height: $spacing * 20;
+    }
+    .country {
+      &_list {
+        .lyrics_category_country_card {
+          width: calc((100% / 5) - $spacing * 2);
+        }
+      }
+    }
+    .type {
+      &_list {
+        .lyrics_category_card {
+          width: calc((100% / 5) - $spacing * 2);
+        }
+      }
+    }
+  }
+
+  @include xl {
+    &_banner {
+      margin-top: $spacing * 3;
+
+      height: $spacing * 35;
+      img {
+        border-radius: $spacing * 2;
+      }
+    }
+    .country {
+      h2 {
+        font-size: $spacing * 2;
+      }
+      &_list {
+        .lyrics_category_country_card {
+          width: calc((100% / 5) - $spacing * 2);
+        }
+      }
+    }
+
+    .type {
+      margin-top: $spacing * 5;
+      h2 {
+        font-size: $spacing * 2;
+      }
+      &_list {
+        .lyrics_category_card {
+          width: calc((100% / 10) - $spacing * 2);
+        }
+      }
+    }
+  }
+
+  body.darkmode & {
+    .country,
+    .type {
+      h2 {
+        color: $color_white;
+      }
+    }
+  }
+}
+
+.lyrics_detail_category {
+  .head {
+    margin-bottom: $spacing * 3;
+    .top {
+      @include dynamicAlign($align: center);
+      margin-bottom: $spacing * 2;
+      h1 {
+        font-size: $spacing * 1.6;
+        font-weight: 400;
+        font-style: italic;
+      }
+    }
+  }
+
+  .content {
+    @include dynamicAlign($direction: column, $gap: $spacing * 3);
+    width: 100%;
+  }
+
+  .top_hits {
+    width: 100%;
+    h2 {
+      font-size: $spacing * 1.6;
+      font-weight: 500;
+      margin-bottom: $spacing * 2;
+      color: $color_black;
+    }
+    &_list {
+      @include dynamicAlign($wrap: wrap, $gap: $spacing);
+      .lyrics_card {
+        width: calc((100% / 2) - $spacing);
+      }
+    }
+  }
+
+  @include sm {
+    .head {
+      .top {
+        h1 {
+          font-size: $spacing * 1.8;
+        }
+      }
+    }
+
+    .top_hits {
+      h2 {
+        font-size: $spacing * 1.8;
+      }
+      &_list {
+        @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+        .lyrics_card {
+          width: calc((100% / 2) - $spacing * 2);
+        }
+      }
+    }
+  }
+
+  @include md {
+    .top_hits {
+      &_list {
+        .lyrics_card {
+          width: calc((100% / 4) - $spacing * 2);
+        }
+      }
+    }
+  }
+
+  @include xl {
+    .head {
+      .top {
+        h1 {
+          font-size: $spacing * 2;
+        }
+      }
+    }
+
+    .top_hits {
+      &_list {
+        .lyrics_card {
+          width: calc((100% / 6) - $spacing * 2);
+        }
+      }
+    }
+  }
+  body.darkmode & {
+    .head {
+      .top {
+        h1 {
+          color: $color_white;
+        }
+      }
+    }
+
+    .top_hits {
+      h2 {
+        color: $color_white;
+      }
+    }
+  }
+}
+
+.lyrics_detail_category_country {
+  .top {
+    @include dynamicAlign($align: center);
+    margin-bottom: $spacing * 2;
+    h1 {
+      font-size: $spacing * 1.6;
+      font-weight: 400;
+      font-style: italic;
+    }
+  }
+
+  .top_hits {
+    margin-top: $spacing * 2;
+    h2 {
+      font-size: $spacing * 1.6;
+      font-weight: 500;
+      margin-bottom: $spacing * 2;
+    }
+    &_list {
+      @include dynamicAlign($wrap: wrap, $gap: $spacing);
+      .lyrics_card {
+        width: calc((100% / 2) - $spacing);
+      }
+    }
+  }
+
+  @include sm {
+    .top_hits {
+      &_list {
+        @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+        .lyrics_card {
+          width: calc((100% / 2) - $spacing * 2);
+        }
+      }
+    }
+  }
+
+  @include md {
+    .top_hits {
+      &_list {
+        .lyrics_card {
+          width: calc((100% / 4) - $spacing * 2);
+        }
+      }
+    }
+  }
+
+  @include xl {
+    .top {
+      h1 {
+        font-size: $spacing * 2;
+      }
+    }
+
+    .top_hits {
+      h2 {
+        font-size: $spacing * 2;
+      }
+      &_list {
+        .lyrics_card {
+          width: calc((100% / 5) - $spacing * 2);
+        }
+      }
+    }
+  }
+  body.darkmode & {
+    .top {
+      h1 {
+        color: $color_white;
+      }
+    }
+    .top_hits {
+      h2 {
+        color: $color_white;
+      }
+    }
+  }
+}

@@ -1,0 +1,167 @@
+@mixin dynamicAlign(
+  $justify: flex-start,
+  $align: flex-start,
+  $gap: 1rem,
+  $direction: row,
+  $wrap: no-warp
+) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+}
+
+@mixin dynamicPosition(
+  $pos: absolute,
+  $left: unset,
+  $right: unset,
+  $top: unset,
+  $bottom: unset,
+  $transform: unset
+) {
+  position: $pos;
+  left: $left;
+  right: $right;
+  top: $top;
+  bottom: $bottom;
+  transform: $transform;
+}
+
+@mixin AnchorElement(
+  $color: $color_white,
+  $background_color: $color_white,
+  $color_hover: $color_white,
+  $background_hover: $color_white,
+  $color_active: $color_white,
+  $background_active: $color_white,
+  $font_size: $spacing * 1.6,
+  $padding: $spacing,
+  $width: $spacing
+) {
+  color: $color;
+  text-decoration: none;
+  font-size: $font_size;
+  padding: $padding;
+  width: $width;
+  &.active {
+    color: $color_active;
+    background: $background_active;
+  }
+  &:hover {
+    color: $color_hover;
+    background: $background_hover;
+  }
+}
+
+@mixin gridSys(
+  $repeatColumn: 4,
+  $repeatRow: 1,
+  $margin: $margin,
+  $gap: $margin,
+  $row_gap: $grid_row_gap
+) {
+  display: grid;
+  grid-template-columns: repeat($repeatColumn, 1fr);
+  grid-template-rows: repeat($repeatRow, 1fr);
+
+  grid-gap: $gap;
+  margin: $margin;
+}
+
+@mixin longText($line: 3) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+}
+
+@mixin glass(
+  $blur: blur($spacing),
+  $color: $color_gray,
+  $background: rgba($color_white, 0.2)
+) {
+  background: $background;
+  backdrop-filter: $blur;
+  border-radius: $spacing;
+  box-shadow: 0 0 $spacing * 2 rgba($color, 0.5);
+}
+
+@mixin button(
+  $font_size: $spacing * 1.6,
+  $padding: $spacing,
+  $opacity: 1,
+  $background: $color_white,
+  $border_radius: $spacing,
+  $color: $color_gray,
+  $shadow: 0 0 $spacing * 2 rgba($color_gray, 0.5),
+  $border: unset,
+  // hover
+  $background_hover: $color_white,
+  $color_hover: $color_gray,
+  $shadow_hover: 0 0 $spacing * 2 rgba($color_gray, 0.5),
+  $border_hover: unset,
+  // active
+  $background_active: $color_white,
+  $color_active: $color_gray,
+  $shadow_active: 0 0 $spacing * 2 rgba($color_gray, 0.5),
+  $opacity_active: 1,
+  $border_active: unset
+) {
+  font-size: $font_size;
+  padding: $padding;
+  opacity: $opacity;
+  background: $background;
+  border-radius: $border_radius;
+  color: $color;
+  box-shadow: $shadow;
+  border: $border;
+  cursor: pointer;
+  &:hover {
+    background: $background_hover;
+    color: $color_hover;
+    box-shadow: $shadow_hover;
+    border: $border_hover;
+  }
+
+  &.active {
+    background: $background_active;
+    color: $color_active;
+    box-shadow: $shadow_active;
+    opacity: $opacity_active;
+    border: $border_active;
+  }
+}
+
+@mixin transition(
+  $second: $transition_second,
+  $type: $transition_type,
+  $delay: unset
+) {
+  transition: all $second $type;
+  transition-delay: $delay;
+}
+
+@mixin overlay($background: rgba($color_blue_dark, 0.3)) {
+  @include dynamicPosition(
+    $pos: fixed,
+    $left: 0,
+    $right: 0,
+    $bottom: 0,
+    $top: 0
+  );
+
+  border-radius: unset;
+  animation: overAminate 0.5s ease;
+  @include glass($background: $background);
+
+  @keyframes overAminate {
+    from {
+      @include glass($background: unset);
+    }
+    to {
+      @include glass($background: $background);
+    }
+  }
+}

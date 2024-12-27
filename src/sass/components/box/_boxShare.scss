@@ -1,0 +1,31 @@
+.box_share {
+  @include dynamicPosition($pos: absolute, $top: 100%, $right: 0);
+  opacity: 0;
+  z-index: -1;
+  width: max-content;
+  overflow: hidden;
+  &.active {
+    z-index: 2;
+    opacity: 1;
+  }
+  @include transition;
+
+  background: $color_white;
+  padding: $spacing * 2;
+  box-shadow: 0 0 $spacing * 2 0 rgba($color_gray, 0.2);
+  border-radius: $spacing;
+  @include dynamicAlign($align: center, $gap: $spacing * 2);
+  a {
+    svg {
+      width: $spacing * 2;
+      object-fit: contain;
+    }
+  }
+  @include xl {
+    @include dynamicPosition(
+      $pos: absolute,
+      $top: -$spacing,
+      $right: - $spacing * 21
+    );
+  }
+}

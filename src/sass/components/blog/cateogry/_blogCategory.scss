@@ -1,0 +1,110 @@
+.blog_page_category {
+  margin-top: $spacing * 2;
+  &_head {
+    @include dynamicAlign($justify: space-between, $align: center);
+    margin-bottom: $spacing * 2;
+    .left {
+      h2 {
+        font-size: $spacing * 1.6;
+        font-weight: 650;
+        color: $color_black;
+      }
+    }
+    .right {
+      a {
+        @include button(
+          $color: $color_gray_normal,
+          $color_hover: $color_white,
+          $background_hover: $color_pink,
+          $font_size: $spacing * 1.4,
+          $padding: $spacing - 0.5 $spacing
+        );
+        text-decoration: none;
+      }
+    }
+  }
+
+  &_content {
+    @include dynamicAlign(
+      $wrap: wrap,
+      $gap: $spacing,
+      $align: center,
+      $justify: center
+    );
+    .blog_category_grid_card {
+      width: calc((100% / 2) - $spacing);
+    }
+  }
+
+  @include sm {
+    &_head {
+      .left {
+        h2 {
+          font-size: $spacing * 1.8;
+        }
+      }
+      .right {
+        a {
+          @include button(
+            $color: $color_gray_normal,
+            $color_hover: $color_white,
+            $background_hover: $color_pink,
+            $font_size: $spacing * 1.4
+          );
+        }
+      }
+    }
+
+    &_content {
+      @include dynamicAlign(
+        $wrap: wrap,
+        $gap: $spacing * 2,
+        $align: center,
+        $justify: center
+      );
+      .blog_category_grid_card {
+        width: calc((100% / 2) - $spacing * 2);
+      }
+    }
+  }
+
+  @include md {
+    &_content {
+      .blog_category_grid_card {
+        width: calc((100% / 4) - $spacing * 2);
+      }
+    }
+  }
+
+  @include xl {
+    margin-top: $spacing * 5;
+    &_head {
+      .left {
+        @include dynamicAlign($direction: column);
+        width: 40%;
+        h2 {
+          font-size: $spacing * 2;
+        }
+      }
+    }
+
+    &_content {
+      @include gridSys($repeatColumn: 4, $repeatRow: 7, $gap: $spacing * 2);
+      height: $spacing * 100;
+      width: 85%;
+      margin: $spacing * 3 auto;
+      .blog_category_grid_card {
+        width: 100%;
+      }
+    }
+  }
+  body.darkmode & {
+    &_head {
+      .left {
+        h2 {
+          color: $color_white;
+        }
+      }
+    }
+  }
+}

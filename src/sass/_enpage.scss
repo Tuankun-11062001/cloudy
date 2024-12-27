@@ -1,0 +1,23 @@
+.en_page {
+  background: $color_white;
+  padding: $spacing * 2;
+  border-radius: $spacing * 2;
+  @include dynamicAlign($direction: column, $justify: center, $align: center);
+  h1 {
+    font-size: $spacing * 2;
+  }
+  .g {
+    @include dynamicAlign($align: center);
+    a {
+      color: $color_black;
+      padding: $spacing $spacing * 2;
+      background: $color_gray;
+      border-radius: $spacing;
+      @include transition;
+      &:hover {
+        color: $color_white;
+        background: $color_pink;
+      }
+    }
+  }
+}

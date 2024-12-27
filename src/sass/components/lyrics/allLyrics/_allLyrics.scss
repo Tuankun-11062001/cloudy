@@ -1,0 +1,37 @@
+.lyrics_all {
+  margin-top: $spacing * 2;
+  @include dynamicAlign($direction: column, $gap: $spacing * 2);
+  &_list {
+    width: 100%;
+    @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+    .lyrics_card {
+      width: calc((100% / 2) - $spacing * 2);
+    }
+  }
+  .lyrics_pagination {
+    @include dynamicAlign($align: center, $justify: center);
+    width: 100%;
+    margin-bottom: $spacing * 4;
+    .item {
+      width: $spacing * 4;
+      height: $spacing * 4;
+      border-radius: $spacing;
+      background: $color_white;
+      cursor: pointer;
+      @include dynamicAlign(center, center);
+      @include transition;
+      &.active,
+      &:hover {
+        color: $color_white;
+        background: $color_pink;
+      }
+    }
+  }
+  @include xl {
+    &_list {
+      .lyrics_card {
+        width: calc((100% / 3) - $spacing * 2);
+      }
+    }
+  }
+}

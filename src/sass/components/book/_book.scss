@@ -1,0 +1,854 @@
+.book_back {
+  background: $color_white;
+  width: $spacing * 4;
+  height: $spacing * 4;
+  border-radius: 50%;
+  @include dynamicAlign(center, center);
+  cursor: pointer;
+  @include transition;
+  &:hover {
+    background: $color_pink;
+    svg {
+      path {
+        stroke: $color_white;
+      }
+    }
+    box-shadow: 0 0 $spacing 0 rgba($color_black, 0.2);
+  }
+  svg {
+    transform: rotate(90deg);
+    @include transition;
+
+    path {
+      stroke: $color_gray_normal;
+    }
+  }
+  @include xl {
+    width: $spacing * 5;
+    height: $spacing * 5;
+  }
+  body.darkmode & {
+    background: $color_gray_dark;
+    &:hover {
+      background: $color_pink;
+      svg {
+        path {
+          stroke: $color_white;
+        }
+      }
+      box-shadow: 0 0 $spacing 0 rgba($color_white, 0.2);
+    }
+    svg {
+      path {
+        stroke: $color_gray;
+      }
+    }
+  }
+}
+
+.book_page {
+  .head {
+    h1 {
+      font-size: $spacing * 1.4;
+      background: $color_pink;
+      color: $color_white;
+      width: max-content;
+      padding: $spacing $spacing * 2;
+      border-radius: $spacing;
+      font-weight: 600;
+    }
+
+    @include dynamicAlign($direction: column, $gap: $spacing * 3);
+
+    .book_search {
+      position: relative;
+      width: 100%;
+      .form {
+        @include dynamicAlign($align: center);
+        background: $color_white;
+        width: 100%;
+        border-radius: $spacing * 3;
+        padding-inline: $spacing * 2;
+        svg {
+          path,
+          circle {
+            stroke: $color_gray_normal;
+          }
+        }
+
+        input {
+          width: 100%;
+          border: unset;
+          outline: none;
+          padding: $spacing * 2;
+          padding-left: unset;
+          font-size: $spacing * 1.4;
+        }
+      }
+      &_result {
+        @include dynamicPosition($pos: absolute, $top: 110%, $left: 0);
+        width: 100%;
+        background: $color_white;
+        z-index: 4;
+        padding: $spacing * 2;
+        border-radius: $spacing * 2;
+        opacity: 0;
+        height: 0;
+        @include transition;
+        box-shadow: 0 0 $spacing 0 rgba($color_gray_normal, 0.2);
+        overflow: hidden;
+        overflow: auto;
+        @include dynamicAlign($gap: $spacing * 2, $direction: column);
+        .book_card_horizal {
+          width: 100%;
+        }
+        &.active {
+          height: $spacing * 40;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .content {
+    .book_popular {
+      @include dynamicAlign($direction: column);
+      margin-top: $spacing * 3;
+      h2 {
+        font-size: $spacing * 1.4;
+        font-weight: 400;
+      }
+      &_list {
+        @include dynamicAlign($wrap: wrap);
+
+        margin-top: $spacing * 2;
+        .book_card {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  @include sm {
+    .content {
+      .book_popular {
+        h2 {
+          font-size: $spacing * 1.6;
+        }
+      }
+    }
+  }
+
+  @include md {
+    .content {
+      .book_popular {
+        &_list {
+          @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+
+          margin-top: $spacing * 2;
+          .book_card {
+            width: calc((100% / 2) - $spacing * 2);
+          }
+        }
+      }
+    }
+  }
+
+  @include xl {
+    .head {
+      margin-right: $spacing * 45;
+      .book_search {
+        .form {
+          input {
+            font-size: $spacing * 1.6;
+          }
+        }
+        &_result {
+          @include dynamicAlign($gap: $spacing * 2);
+          .book_card_horizal {
+            width: calc((100% / 3) - $spacing * 2);
+          }
+        }
+      }
+    }
+
+    .content {
+      margin-right: $spacing * 45;
+
+      .book_popular {
+        h2 {
+          font-size: $spacing * 2;
+        }
+        &_list {
+          @include dynamicAlign($wrap: wrap, $gap: $spacing * 6 $spacing * 2);
+          margin-top: $spacing * 6;
+          .book_card {
+            width: calc((100% / 2) - $spacing * 2);
+          }
+        }
+      }
+    }
+  }
+  body.darkmode & {
+    .head {
+      h1 {
+        background: $color_white;
+        color: $color_blue_dark;
+      }
+      @include dynamicAlign($direction: column, $gap: $spacing * 3);
+      margin-right: $spacing * 45;
+      .book_search {
+        .form {
+          background: $color_gray_dark;
+
+          svg {
+            path,
+            circle {
+              stroke: $color_gray;
+            }
+          }
+
+          input {
+            background: transparent;
+            color: $color_white;
+          }
+        }
+        &_result {
+          background: $color_gray_dark;
+          box-shadow: 0 0 $spacing 0 rgba($color_gray, 0.2);
+
+          .book_card_horizal {
+            width: calc((100% / 2) - $spacing * 2);
+          }
+        }
+      }
+    }
+
+    .content {
+      .book_popular {
+        h2 {
+          color: $color_white;
+        }
+      }
+    }
+  }
+}
+
+.book_category_detail {
+  &_list {
+    margin-top: $spacing * 3;
+    @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+    .book_card {
+      width: 100%;
+    }
+  }
+
+  @include md {
+    &_list {
+      .book_card {
+        width: calc((100% / 2) - $spacing * 2);
+      }
+    }
+  }
+
+  @include xl {
+    &_list {
+      margin-top: $spacing * 9;
+      @include dynamicAlign($wrap: wrap, $gap: $spacing * 7 $spacing * 2);
+      .book_card {
+        width: calc((100% / 3) - $spacing * 2);
+      }
+    }
+  }
+}
+
+.book_detail {
+  position: relative;
+  &_head {
+    @include dynamicAlign($gap: $spacing * 3);
+    width: 50%;
+    margin: $spacing * 2 auto;
+    @include dynamicPosition(
+      $pos: absolute,
+      $left: 50%,
+      $transform: translateX(-50%)
+    );
+    z-index: 2;
+    visibility: visible;
+    opacity: 1;
+    @include transition($second: 1s);
+    &.active {
+      opacity: 0;
+      z-index: -1;
+      visibility: hidden;
+    }
+    img {
+      width: $spacing * 20;
+      height: $spacing * 25;
+      object-fit: cover;
+      border-radius: $spacing;
+      box-shadow: -$spacing $spacing $spacing * 2 0 rgba($color_gray_normal, 1);
+    }
+    &_info {
+      display: none;
+    }
+  }
+
+  &_content {
+    @include dynamicPosition($pos: absolute, $top: $spacing * 20);
+    z-index: 1;
+    background: $color_white;
+    width: 100%;
+    padding: $spacing;
+    border-radius: $spacing * 2;
+
+    @include transition($second: 1s);
+    &.active {
+      top: 0;
+    }
+    .content {
+      margin-top: $spacing * 2;
+    }
+  }
+  &_control {
+    @include dynamicAlign(
+      $align: center,
+      $justify: space-between,
+      $direction: column
+    );
+    width: 100%;
+    padding-bottom: $spacing;
+    z-index: 2;
+    border-bottom: $spacing - 0.9 solid $color_gray;
+    &_left {
+      @include dynamicAlign($align: center);
+      width: 100%;
+      h1 {
+        font-size: $spacing * 1.6;
+        opacity: 0;
+        &.active {
+          opacity: 1;
+        }
+      }
+    }
+    &_right {
+      @include dynamicAlign(
+        $align: center,
+        $gap: $spacing * 2,
+        $direction: column
+      );
+      .other {
+        @include dynamicAlign($align: center);
+
+        p {
+          @include dynamicAlign($align: center);
+          cursor: pointer;
+          &:first-child {
+            cursor: unset;
+          }
+          svg {
+            pointer-events: none;
+            &:not(:last-child) {
+              path {
+                fill: $color_gray_normal;
+                stroke: $color_gray;
+              }
+            }
+            &:last-child {
+              path {
+                stroke: $color_gray_normal;
+              }
+            }
+          }
+        }
+
+        .cloudy {
+          cursor: pointer;
+          &.active {
+            svg {
+              path {
+                fill: $color_pink;
+                stroke: $color_pink;
+              }
+            }
+          }
+        }
+      }
+      &_chapter {
+        @include dynamicAlign($align: center);
+        p {
+          width: $spacing * 4;
+          height: $spacing * 4;
+          border-radius: 50%;
+          border: $spacing - 0.9 solid $color_gray;
+          @include dynamicAlign(center, center);
+          @include transition;
+          cursor: pointer;
+          &:hover {
+            background: $color_pink;
+            svg {
+              path {
+                color: $color_white;
+              }
+            }
+          }
+          svg {
+            @include transition;
+
+            path {
+              stroke: $color_gray;
+            }
+          }
+          &:first-child {
+            svg {
+              transform: rotate(90deg);
+            }
+          }
+          &:last-child {
+            svg {
+              transform: rotate(-90deg);
+            }
+          }
+        }
+        select {
+          border: none;
+          font-size: $spacing * 1.6;
+          outline: none;
+        }
+      }
+    }
+    &_comment {
+      @include dynamicPosition($pos: absolute, $right: 0, $top: 0);
+      width: 100%;
+      background: $color_white;
+      padding: $spacing * 2;
+      box-shadow: 0 0 $spacing 0 rgba($color_gray_normal, 0.4);
+      @include dynamicAlign($direction: column);
+      opacity: 0;
+      @include transition($second: 1s);
+      z-index: -1;
+      border-radius: $spacing;
+      &.active {
+        opacity: 1;
+        z-index: 1;
+      }
+      h3 {
+        font-size: $spacing * 1.4;
+      }
+      &_head {
+        @include dynamicAlign($align: center, $justify: space-between);
+        width: 100%;
+
+        p {
+          font-size: $spacing * 1.2;
+          cursor: pointer;
+          &:hover {
+            svg {
+              path {
+                stroke: $color_pink;
+              }
+            }
+          }
+          svg {
+            pointer-events: none;
+            @include transition;
+            path {
+              stroke: $color_gray_normal;
+            }
+          }
+        }
+      }
+      &_edit {
+        width: 100%;
+        textarea {
+          width: 100%;
+          height: $spacing * 10;
+          resize: none;
+          border-radius: $spacing;
+          border: 0.1rem solid $color_gray;
+          font-size: $spacing * 1.4;
+          outline: none;
+          padding: $spacing;
+        }
+        p {
+          padding: $spacing $spacing * 2;
+          background: $color_gray;
+          width: max-content;
+          @include dynamicAlign(center, center);
+          border-radius: $spacing * 3;
+          margin-left: auto;
+          cursor: pointer;
+          &:hover {
+            background: $color_pink;
+            svg {
+              path {
+                fill: $color_white;
+              }
+            }
+          }
+          svg {
+            pointer-events: none;
+            path {
+              fill: $color_gray_normal;
+            }
+          }
+        }
+      }
+      &_list {
+        @include dynamicAlign($direction: column);
+        margin-top: $spacing * 2;
+        height: $spacing * 55;
+        overflow: auto;
+        width: 100%;
+
+        .item {
+          @include dynamicAlign;
+          width: 100%;
+          position: relative;
+          img {
+            width: $spacing * 4;
+            height: $spacing * 4;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+          &_content {
+            flex: 1;
+            h4 {
+              font-weight: 600;
+            }
+            p {
+              font-size: $spacing * 1.4;
+            }
+          }
+          &_trash {
+            margin-left: auto;
+            cursor: pointer;
+            &:hover {
+              svg {
+                path {
+                  stroke: $color_pink;
+                }
+              }
+            }
+          }
+          &_box_ask {
+            @include dynamicPosition(
+              $pos: absolute,
+              $right: 0,
+              $top: $spacing * 4
+            );
+            width: $spacing * 20;
+            background: $color_white;
+            border-radius: $spacing;
+            z-index: -1;
+            opacity: 0;
+            padding: $spacing;
+            box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.3);
+            @include transition;
+            &.active {
+              opacity: 1;
+              z-index: 3;
+            }
+            h4 {
+              text-align: center;
+              font-size: $spacing * 1.6;
+              font-weight: 500;
+            }
+            &_g {
+              margin-top: $spacing;
+              @include dynamicAlign($justify: center, $align: center);
+              p {
+                @include button(
+                  $font_size: $spacing * 1.4,
+                  $color: $color_gray_normal,
+                  $background_hover: $color_pink,
+                  $color_hover: $color_white
+                );
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &_read {
+    @include dynamicPosition($pos: absolute, $left: 0, $bottom: 0);
+    width: 100%;
+    height: $spacing * 10;
+
+    @include glass(
+      $blur: blur($spacing - 0.5),
+      $background: linear-gradient($color_white, rgba($color_gray_normal, 0.7))
+    );
+    border-bottom-right-radius: $spacing * 2;
+    border-bottom-left-radius: $spacing * 2;
+    @include dynamicAlign(center, center);
+    opacity: 1;
+    z-index: 1;
+    &.active {
+      opacity: 0;
+      z-index: -1;
+    }
+    p {
+      @include dynamicAlign();
+      background: $color_white;
+      padding: $spacing $spacing * 2;
+      border-radius: $spacing * 2;
+      box-shadow: 0 0 $spacing 0 rgba($color_gray_normal, 0.4);
+      color: $color_gray_normal;
+      cursor: pointer;
+      @include transition;
+      &:hover {
+        background: $color_pink;
+        color: $color_white;
+        svg {
+          path {
+            stroke: $color_white;
+          }
+        }
+      }
+      svg {
+        @include transition;
+        pointer-events: none;
+        path {
+          stroke: $color_gray_normal;
+        }
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  @include sm {
+    &_control {
+      &_comment {
+        h3 {
+          font-size: $spacing * 1.6;
+        }
+        &_head {
+          p {
+            font-size: $spacing * 1.4;
+          }
+        }
+      }
+    }
+  }
+
+  @include md {
+    &_head {
+      width: 80%;
+      margin: auto;
+
+      img {
+        width: $spacing * 18;
+        height: $spacing * 28;
+      }
+      &_info {
+        flex: 1;
+        @include dynamicAlign($direction: column, $gap: $spacing * 2);
+
+        p {
+          @include longText($line: 5);
+          white-space: pre-wrap;
+        }
+      }
+    }
+
+    &_content {
+      margin-top: $spacing * 2;
+    }
+
+    &_control {
+      @include dynamicAlign($align: center, $justify: space-between);
+      &_right {
+        @include dynamicAlign($align: center, $gap: $spacing * 2);
+      }
+    }
+  }
+
+  @include xl {
+    &_head {
+      img {
+        width: $spacing * 25;
+        height: $spacing * 35;
+      }
+      &_info {
+        flex: 1;
+        @include dynamicAlign($direction: column, $gap: $spacing * 2);
+
+        p {
+          @include longText($line: 5);
+          white-space: pre-wrap;
+        }
+      }
+    }
+
+    &_content {
+      @include dynamicPosition($pos: absolute, $top: $spacing * 29);
+
+      padding: $spacing * 2;
+
+      overflow: hidden;
+
+      &.active {
+        top: 0;
+        .content {
+          height: 78dvh;
+          overflow: auto;
+        }
+      }
+      .content {
+        height: 50dvh;
+        overflow: hidden;
+      }
+    }
+    &_control {
+      @include dynamicAlign($align: center, $justify: space-between);
+
+      &_left {
+        h1 {
+          font-size: $spacing * 2;
+        }
+      }
+      &_right {
+        @include dynamicAlign($align: center, $gap: $spacing * 2);
+      }
+      &_comment {
+        @include dynamicPosition(
+          $pos: absolute,
+          $right: -$spacing * 50,
+          $top: 0
+        );
+        width: 30%;
+
+        &.active {
+          right: 0;
+          opacity: 1;
+        }
+      }
+    }
+  }
+  body.darkmode & {
+    &_head {
+      &_info {
+        flex: 1;
+        @include dynamicAlign($direction: column, $gap: $spacing * 2);
+
+        h1 {
+          color: $color_white;
+        }
+
+        p {
+          color: $color_white;
+        }
+      }
+    }
+
+    &_content {
+      background: $color_gray_dark;
+    }
+
+    &_control {
+      &_left {
+        h1 {
+          color: $color_white;
+        }
+      }
+      &_right {
+        .other {
+          p {
+            color: $color_gray;
+            svg {
+              pointer-events: none;
+              &:not(:last-child) {
+                path {
+                  fill: $color_gray;
+                  stroke: $color_gray;
+                }
+              }
+              &:last-child {
+                path {
+                  stroke: $color_gray;
+                }
+              }
+            }
+          }
+        }
+        &_chapter {
+          select {
+            background: $color_gray_dark;
+            color: $color_white;
+          }
+        }
+      }
+      h3 {
+        color: $color_white;
+      }
+      &_comment {
+        background: $color_gray_dark;
+
+        box-shadow: 0 0 $spacing 0 rgba($color_gray, 0.4);
+
+        &_edit {
+          textarea {
+            background: transparent;
+            color: $color_white;
+          }
+          p {
+            background: $color_blue_dark;
+
+            &:hover {
+              background: $color_pink;
+              svg {
+                path {
+                  fill: $color_white;
+                }
+              }
+            }
+            svg {
+              pointer-events: none;
+              path {
+                fill: $color_gray;
+              }
+            }
+          }
+        }
+        &_list {
+          .item {
+            &_content {
+              h4 {
+                color: $color_white;
+              }
+              p {
+                color: $color_gray;
+              }
+            }
+            &_trash {
+              svg {
+                path {
+                  stroke: $color_gray;
+                }
+              }
+
+              &:hover {
+                svg {
+                  path {
+                    stroke: $color_pink;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &_read {
+      @include glass(
+        $blur: blur($spacing - 0.5),
+        $background:
+          linear-gradient($color_gray_dark, rgba($color_blue_dark, 0.5))
+      );
+    }
+  }
+}

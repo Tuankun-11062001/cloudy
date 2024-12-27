@@ -1,0 +1,547 @@
+.box_feedback_control {
+  @include dynamicAlign($gap: $spacing * 2, $direction: column);
+  width: 100%;
+  .box_feedback {
+    flex: 0;
+    &.active {
+      flex: 2;
+      width: 100%;
+    }
+
+    .box_list_feedback_song {
+      background: $color_white;
+      border-radius: $spacing * 2;
+
+      .feedback_song {
+        padding: $spacing;
+        width: 100%;
+        &.active {
+          display: block;
+        }
+        display: none;
+      }
+
+      &_content {
+        height: 63dvh;
+        overflow: auto;
+      }
+
+      .box_list_feedback_song_tab_content {
+        display: none;
+        &.active {
+          display: block;
+        }
+      }
+    }
+  }
+  .box_control_feedback {
+    flex: 1;
+    width: 100%;
+    .box_control_adding_btn {
+      display: none;
+    }
+    &_message {
+      background: rgba($color_pink, 0.7);
+      padding: $spacing;
+      border-radius: $spacing;
+      color: $color_white;
+      text-align: center;
+      box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.2);
+    }
+    .box_feedback_song {
+      margin: $spacing 0;
+      @include dynamicAlign($direction: column);
+      width: 100%;
+      h4 {
+        font-size: $spacing * 1.6;
+        font-weight: 400;
+        font-style: italic;
+        color: $color_black;
+      }
+
+      h5 {
+        font-size: $spacing * 1.6;
+        font-weight: 400;
+        font-style: italic;
+        color: $color_black;
+      }
+
+      .search_language {
+        @include dynamicAlign($align: center);
+        width: 100%;
+
+        background: $color_white;
+        padding: $spacing;
+        border-radius: $spacing;
+        label {
+          width: $spacing * 2;
+          svg {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+
+        select {
+          border: none;
+          background: transparent;
+          outline: none;
+          font-size: $spacing * 1.6;
+          width: 100%;
+        }
+
+        p {
+          cursor: pointer;
+          &:hover {
+            svg {
+              path,
+              circle {
+                stroke: $color_pink;
+              }
+            }
+          }
+          svg {
+            pointer-events: none;
+            width: $spacing * 2;
+            path,
+            circle {
+              stroke: $color_gray_normal;
+            }
+          }
+        }
+      }
+
+      &_list {
+        @include dynamicAlign($direction: column);
+        width: 100%;
+        height: $spacing * 25;
+        overflow: auto;
+      }
+
+      &_user {
+        @include dynamicAlign($align: center);
+        background: $color_white;
+        width: 100%;
+        padding: $spacing;
+        border-radius: $spacing;
+        cursor: pointer;
+        @include transition();
+
+        &:hover,
+        &.active {
+          background: rgba($color_pink, 0.8);
+          .info {
+            h3 {
+              color: $color_white;
+            }
+            color: $color_white;
+            p {
+              color: $color_white;
+            }
+          }
+        }
+        img {
+          width: $spacing * 3;
+          height: $spacing * 3;
+          border-radius: 50%;
+          object-fit: cover;
+          pointer-events: none;
+        }
+        .info {
+          // pointer-events: none;
+          width: 100%;
+
+          h3 {
+            font-size: $spacing * 1.6;
+            font-weight: 500;
+            margin-bottom: $spacing - 0.5;
+            color: $color_black;
+          }
+          &_other {
+            @include dynamicAlign($align: center);
+            width: 100%;
+            position: relative;
+
+            .box_ask {
+              @include dynamicPosition($pos: absolute, $right: 0, $top: 120%);
+              background: $color_white;
+              padding: $spacing;
+              border-radius: $spacing;
+              box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.2);
+              opacity: 0;
+              z-index: -1;
+              @include transition;
+              &.active {
+                opacity: 1;
+                z-index: 3;
+              }
+              &:hover {
+                h5 {
+                  color: $color_gray_normal;
+                }
+              }
+              h5 {
+                font-size: $spacing * 1.4;
+                font-style: normal;
+                color: $color_gray_normal;
+              }
+
+              div {
+                @include dynamicAlign($align: center);
+                margin-top: $spacing;
+                text-align: center;
+                p {
+                  @include button(
+                    $padding: $spacing - 0.5,
+                    $font_size: $spacing * 1.4,
+                    $color: $color_gray_normal,
+                    $color_hover: $color_white,
+                    $background_hover: $color_pink
+                  );
+                }
+              }
+            }
+            p {
+              flex: 1;
+            }
+
+            span {
+              &:hover {
+                svg {
+                  path {
+                    stroke: $color_white;
+                  }
+                }
+              }
+            }
+
+            svg {
+              pointer-events: none;
+            }
+          }
+          p {
+            font-size: $spacing * 1.4;
+            color: $color_gray_normal;
+          }
+        }
+      }
+
+      // dark
+    }
+
+    .box_comment_song {
+      @include dynamicAlign($direction: column);
+      h4 {
+        font-size: $spacing * 1.6;
+        font-weight: 500;
+        color: $color_black;
+      }
+      &_reply {
+        width: 100%;
+        @include dynamicAlign();
+        input {
+          flex: 1;
+          background: transparent;
+          border: none;
+          border-bottom: $spacing - 0.9 solid $color_gray_normal;
+          font-size: $spacing * 1.4;
+          outline: none;
+        }
+
+        p {
+          cursor: pointer;
+          @include transition();
+          &:hover {
+            svg {
+              path {
+                fill: $color_pink;
+              }
+            }
+          }
+          svg {
+            pointer-events: none;
+          }
+        }
+      }
+
+      &_list {
+        @include dynamicAlign($direction: column);
+        height: $spacing * 25;
+        overflow: auto;
+        width: 100%;
+
+        .item {
+          @include dynamicAlign();
+          position: relative;
+          width: 100%;
+          img {
+            width: $spacing * 3;
+            height: $spacing * 3;
+            object-fit: cover;
+            border-radius: 50%;
+          }
+
+          .info {
+            h5 {
+              font-size: $spacing * 1.4;
+              font-weight: 600;
+              color: $color_black;
+            }
+
+            p {
+              font-size: $spacing * 1.4;
+              color: $color_black;
+            }
+          }
+
+          .trash {
+            margin-left: auto;
+            cursor: pointer;
+            &:hover {
+              svg {
+                path {
+                  stroke: $color_pink;
+                }
+              }
+            }
+          }
+
+          &_ask_delete {
+            @include dynamicPosition($pos: absolute, $top: 100%, $right: 0);
+            z-index: -1;
+            opacity: 0;
+            background: $color_white;
+            padding: $spacing;
+            border-radius: $spacing;
+            @include transition($second: 0.5s);
+            &.active {
+              opacity: 1;
+              z-index: 3;
+            }
+            h3 {
+              font-size: $spacing * 1.4;
+              font-weight: 400;
+              color: $color_gray_normal;
+              margin-bottom: $spacing;
+            }
+            &_g {
+              @include dynamicAlign($align: center, $justify: center);
+              p {
+                @include button(
+                  $padding: $spacing - 0.5 $spacing,
+                  $font_size: $spacing * 1.4,
+                  $color: $color_gray_normal,
+                  $background_hover: $color_pink,
+                  $color_hover: $color_white
+                );
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include xl {
+    @include dynamicAlign($gap: $spacing * 2);
+    .box_feedback {
+      &.active {
+        flex: 2;
+      }
+
+      .box_list_feedback_song {
+        .feedback_song {
+          padding: $spacing * 2;
+        }
+
+        &_content {
+          height: 63dvh;
+          overflow: auto;
+        }
+      }
+    }
+    .box_control_feedback {
+      flex: 1;
+      .box_control_adding_btn {
+        display: block;
+        @include transition();
+        @include button(
+          $color: $color_gray_normal,
+          $background_hover: $color_pink,
+          $color_hover: $color_white
+        );
+        text-align: center;
+      }
+
+      .box_feedback_song {
+        h4 {
+          font-size: $spacing * 1.8;
+        }
+
+        h5 {
+          font-size: $spacing * 1.8;
+        }
+      }
+
+      .box_comment_song {
+        &_list {
+          @include dynamicAlign($direction: column);
+          height: $spacing * 25;
+          overflow: auto;
+          width: 100%;
+        }
+      }
+    }
+  }
+  body.darkmode & {
+    .box_feedback {
+      .box_list_feedback_song {
+        background: $color_gray_dark;
+      }
+    }
+
+    .box_control_feedback {
+      .box_control_adding_btn {
+        background: $color_gray_dark;
+        color: $color_white;
+        &:hover {
+          background: $color_white;
+          color: $color_blue_dark;
+        }
+      }
+      .box_feedback_song {
+        h4,
+        h5 {
+          color: $color_white;
+        }
+        .search_language {
+          background: $color_gray_dark;
+          svg {
+            path {
+              stroke: $color_white;
+            }
+          }
+          select {
+            color: $color_white;
+            background: $color_gray_dark;
+          }
+        }
+
+        &_user {
+          .info {
+            h3,
+            p {
+              color: $color_white;
+            }
+            &_other {
+              @include dynamicAlign($align: center);
+              width: 100%;
+              position: relative;
+
+              .box_ask {
+                background: $color_gray_dark;
+                h5 {
+                  color: $color_white;
+                }
+                div {
+                  p {
+                    @include button(
+                      $padding: $spacing - 0.5,
+                      $font_size: $spacing * 1.4,
+                      $color: $color_gray_normal,
+                      $color_hover: $color_white,
+                      $background_hover: $color_pink
+                    );
+                  }
+                }
+              }
+
+              span {
+                svg {
+                  path {
+                    stroke: $color_gray;
+                  }
+                }
+                &:hover {
+                  svg {
+                    path {
+                      stroke: $color_blue_dark;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          background: $color_gray_dark;
+          &:hover,
+          &.active {
+            .info {
+              h3,
+              p {
+                color: $color_blue_dark;
+              }
+            }
+            background: $color_white;
+          }
+        }
+      }
+    }
+
+    .box_comment_song {
+      h4 {
+        color: $color_white;
+      }
+      &_reply {
+        input {
+          border-bottom: $spacing - 0.9 solid $color_gray;
+          color: $color_white;
+        }
+
+        p {
+          svg {
+            path {
+              fill: $color_gray;
+            }
+          }
+          &:hover {
+            svg {
+              path {
+                fill: $color_white;
+              }
+            }
+          }
+        }
+      }
+
+      &_list {
+        .item {
+          .info {
+            h5 {
+              color: $color_white;
+            }
+
+            p {
+              font-size: $spacing * 1.4;
+              color: $color_white;
+            }
+          }
+
+          .trash {
+            svg {
+              path {
+                stroke: $color_gray;
+              }
+            }
+            &:hover {
+              svg {
+                path {
+                  stroke: $color_white;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

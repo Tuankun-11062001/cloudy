@@ -1,0 +1,220 @@
+.profile_page {
+  h1 {
+    font-size: $spacing * 1.4;
+    padding: $spacing $spacing * 2;
+    border-radius: $spacing;
+    background: $color_pink;
+    color: $color_white;
+    font-weight: 600;
+    width: max-content;
+    margin-bottom: $spacing * 2;
+  }
+  &_head {
+    position: relative;
+    .bg {
+      background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+      object-fit: cover;
+      width: 100%;
+      height: 15dvh;
+      border-radius: $spacing * 2;
+    }
+    .avatar {
+      width: $spacing * 10;
+      height: $spacing * 10;
+      background: $color_gray;
+      border-radius: 50%;
+      @include dynamicAlign(center, center);
+      @include dynamicPosition($pos: absolute, $top: $spacing * 8, $left: 5%);
+      img {
+        border-radius: 50%;
+        width: 90%;
+        height: 90%;
+      }
+    }
+
+    .role {
+      @include dynamicPosition($pos: absolute, $right: 3%, $top: $spacing * 15);
+      background: $color_white;
+      padding: $spacing $spacing * 3;
+      border-radius: $spacing * 2;
+      font-size: $spacing * 1.2;
+      font-style: italic;
+      color: $color_gray_normal;
+      box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.3);
+    }
+
+    .info {
+      margin-top: $spacing * 6;
+      @include dynamicAlign($justify: space-between, $align: center);
+      &_left {
+        @include dynamicAlign($direction: column, $align: center);
+
+        h2 {
+          font-size: $spacing * 1.8;
+          text-align: center;
+        }
+        p {
+          color: $color_gray_normal;
+        }
+      }
+      &_right {
+        @include dynamicAlign($gap: $spacing * 2);
+
+        a {
+          svg {
+            width: $spacing * 2;
+            height: $spacing * 2;
+            object-fit: contain;
+          }
+        }
+      }
+    }
+  }
+
+  &_content {
+    margin: $spacing * 4 auto;
+    @include dynamicAlign($direction: column, $gap: $spacing * 4);
+  }
+  &_about {
+    background: $color_white;
+    width: 100%;
+    padding: $spacing * 2;
+    border-radius: $spacing * 2;
+    box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.3);
+    @include dynamicAlign($direction: column, $gap: $spacing * 2);
+    h2 {
+      font-size: $spacing * 1.8;
+    }
+    p {
+      line-height: $spacing * 2.7;
+    }
+  }
+
+  @include md {
+    &_head {
+      .bg {
+        height: 25dvh;
+      }
+      .avatar {
+        width: $spacing * 15;
+        height: $spacing * 15;
+
+        @include dynamicPosition(
+          $pos: absolute,
+          $top: $spacing * 14,
+          $left: 5%
+        );
+      }
+
+      .role {
+        @include dynamicPosition(
+          $pos: absolute,
+          $right: 3%,
+          $top: $spacing * 26
+        );
+
+        font-size: $spacing * 1.4;
+      }
+
+      .info {
+        margin-top: $spacing * 8;
+
+        &_left {
+          margin-left: $spacing * 4;
+          h1 {
+            font-size: $spacing * 2.5;
+          }
+          p {
+            color: $color_gray_normal;
+          }
+        }
+        &_right {
+          margin-right: $spacing * 5;
+          a {
+            svg {
+              width: $spacing * 3;
+              height: $spacing * 3;
+            }
+          }
+        }
+      }
+    }
+
+    &_content {
+      width: 80%;
+    }
+    &_about {
+      h2 {
+        font-size: $spacing * 2;
+      }
+    }
+  }
+
+  @include xl {
+    &_head {
+      .bg {
+        height: 25dvh;
+      }
+      .avatar {
+        width: $spacing * 20;
+        height: $spacing * 20;
+
+        @include dynamicPosition(
+          $pos: absolute,
+          $top: $spacing * 12,
+          $left: 2%
+        );
+      }
+    }
+  }
+  body.darkmode & {
+    h1 {
+      background: $color_white;
+      color: $color_blue_dark;
+    }
+    &_head {
+      .avatar {
+        background: $color_blue_dark;
+      }
+
+      .info {
+        &_left {
+          h2 {
+            color: $color_white;
+          }
+          p {
+            color: $color_gray;
+          }
+        }
+        &_right {
+          @include dynamicAlign($gap: $spacing * 2);
+          margin-right: $spacing * 5;
+
+          .dark_white {
+            svg {
+              path {
+                stroke: $color_white;
+                fill: $color_white;
+              }
+            }
+          }
+          a {
+            svg {
+              width: $spacing * 3;
+              height: $spacing * 3;
+              object-fit: contain;
+            }
+          }
+        }
+      }
+    }
+
+    &_about {
+      background: $color_gray_dark;
+      h2 {
+        color: $color_white;
+      }
+      box-shadow: 0 0 $spacing * 2 0 rgba($color_white, 0.5);
+    }
+  }
+}

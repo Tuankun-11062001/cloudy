@@ -1,0 +1,556 @@
+.user_card {
+  width: 100%;
+  @include dynamicAlign($gap: $spacing * 2);
+  background: $color_white;
+  padding: $spacing * 2;
+  border-radius: $spacing * 2;
+  img {
+    width: $spacing * 5;
+    height: $spacing * 5;
+    border-radius: 50%;
+  }
+  .info {
+    @include dynamicAlign($direction: column);
+    h3 {
+      font-size: $spacing * 1.6;
+      font-weight: 500;
+      color: $color_gray_normal;
+    }
+
+    &_social {
+      @include dynamicAlign();
+      .dark_white {
+        svg {
+          path {
+            stroke: $color_black;
+            fill: $color_black;
+          }
+        }
+      }
+      svg {
+        width: $spacing * 2.5;
+        height: $spacing * 2.5;
+      }
+    }
+    p {
+      color: $color_gray_normal;
+      @include longText($line: 2);
+      abbr {
+        text-decoration: none;
+      }
+    }
+  }
+  @include xl {
+    .info {
+      &_social {
+        @include dynamicAlign();
+
+        svg {
+          width: $spacing * 2.5;
+          height: $spacing * 2.5;
+        }
+      }
+      p {
+        color: $color_gray_normal;
+        @include longText($line: 2);
+        abbr {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  body.darkmode & {
+    background: $color_gray_dark;
+    .info {
+      h3,
+      p {
+        color: $color_white;
+      }
+      &_social {
+        .dark_white {
+          svg {
+            path {
+              stroke: $color_white;
+              fill: $color_white;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.user_page {
+  @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+  .user_card {
+    width: 100%;
+  }
+  @include xl {
+    .user_card {
+      width: calc((100% / 4) - $spacing * 2);
+    }
+  }
+}
+
+.detail_user {
+  @include xl {
+    position: relative;
+    &_head {
+      position: relative;
+      .bg {
+        background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+        width: 100%;
+        object-fit: cover;
+        object-position: bottom;
+        height: 25dvh;
+        border-radius: $spacing * 2;
+      }
+      .avatar {
+        width: $spacing * 20;
+        height: $spacing * 20;
+        background: $color_gray;
+        border-radius: 50%;
+        @include dynamicAlign(center, center);
+        @include dynamicPosition(
+          $pos: absolute,
+          $top: $spacing * 12,
+          $left: 2%
+        );
+        img {
+          border-radius: 50%;
+          width: 90%;
+          height: 90%;
+        }
+      }
+
+      .role {
+        @include dynamicPosition(
+          $pos: absolute,
+          $right: 3%,
+          $top: $spacing * 26
+        );
+        background: $color_white;
+        padding: $spacing $spacing * 3;
+        border-radius: $spacing * 2;
+        font-size: $spacing * 1.4;
+        font-style: italic;
+        color: $color_gray_normal;
+        box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.3);
+      }
+
+      .info {
+        margin-top: $spacing * 8;
+        @include dynamicAlign($justify: space-between, $align: center);
+        &_left {
+          @include dynamicAlign($direction: column);
+          margin-left: $spacing * 4;
+          h1 {
+            font-size: $spacing * 2.5;
+          }
+          p {
+            color: $color_gray_normal;
+          }
+          &_expand {
+            @include dynamicAlign($gap: $spacing * 2);
+            p {
+              @include transition();
+              @include button(
+                $padding: $spacing $spacing * 3,
+                $color: $color_gray_normal,
+                $color_hover: $color_white,
+                $background_hover: $color_pink
+              );
+            }
+          }
+        }
+        &_right {
+          @include dynamicAlign($gap: $spacing * 2);
+          margin-right: $spacing * 5;
+          a {
+            svg {
+              width: $spacing * 3;
+              height: $spacing * 3;
+              object-fit: contain;
+            }
+          }
+        }
+      }
+    }
+
+    &_content {
+      width: 45%;
+      margin: $spacing * 4 auto;
+      p {
+        font-size: $spacing * 1.6;
+        color: $color_gray_normal;
+      }
+      .list {
+        width: 100%;
+        @include dynamicAlign($direction: column, $gap: $spacing * 4);
+        .communication_card {
+          width: 100%;
+        }
+      }
+    }
+
+    &_create {
+      @include dynamicPosition(
+        $pos: absolute,
+        $left: $spacing * 2,
+        $top: $spacing * 2
+      );
+      &.active {
+        background: $color_white;
+        width: 97%;
+        height: 85dvh;
+        padding: $spacing * 2;
+        border-radius: $spacing * 2;
+        overflow: auto;
+        opacity: 1;
+        z-index: 5;
+      }
+      @include transition($second: 1s);
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      opacity: 0;
+
+      @include dynamicAlign();
+      &_left,
+      &_view {
+        flex: 1;
+      }
+
+      &_left {
+        @include dynamicAlign($direction: column);
+        .close {
+          cursor: pointer;
+          &:hover {
+            svg {
+              path {
+                stroke: $color_pink;
+              }
+            }
+          }
+        }
+        .create_g {
+          @include dynamicAlign($direction: column);
+          width: 100%;
+          &_list {
+            @include dynamicAlign($wrap: wrap);
+            img {
+              width: $spacing * 5;
+              height: $spacing * 5;
+              border-radius: 50%;
+              object-fit: cover;
+              border: 0.3rem solid transparent;
+              &.active {
+                border: 0.3rem solid $color_pink;
+              }
+            }
+          }
+          span {
+            font-size: $spacing * 1.6;
+            font-style: italic;
+            color: $color_gray_normal;
+          }
+          input,
+          select {
+            width: 100%;
+            padding: $spacing;
+            border-radius: $spacing * 2;
+            border: 0.1rem solid $color_gray_normal;
+            font-size: $spacing * 1.6;
+          }
+          select {
+            width: max-content;
+          }
+
+          &_social {
+            width: 100%;
+            background: rgba($color_gray_normal, 0.1);
+            padding: $spacing;
+            border-radius: $spacing;
+            @include dynamicAlign($direction: column);
+            .create_head {
+              width: 100%;
+              @include dynamicAlign($align: center);
+            }
+            p {
+              margin-left: auto;
+              cursor: pointer;
+            }
+          }
+          &_list {
+            @include dynamicAlign($wrap: wrap);
+            .item {
+              background: $color_gray;
+              @include dynamicAlign($align: center);
+              padding: $spacing;
+              span {
+                width: $spacing * 2.5;
+                height: $spacing * 2.5;
+
+                @include dynamicAlign(center, center);
+                cursor: pointer;
+                &:hover {
+                  background: $color_white;
+                }
+                svg {
+                  width: $spacing * 2;
+                  height: $spacing * 2;
+                }
+              }
+            }
+          }
+        }
+        .create {
+          @include button(
+            $color: $color_gray_normal,
+            $padding: $spacing $spacing * 4,
+            $background: $color_gray,
+            $background_hover: $color_pink,
+            $color_hover: $color_white
+          );
+          @include transition;
+        }
+      }
+
+      &_view {
+        position: relative;
+        .banner {
+          width: 100%;
+          height: $spacing * 20;
+          border-radius: $spacing * 2;
+          object-fit: cover;
+        }
+        .view_user {
+          @include dynamicPosition($pos: absolute, $left: 5%, $top: 50%);
+          @include dynamicAlign($align: flex-end);
+          width: 90%;
+          .info {
+            @include dynamicAlign($direction: column, $align: center);
+            img {
+              width: $spacing * 15;
+              height: $spacing * 15;
+              border-radius: 50%;
+            }
+          }
+          .social {
+            margin-left: auto;
+            @include dynamicAlign($align: center);
+            svg {
+              width: $spacing * 3;
+              height: $spacing * 3;
+            }
+          }
+        }
+      }
+    }
+
+    &_change_password {
+      width: 0;
+      height: 0;
+      opacity: 0;
+      overflow: hidden;
+
+      &.active {
+        margin-block: $spacing * 2;
+        margin-inline: $spacing * 4;
+        padding: $spacing;
+        background: $color_white;
+        border-radius: $spacing;
+        width: $spacing * 45;
+        height: $spacing * 25;
+        opacity: 1;
+        overflow: auto;
+      }
+      @include transition($second: 1s);
+      @include dynamicAlign($direction: column);
+      .change_g {
+        @include dynamicAlign($direction: column);
+        width: 100%;
+        span {
+          font-size: $spacing * 1.6;
+          color: $color_gray_normal;
+          font-style: italic;
+        }
+        input {
+          width: 100%;
+          padding: $spacing;
+          border-radius: $spacing * 2;
+          border: 0.1rem solid $color_gray;
+          font-size: $spacing * 1.4;
+        }
+      }
+
+      p {
+        @include button(
+          $background: rgba($color_gray, 0.2),
+          $color: $color_gray_normal,
+          $color_hover: $color_white,
+          $background_hover: $color_pink
+        );
+        @include transition;
+      }
+    }
+
+    body.darkmode & {
+      &_head {
+        .avatar {
+          background: $color_blue_dark;
+        }
+
+        .info {
+          &_left {
+            h1 {
+              color: $color_white;
+            }
+            p {
+              color: $color_gray;
+            }
+            &_expand {
+              p {
+                @include button(
+                  $padding: $spacing $spacing * 3,
+                  $color: $color_gray_normal,
+                  $color_hover: $color_white,
+                  $background_hover: $color_pink
+                );
+              }
+            }
+          }
+          &_right {
+            .dark_white {
+              svg {
+                path {
+                  stroke: $color_white;
+                  fill: $color_white;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &_content {
+        p {
+          color: $color_gray;
+        }
+      }
+
+      &_create {
+        &.active {
+          background: $color_gray_dark;
+        }
+
+        &_left {
+          .close {
+            svg {
+              path {
+                stroke: $color_gray;
+              }
+            }
+            &:hover {
+              svg {
+                path {
+                  stroke: $color_pink;
+                }
+              }
+            }
+          }
+          .create_g {
+            &_list {
+              @include dynamicAlign($wrap: wrap);
+              img {
+                width: $spacing * 5;
+                height: $spacing * 5;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 0.3rem solid transparent;
+                &.active {
+                  border: 0.3rem solid $color_pink;
+                }
+              }
+            }
+            span {
+              color: $color_gray;
+            }
+            input,
+            select {
+              border: 0.1rem solid $color_gray;
+              background: $color_blue_dark;
+              color: $color_white;
+            }
+            select {
+              width: max-content;
+            }
+
+            &_social {
+              background: rgba($color_gray, 0.1);
+
+              p {
+                color: $color_gray;
+              }
+            }
+          }
+          .create {
+            @include button(
+              $color: $color_gray_normal,
+              $padding: $spacing $spacing * 4,
+              $background: $color_gray,
+              $background_hover: $color_pink,
+              $color_hover: $color_white
+            );
+          }
+        }
+
+        &_view {
+          .view_user {
+            .info {
+              h3,
+              p {
+                color: $color_white;
+              }
+            }
+            .social {
+              .dark_white {
+                svg {
+                  path {
+                    stroke: $color_white;
+                    fill: $color_white;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &_change_password {
+        &.active {
+          background: $color_gray_dark;
+        }
+
+        .change_g {
+          span {
+            color: $color_gray;
+          }
+          input {
+            background: transparent;
+            color: $color_white;
+          }
+        }
+
+        p {
+          @include button(
+            $background: $color_gray,
+            $color: $color_gray_normal,
+            $color_hover: $color_white,
+            $background_hover: $color_pink
+          );
+        }
+      }
+    }
+  }
+}

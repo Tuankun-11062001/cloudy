@@ -1,0 +1,11 @@
+.language {
+  @include dynamicAlign($justify: flex-end, $align: center);
+  width: 100%;
+  cursor: pointer;
+  img {
+    opacity: 0.5;
+    &.active {
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,313 @@
+.list_vertical {
+  width: 100%;
+  @include dynamicAlign($direction: column, $gap: $spacing * 3);
+  .ads_vertical {
+    width: 100%;
+  }
+  @include xl {
+  }
+}
+
+.ads_popup {
+  @include dynamicPosition(
+    $pos: fixed,
+    $left: 0,
+    $right: 0,
+    $bottom: 0,
+    $top: 0
+  );
+  z-index: -1;
+  opacity: 0;
+  @include glass();
+  @include transition($second: 1s);
+  @include dynamicAlign(center, center);
+  &.active {
+    z-index: 20;
+    opacity: 1;
+  }
+  &_content {
+    width: 90%;
+    p {
+      margin-left: auto;
+      height: $spacing * 5;
+      width: $spacing * 5;
+      border-radius: 50%;
+      border: 0.1rem solid $color_gray_normal;
+      @include dynamicAlign(center, center);
+      margin-bottom: $spacing;
+      cursor: pointer;
+      @include transition;
+      &:hover {
+        background: $color_white;
+        svg {
+          path {
+            stroke: $color_pink;
+          }
+        }
+      }
+    }
+
+    .container {
+      background: $color_white;
+      padding: $spacing * 2;
+      border-radius: $spacing * 2;
+      @include dynamicAlign($direction: column, $justify: center);
+
+      h4 {
+        color: $color_black;
+      }
+      img {
+        width: 100%;
+        height: $spacing * 30;
+        object-fit: contain;
+      }
+      span {
+        font-size: $spacing * 1.4;
+        color: $color_black;
+      }
+    }
+  }
+
+  @include lg {
+    &_content {
+      width: 30%;
+    }
+  }
+
+  @include xl {
+    &_content {
+      width: 30%;
+    }
+  }
+
+  body.darkmode & {
+    p {
+      border: 0.1rem solid $color_white;
+      svg {
+        path {
+          stroke: $color_white;
+        }
+      }
+      @include transition;
+      &:hover {
+        background: $color_white;
+        svg {
+          path {
+            stroke: $color_pink;
+          }
+        }
+      }
+    }
+    span,
+    h4 {
+      color: $color_white;
+    }
+  }
+}
+
+.ads_bottom {
+  @include dynamicPosition($pos: fixed, $left: 1%, $right: 1%, $bottom: -20%);
+  height: $spacing * 20;
+  z-index: -1;
+  background: $color_white;
+  border-radius: $spacing * 2;
+  padding: $spacing * 2;
+  opacity: 0;
+
+  @include transition($second: 1s);
+  &.active {
+    bottom: 15%;
+    z-index: 20;
+    opacity: 1;
+    overflow: hidden;
+  }
+  &_content {
+    p {
+      cursor: pointer;
+      @include transition;
+      &:hover {
+        color: $color_pink;
+      }
+    }
+    .list_content {
+      width: 100%;
+      @include dynamicAlign(center, center, $direction: column);
+      a {
+        width: 100%;
+        @include dynamicAlign();
+      }
+    }
+    img {
+      width: 100%;
+      height: $spacing * 15;
+      object-fit: contain;
+    }
+    span {
+      margin-top: $spacing;
+      font-size: $spacing * 1.4;
+      color: $color_black;
+    }
+  }
+
+  @include lg {
+    &.active {
+      bottom: 2%;
+      z-index: 20;
+      opacity: 1;
+    }
+
+    .list_content {
+      width: 100%;
+      @include dynamicAlign(center, center);
+      a {
+        width: calc((100% / 2));
+        @include dynamicAlign();
+      }
+    }
+  }
+  @include xl {
+    @include dynamicPosition(
+      $pos: fixed,
+      $left: 16%,
+      $right: 1%,
+      $bottom: -20%
+    );
+
+    &.active {
+      bottom: 2%;
+      z-index: 20;
+      opacity: 1;
+    }
+
+    .list_content {
+      width: 100%;
+      @include dynamicAlign(center, center);
+      a {
+        width: calc((100% / 3));
+        @include dynamicAlign();
+      }
+    }
+  }
+  body.darkmode & {
+    background: $color_gray_dark;
+    &_content {
+      p {
+        color: $color_gray;
+        &:hover {
+          color: $color_white;
+        }
+      }
+      span {
+        color: $color_white;
+      }
+    }
+  }
+}
+
+.ads_vertical {
+  background: $color_white;
+  padding: $spacing * 2;
+  border-radius: $spacing * 2;
+  &_head {
+    &.active {
+      svg {
+        transform: rotate(0);
+      }
+    }
+    @include transition($second: 0.5s);
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+  &_content {
+    width: 100%;
+    height: 0;
+    @include transition($second: 1s);
+    overflow: hidden;
+    &.active {
+      height: $spacing * 30;
+    }
+    a {
+      cursor: pointer;
+      img {
+        width: 100%;
+        height: $spacing * 20;
+        object-fit: contain;
+      }
+      span {
+        font-size: $spacing * 1.4;
+        color: $color_black;
+        margin-top: $spacing;
+        @include longText($line: 3);
+      }
+    }
+  }
+  @include xl {
+  }
+  body.darkmode & {
+    background: $color_gray_dark;
+    svg {
+      path {
+        stroke: $color_white;
+      }
+    }
+    span {
+      color: $color_white;
+    }
+  }
+}
+
+.ads_horizal {
+  margin-top: $spacing * 2;
+  background: $color_white;
+  padding: $spacing * 2;
+  border-radius: $spacing * 2;
+  &_head {
+    &.active {
+      svg {
+        transform: rotate(0);
+      }
+    }
+    @include transition($second: 0.5s);
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+  &_content {
+    width: 100%;
+    height: 0;
+    @include transition($second: 1s);
+    overflow: hidden;
+    &.active {
+      height: $spacing * 30;
+    }
+    a {
+      cursor: pointer;
+      img {
+        width: 100%;
+        height: $spacing * 20;
+        object-fit: contain;
+      }
+      span {
+        font-size: $spacing * 1.4;
+        color: $color_black;
+        margin-top: $spacing;
+        @include longText($line: 3);
+      }
+    }
+  }
+
+  @include xl {
+  }
+  body.darkmode & {
+    background: $color_gray_dark;
+    svg {
+      path {
+        stroke: $color_white;
+      }
+    }
+    span {
+      color: $color_white;
+    }
+  }
+}

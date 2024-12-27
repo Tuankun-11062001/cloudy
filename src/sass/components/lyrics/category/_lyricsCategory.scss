@@ -1,0 +1,80 @@
+.lyrics_categories {
+  margin-top: $spacing * 3;
+  &_head {
+    @include dynamicAlign($align: center, $justify: space-between);
+    h2 {
+      font-size: $spacing * 1.6;
+      font-weight: 500;
+      color: $color_black;
+    }
+    a {
+      color: $color_gray_normal;
+      @include transition;
+      font-size: $spacing * 1.4;
+      &:hover {
+        color: $color_pink;
+      }
+    }
+  }
+  &_list {
+    margin-top: $spacing * 2;
+    @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+    .lyrics_category_card {
+      width: calc((100% / 2) - $spacing * 2);
+    }
+  }
+
+  @include sm {
+    &_head {
+      h2 {
+        font-size: $spacing * 1.8;
+      }
+    }
+    &_list {
+      .lyrics_category_card {
+        width: calc((100% / 3) - $spacing * 2);
+      }
+    }
+  }
+
+  @include md {
+    &_list {
+      .lyrics_category_card {
+        width: calc((100% / 4) - $spacing * 2);
+      }
+    }
+  }
+  @include xl {
+    &_head {
+      h2 {
+        font-size: $spacing * 2;
+      }
+      a {
+        font-size: $spacing * 1.6;
+      }
+    }
+    &_list {
+      margin-top: $spacing * 2;
+      @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+      .lyrics_category_card {
+        width: calc((100% / 5) - $spacing * 2);
+      }
+    }
+  }
+  @include xl {
+  }
+  body.darkmode & {
+    &_head {
+      h2 {
+        color: $color_white;
+      }
+      a {
+        color: $color_gray;
+
+        &:hover {
+          color: $color_white;
+        }
+      }
+    }
+  }
+}

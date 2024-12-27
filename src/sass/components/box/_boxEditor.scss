@@ -1,0 +1,846 @@
+.box_editor {
+  .control_group {
+    @include dynamicAlign(
+      $wrap: wrap,
+      $align: center,
+      $gap: $spacing $spacing * 2
+    );
+    svg {
+      width: $spacing * 2;
+      height: $spacing * 2;
+      object-fit: contain;
+    }
+
+    .clear_node,
+    .clearMark,
+    .paragraph,
+    .highlight,
+    .quote,
+    .redo {
+      button {
+        @include transition;
+        @include button(
+          $padding: $spacing $spacing * 2,
+          $color: $color_gray_normal,
+          $color_hover: $color_white,
+          $background_hover: $color_pink
+        );
+        font-size: $spacing * 1.4;
+        &:hover {
+          svg {
+            path {
+              fill: $color_white;
+            }
+          }
+        }
+      }
+    }
+
+    .undo,
+    .color,
+    .image,
+    .video {
+      button {
+        @include transition;
+        @include button(
+          $padding: $spacing $spacing * 2,
+          $color: $color_gray_normal,
+          $color_hover: $color_white,
+          $background_hover: $color_pink
+        );
+        &:hover {
+          svg {
+            path {
+              stroke: $color_white;
+            }
+          }
+        }
+      }
+    }
+
+    .link {
+      position: relative;
+      p {
+        @include transition;
+        border: 0.1rem solid $color_gray;
+        @include button(
+          $padding: $spacing $spacing * 2,
+          $color: $color_gray_normal,
+          $font_size: $spacing * 1.4
+        );
+      }
+      &:hover {
+        p {
+          background: $color_pink;
+          color: $color_white;
+        }
+        .link_childs {
+          top: 110%;
+          opacity: 1;
+          z-index: 3;
+          height: $spacing * 10;
+          overflow: auto;
+        }
+      }
+      &_childs {
+        @include dynamicPosition($pos: absolute, $top: 120%, $left: 0);
+        @include dynamicAlign($direction: column);
+        width: $spacing * 12;
+        height: 0;
+        background: $color_white;
+        z-index: -1;
+        padding: $spacing;
+        border-radius: $spacing;
+        box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.2);
+        opacity: 0;
+        overflow: hidden;
+        @include transition($second: 1s);
+
+        button {
+          border: 0.1rem solid $color_gray;
+          @include button(
+            $font_size: $spacing * 1.4,
+            $color: $color_gray_normal,
+            $color_hover: $color_white !important,
+            $background_hover: $color_pink,
+            $color_active: $color_white,
+            $background_active: $color_pink
+          );
+          width: 100%;
+        }
+      }
+    }
+    .table {
+      position: relative;
+      p {
+        @include transition;
+        @include button(
+          $padding: $spacing $spacing * 2,
+          $color: $color_gray_normal,
+          $font_size: $spacing * 1.4
+        );
+      }
+      &:hover {
+        p {
+          background: $color_pink;
+          color: $color_white;
+        }
+        .table_childs {
+          top: 110%;
+          opacity: 1;
+          z-index: 3;
+          height: $spacing * 50;
+          overflow: auto;
+        }
+      }
+      &_childs {
+        @include dynamicPosition($pos: absolute, $top: 120%, $left: 0);
+        @include dynamicAlign($direction: column);
+        width: $spacing * 40;
+        height: 0;
+        background: $color_white;
+        z-index: -1;
+        padding: $spacing;
+        border-radius: $spacing;
+        box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.2);
+        opacity: 0;
+        overflow: hidden;
+        @include transition($second: 1s);
+
+        button {
+          @include button(
+            $font_size: $spacing * 1.4,
+            $color: $color_gray_normal,
+            $color_hover: $color_white !important,
+            $background_hover: $color_pink,
+            $color_active: $color_white,
+            $background_active: $color_pink
+          );
+          width: 100%;
+        }
+      }
+    }
+
+    .align {
+      position: relative;
+      p {
+        @include transition;
+        @include button(
+          $padding: $spacing $spacing * 2,
+          $color: $color_gray_normal,
+          $font_size: $spacing * 1.4
+        );
+      }
+      &:hover {
+        p {
+          background: $color_pink;
+          color: $color_white;
+        }
+
+        .align_childs {
+          top: 110%;
+          opacity: 1;
+          z-index: 3;
+          height: $spacing * 20;
+          overflow: auto;
+        }
+      }
+      &_childs {
+        @include dynamicPosition($pos: absolute, $top: 120%, $left: 0);
+        @include dynamicAlign($direction: column);
+        width: $spacing * 10;
+        height: 0;
+        background: $color_white;
+        z-index: -1;
+        padding: $spacing;
+        border-radius: $spacing;
+        box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.2);
+        opacity: 0;
+        overflow: hidden;
+        @include transition($second: 1s);
+
+        button {
+          @include button(
+            $font_size: $spacing * 1.4,
+            $color: $color_gray_normal,
+            $color_hover: $color_white !important,
+            $background_hover: $color_pink,
+            $color_active: $color_white,
+            $background_active: $color_pink
+          );
+          width: 100%;
+        }
+      }
+    }
+
+    .style {
+      position: relative;
+      p {
+        @include transition;
+        @include button(
+          $padding: $spacing $spacing * 2,
+          $color: $color_gray_normal,
+          $font_size: $spacing * 1.4
+        );
+      }
+      &:hover {
+        p {
+          background: $color_pink;
+          color: $color_white;
+        }
+        .style_childs {
+          top: 110%;
+          opacity: 1;
+          z-index: 3;
+          height: $spacing * 20;
+          overflow: auto;
+        }
+      }
+      &_childs {
+        @include dynamicPosition($pos: absolute, $top: 120%, $left: 0);
+        @include dynamicAlign($direction: column);
+        width: $spacing * 7;
+        height: 0;
+        background: $color_white;
+        z-index: -1;
+        padding: $spacing;
+        border-radius: $spacing;
+        box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.2);
+        opacity: 0;
+        overflow: hidden;
+        @include transition($second: 1s);
+
+        button {
+          @include button(
+            $font_size: $spacing * 1.4,
+            $color: $color_gray_normal,
+            $background_hover: $color_pink
+          );
+          @include transition;
+          &:hover {
+            svg {
+              path {
+                fill: $color_white;
+              }
+            }
+          }
+          width: 100%;
+        }
+      }
+    }
+
+    .heading {
+      position: relative;
+      p {
+        @include transition;
+        @include button(
+          $padding: $spacing $spacing * 2,
+          $color: $color_gray_normal,
+          $font_size: $spacing * 1.4
+        );
+      }
+      &:hover {
+        p {
+          background: $color_pink;
+          color: $color_white;
+        }
+        .heading_childs {
+          top: 110%;
+          opacity: 1;
+          z-index: 3;
+          height: $spacing * 35;
+          overflow: auto;
+        }
+      }
+      &_childs {
+        @include dynamicPosition($pos: absolute, $top: 120%, $left: 0);
+        @include dynamicAlign($direction: column);
+        width: $spacing * 10;
+        height: 0;
+        background: $color_white;
+        z-index: -1;
+        padding: $spacing;
+        border-radius: $spacing;
+        box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.2);
+        opacity: 0;
+        overflow: hidden;
+        @include transition($second: 1s);
+
+        button {
+          @include button(
+            $font_size: $spacing * 1.4,
+            $color: $color_gray_normal,
+            $background_hover: $color_pink
+          );
+          width: 100%;
+          @include transition;
+
+          &:hover {
+            svg {
+              path {
+                stroke: $color-white;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .list {
+      position: relative;
+      p {
+        @include transition;
+        @include button(
+          $padding: $spacing $spacing * 2,
+          $color: $color_gray_normal,
+          $font_size: $spacing * 1.4
+        );
+      }
+      &:hover {
+        p {
+          background: $color_pink;
+          color: $color_white;
+        }
+        .list_childs {
+          top: 110%;
+          opacity: 1;
+          z-index: 3;
+          height: $spacing * 15;
+          overflow: auto;
+        }
+      }
+      &_childs {
+        @include dynamicPosition($pos: absolute, $top: 120%, $left: 0);
+        @include dynamicAlign($direction: column);
+        width: $spacing * 10;
+        height: 0;
+        background: $color_white;
+        z-index: -1;
+        padding: $spacing;
+        border-radius: $spacing;
+        box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.2);
+        opacity: 0;
+        overflow: hidden;
+        @include transition($second: 1s);
+
+        button {
+          @include button(
+            $font_size: $spacing * 1.4,
+            $color: $color_gray_normal,
+
+            $background_hover: $color_pink
+          );
+          width: 100%;
+          &:hover {
+            svg {
+              path {
+                stroke: $color_white;
+                fill: $color_white;
+              }
+            }
+          }
+        }
+      }
+    }
+    .code {
+      position: relative;
+      p {
+        @include transition;
+        @include button(
+          $padding: $spacing $spacing * 2,
+          $color: $color_gray_normal,
+          $font_size: $spacing * 1.4
+        );
+      }
+      &:hover {
+        p {
+          background: $color_pink;
+          color: $color_white;
+        }
+        .code_childs {
+          top: 110%;
+          opacity: 1;
+          z-index: 3;
+          height: $spacing * 15;
+          overflow: auto;
+        }
+      }
+      &_childs {
+        @include dynamicPosition($pos: absolute, $top: 120%, $left: 0);
+        @include dynamicAlign($direction: column);
+        width: $spacing * 10;
+        height: 0;
+        background: $color_white;
+        z-index: -1;
+        padding: $spacing;
+        border-radius: $spacing;
+        box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.2);
+        opacity: 0;
+        overflow: hidden;
+        @include transition($second: 1s);
+
+        button {
+          @include button(
+            $font_size: $spacing * 1.4,
+            $color: $color_gray_normal,
+
+            $background_hover: $color_pink
+          );
+          width: 100%;
+          &:hover {
+            svg {
+              path {
+                stroke: $color_white;
+                fill: $color_white;
+              }
+            }
+          }
+        }
+      }
+    }
+    .line {
+      position: relative;
+      p {
+        @include transition;
+        @include button(
+          $padding: $spacing $spacing * 2,
+          $color: $color_gray_normal,
+          $font_size: $spacing * 1.4
+        );
+      }
+      &:hover {
+        p {
+          background: $color_pink;
+          color: $color_white;
+        }
+        .line_childs {
+          top: 110%;
+          opacity: 1;
+          z-index: 3;
+          height: $spacing * 15;
+          overflow: auto;
+        }
+      }
+      &_childs {
+        @include dynamicPosition($pos: absolute, $top: 120%, $left: 0);
+        @include dynamicAlign($direction: column);
+        width: $spacing * 7;
+        height: 0;
+        background: $color_white;
+        z-index: -1;
+        padding: $spacing;
+        border-radius: $spacing;
+        box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.2);
+        opacity: 0;
+        overflow: hidden;
+        @include transition($second: 1s);
+
+        button {
+          @include button(
+            $font_size: $spacing * 1.4,
+            $color: $color_gray_normal,
+            $background_hover: $color_pink
+          );
+          width: 100%;
+          &:hover {
+            svg {
+              path {
+                stroke: $color_white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .tiptap {
+    &.ProseMirror {
+      height: 30dvh;
+    }
+
+    img {
+      width: 100%;
+      height: $spacing * 30;
+      object-fit: contain;
+      @include dynamicPosition(
+        $pos: relative,
+        $left: 50%,
+        $transform: translateX(-50%)
+      );
+    }
+  }
+  @include xl {
+    .control_group {
+      .link {
+        p {
+          @include button(
+            $padding: $spacing $spacing * 2,
+            $color: $color_gray_normal,
+            $font_size: $spacing * 1.6
+          );
+        }
+
+        &_childs {
+          width: $spacing * 40;
+        }
+      }
+      .table {
+        p {
+          @include button(
+            $padding: $spacing $spacing * 2,
+            $color: $color_gray_normal,
+            $font_size: $spacing * 1.6
+          );
+        }
+
+        &_childs {
+          width: $spacing * 40;
+        }
+      }
+
+      .align {
+        p {
+          @include button(
+            $padding: $spacing $spacing * 2,
+            $color: $color_gray_normal,
+            $font_size: $spacing * 1.6
+          );
+        }
+
+        &_childs {
+          width: $spacing * 40;
+        }
+      }
+
+      .style {
+        p {
+          @include button(
+            $padding: $spacing $spacing * 2,
+            $color: $color_gray_normal,
+            $font_size: $spacing * 1.6
+          );
+        }
+
+        &_childs {
+          width: $spacing * 40;
+        }
+      }
+
+      .heading {
+        p {
+          @include button(
+            $padding: $spacing $spacing * 2,
+            $color: $color_gray_normal,
+            $font_size: $spacing * 1.6
+          );
+        }
+
+        &_childs {
+          width: $spacing * 10;
+        }
+      }
+
+      .list {
+        p {
+          @include button(
+            $padding: $spacing $spacing * 2,
+            $color: $color_gray_normal,
+            $font_size: $spacing * 1.6
+          );
+        }
+
+        &_childs {
+          width: $spacing * 10;
+        }
+      }
+      .code {
+        p {
+          @include transition;
+          @include button(
+            $padding: $spacing $spacing * 2,
+            $color: $color_gray_normal,
+            $font_size: $spacing * 1.6
+          );
+        }
+
+        &_childs {
+          width: $spacing * 10;
+        }
+      }
+      .line {
+        p {
+          @include button(
+            $padding: $spacing $spacing * 2,
+            $color: $color_gray_normal,
+            $font_size: $spacing * 1.6
+          );
+        }
+
+        &_childs {
+          width: $spacing * 40;
+        }
+      }
+    }
+    .tiptap {
+      &.ProseMirror {
+        height: 60dvh;
+      }
+    }
+  }
+}
+
+.tiptap {
+  &.ProseMirror {
+    overflow: auto;
+    border: 0.1rem solid $color_gray_normal;
+    border-radius: $spacing;
+    box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.2);
+  }
+  width: 100%;
+
+  :first-child {
+    margin-top: 0;
+  }
+
+  // youtube
+  iframe {
+    width: 90%;
+    height: $spacing * 35;
+    object-fit: cover;
+    @include dynamicPosition(
+      $pos: relative,
+      $left: 50%,
+      $transform: translateX(-50%)
+    );
+  }
+
+  // img
+
+  img {
+    width: 100%;
+    height: $spacing * 30;
+    object-fit: contain;
+    @include dynamicPosition(
+      $pos: relative,
+      $left: 50%,
+      $transform: translateX(-50%)
+    );
+  }
+
+  /* List styles */
+  ul {
+    list-style: circle;
+  }
+  ol {
+    list-style: decimal;
+  }
+  ul,
+  ol {
+    padding: 0 1rem;
+    margin: 1.25rem 1rem 1.25rem 0.4rem;
+
+    li p {
+      margin-top: 0.25em;
+      margin-bottom: 0.25em;
+    }
+  }
+
+  /* Heading styles */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.1;
+    margin-top: 2.5rem;
+    text-wrap: pretty;
+  }
+
+  h1,
+  h2 {
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-size: $spacing * 4;
+  }
+
+  h2 {
+    font-size: $spacing * 3;
+  }
+
+  h3 {
+    font-size: $spacing * 2;
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-size: $spacing * 1.8;
+  }
+
+  /* Code and preformatted text styles */
+  code {
+    background-color: $color_gray;
+    border-radius: 0.4rem;
+    color: $color_black;
+    font-size: 0.85rem;
+    padding: 0.25em 0.3em;
+  }
+
+  pre {
+    background: $color_gray;
+    border-radius: 0.5rem;
+    color: $color_black;
+    font-family: "JetBrainsMono", monospace;
+    margin: 1.5rem 0;
+    padding: 0.75rem 1rem;
+
+    code {
+      background: none;
+      color: inherit;
+      font-size: $spacing * 1.6;
+      padding: 0;
+    }
+  }
+
+  blockquote {
+    border-left: 3px solid $color_gray_normal;
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid $color_gray;
+    margin: 2rem 0;
+  }
+
+  // table
+  table {
+    border-collapse: collapse;
+    margin: 0;
+    overflow: hidden;
+    table-layout: fixed;
+    width: 100%;
+
+    td,
+    th {
+      border: 1px solid $color_gray_normal;
+      box-sizing: border-box;
+      min-width: 1em;
+      padding: 6px 8px;
+      position: relative;
+      vertical-align: top;
+
+      > * {
+        margin-bottom: 0;
+      }
+    }
+
+    th {
+      background-color: $color_gray;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    .selectedCell:after {
+      background: $color_blue;
+      content: "";
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      pointer-events: none;
+      position: absolute;
+      z-index: 2;
+    }
+
+    .column-resize-handle {
+      background-color: $color_pink;
+      bottom: -2px;
+      pointer-events: none;
+      position: absolute;
+      right: -2px;
+      top: 0;
+      width: 4px;
+    }
+  }
+
+  .tableWrapper {
+    margin: 1.5rem 0;
+    overflow-x: auto;
+  }
+
+  &.resize-cursor {
+    cursor: ew-resize;
+    cursor: col-resize;
+  }
+
+  @include xl {
+    img {
+      width: 95%;
+    }
+  }
+
+  body.darkmode & {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: $color_white;
+    }
+    span {
+      color: $color_white !important;
+    }
+    p,
+    span,
+    strong {
+      color: $color_white;
+    }
+  }
+}

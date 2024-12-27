@@ -1,0 +1,69 @@
+.theme {
+  div {
+    svg {
+      width: $spacing * 3;
+      height: $spacing * 3;
+      object-fit: contain;
+      path {
+        fill: $color_gray;
+      }
+    }
+    p {
+      display: none;
+    }
+  }
+  @include xl {
+    cursor: pointer;
+    width: 100%;
+    div {
+      @include dynamicAlign($align: center);
+      @include transition();
+
+      svg {
+        width: $spacing * 3;
+        height: $spacing * 3;
+        object-fit: contain;
+        path {
+          fill: $color_gray;
+        }
+      }
+      p {
+        display: block;
+        color: $color_blue_dark;
+      }
+      &:hover {
+        svg {
+          path {
+            fill: $color_gray_dark;
+          }
+        }
+      }
+
+      //   dark mode
+
+      body.darkmode & {
+        @include darkMode {
+          svg {
+            path {
+              fill: $color_white;
+            }
+          }
+
+          p {
+            color: $color_white;
+          }
+          &:hover {
+            p {
+              color: $color_blue;
+            }
+            svg {
+              path {
+                fill: rgb(245, 200, 2);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+.box_feeling {
+  @include dynamicPosition(
+    $pos: fixed,
+    $top: 0,
+    $left: 0,
+    $right: 0,
+    $bottom: 0
+  );
+  z-index: -1;
+  opacity: 0;
+  @include glass($blur: blur($spacing - 0.5));
+  @include transition($second: 1s);
+  &.active {
+    z-index: 10;
+    opacity: 1;
+    .box_feeling_content {
+      opacity: 1;
+    }
+  }
+
+  &_content {
+    @include dynamicPosition(
+      $pos: absolute,
+      $left: 50%,
+      $top: 50%,
+      $transform: translate(-50%, -50%)
+    );
+    background: $color_white;
+    border-radius: $spacing * 2;
+    width: 90%;
+    padding: $spacing * 2;
+    box-shadow: 0 0 $spacing * 2 $spacing rgba($color_gray_normal, 0.1);
+    opacity: 0;
+    @include transition($second: 0.5s, $delay: 1s);
+    .head {
+      @include dynamicAlign($justify: space-between, $align: center);
+      padding-bottom: $spacing;
+      position: relative;
+      margin-bottom: $spacing;
+      &::after {
+        content: "";
+        @include dynamicPosition($pos: absolute, $bottom: 0, $left: 0);
+        width: 100%;
+        height: $spacing - 0.9;
+        background: $color_gray;
+      }
+    }
+
+    select {
+      margin-bottom: $spacing * 2;
+      width: 40%;
+      padding: $spacing;
+      border-radius: $spacing * 2;
+      font-size: $spacing * 1.4;
+      border: 0.1rem solid $color_gray_normal;
+      outline: none;
+    }
+
+    .submit {
+      width: max-content;
+      margin-left: auto;
+      margin-top: $spacing * 2;
+      @include transition;
+      @include button(
+        $color: $color_gray_normal,
+        $padding: $spacing $spacing * 3,
+        $color_hover: $color_white,
+        $background_hover: $color_pink
+      );
+    }
+  }
+
+  @include xl {
+    &_content {
+      width: 50%;
+    }
+  }
+  // dark mode
+  body.darkmode & {
+    @include glass($background: rgba($color_blue_dark, 0.2));
+    &_content {
+      background: $color_gray_dark;
+      .head {
+        color: $color_white;
+        svg {
+          path {
+            stroke: $color_white;
+          }
+        }
+      }
+    }
+  }
+}

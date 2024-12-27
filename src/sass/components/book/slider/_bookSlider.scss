@@ -1,0 +1,243 @@
+.book_slider {
+  width: 94dvw;
+  height: $spacing * 20;
+  position: relative;
+  border-radius: $spacing * 2;
+  overflow: hidden;
+  &_items {
+    @include dynamicPosition($pos: absolute, $top: 0, $left: 0);
+    @include dynamicAlign();
+    height: 100%;
+    width: max-content;
+    @include transition($second: 1s);
+  }
+
+  &_control {
+    display: none;
+  }
+
+  @include sm {
+  }
+  @include md {
+    width: 97dvw;
+    height: 35dvh;
+  }
+
+  @include xl {
+    width: 57dvw;
+    height: 45dvh;
+
+    &_control {
+      display: unset;
+      @include dynamicPosition($pos: fixed, $top: 2%, $right: 2%, $bottom: 2%);
+      width: $spacing * 40;
+      z-index: 3;
+      background: $color_orange;
+      padding: $spacing;
+      border-radius: $spacing * 2;
+      overflow: auto;
+
+      &_prev {
+        @include dynamicPosition($pos: absolute, $left: 0, $top: 35%);
+        @include transition;
+        cursor: pointer;
+        margin: auto;
+        width: $spacing * 6;
+        height: $spacing * 6;
+        &:hover {
+          svg {
+            path {
+              stroke: $color_pink;
+            }
+          }
+        }
+        svg {
+          pointer-events: none;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transform: rotate(90deg);
+          path {
+            stroke: $color_gray;
+          }
+        }
+      }
+
+      &_next {
+        @include dynamicPosition($pos: absolute, $right: 0, $top: 35%);
+        @include transition;
+        cursor: pointer;
+        margin: auto;
+        width: $spacing * 6;
+        height: $spacing * 6;
+        &:hover {
+          svg {
+            path {
+              stroke: $color_pink;
+            }
+          }
+        }
+        svg {
+          pointer-events: none;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transform: rotate(-90deg);
+          path {
+            stroke: $color_gray;
+          }
+        }
+      }
+
+      &_dots {
+        width: 80%;
+        margin: auto;
+        .dot_item {
+          &.active {
+            background: $color_white;
+            transform: scale(1);
+          }
+
+          @include dynamicAlign($direction: column);
+          background: rgba($color_white, 0.7);
+          transform: scale(0.9);
+          padding: $spacing;
+          border-radius: $spacing;
+          transition: 0.5s;
+          cursor: pointer;
+          img {
+            width: 100%;
+            height: $spacing * 15;
+            object-fit: contain;
+          }
+          .dot_info {
+            width: 100%;
+            @include dynamicAlign($align: center, $justify: space-between);
+            .left {
+              @include dynamicAlign($direction: column, $gap: $spacing - 0.5);
+              h3 {
+                font-size: $spacing * 1.8;
+                font-weight: 600;
+              }
+
+              p {
+                font-size: $spacing * 1.4;
+                color: $color_gray_normal;
+              }
+            }
+            .right {
+              @include dynamicAlign($align: center);
+              p {
+                @include dynamicAlign($align: center);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  body.darkmode & {
+    &_control {
+      background: $color_gray_dark;
+    }
+  }
+}
+
+.book_category_slider {
+  width: 94dvw;
+  height: $spacing * 20;
+  position: relative;
+  border-radius: $spacing * 2;
+  margin-top: $spacing * 3;
+  overflow: hidden;
+  &_items {
+    @include dynamicPosition($pos: absolute, $top: 0, $left: 0);
+    @include dynamicAlign();
+    height: 100%;
+    width: max-content;
+    transition: 1s ease;
+  }
+
+  &_control {
+    @include dynamicPosition(
+      $pos: absolute,
+      $bottom: $spacing,
+      $right: $spacing
+    );
+    z-index: 3;
+    background: $color_white;
+    @include dynamicAlign($align: center);
+    padding: $spacing - 0.5;
+    border-radius: $spacing * 2;
+
+    &_prev {
+      @include transition;
+      cursor: pointer;
+      margin: auto;
+      &:hover {
+        svg {
+          path {
+            stroke: $color_pink;
+          }
+        }
+      }
+      svg {
+        pointer-events: none;
+        transform: rotate(90deg);
+      }
+    }
+
+    &_next {
+      @include transition;
+      cursor: pointer;
+      &:hover {
+        svg {
+          path {
+            stroke: $color_pink;
+          }
+        }
+      }
+      svg {
+        pointer-events: none;
+        transform: rotate(-90deg);
+      }
+    }
+
+    &_dots {
+      @include dynamicAlign($align: center);
+      span {
+        width: $spacing;
+        height: $spacing;
+        background: $color_gray;
+        display: block;
+        border-radius: $spacing * 2;
+        @include transition();
+        &.active {
+          width: $spacing * 3;
+          border-radius: $spacing;
+          background: $color_pink;
+        }
+      }
+    }
+  }
+
+  @include sm {
+    width: 94dvw;
+    height: 25dvh;
+  }
+  @include md {
+    width: 97dvw;
+    height: 30dvh;
+  }
+
+  @include xl {
+    width: 80dvw;
+    height: 40dvh;
+
+    border-radius: $spacing * 3;
+
+    &_control {
+      padding: $spacing;
+    }
+  }
+}

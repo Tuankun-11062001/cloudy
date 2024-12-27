@@ -1,0 +1,158 @@
+.nav {
+  @include xl {
+    margin-top: $spacing * 2;
+    width: 100%;
+    padding-left: $spacing;
+    height: $spacing * 32;
+    overflow: auto;
+    &_item {
+      padding: $spacing * 1.5 0 $spacing * 1.5 $spacing;
+      position: relative;
+      a {
+        @include AnchorElement(
+          $color: $color_gray_normal,
+          $background_color: $color_white,
+          $color_hover: $color_blue_dark,
+          $background_hover: $color_gray,
+          $color_active: $color_blue_dark,
+          $background_active: $color_gray,
+          $padding: $spacing * 2 $spacing,
+          $font_size: $spacing * 1.6,
+          $width: 100%
+        );
+        @include dynamicAlign($align: center);
+        p {
+          display: block;
+        }
+        .border_round_top {
+          @include dynamicPosition(
+            $pos: absolute,
+            $top: -$spacing * 1.5,
+            $left: 0
+          );
+          width: 100%;
+          height: $spacing * 1.5;
+          border-bottom-right-radius: $spacing * 3;
+          box-shadow: $spacing * 2 0 0 $color_gray;
+          display: none;
+        }
+
+        .border_round_bottom {
+          @include dynamicPosition(
+            $pos: absolute,
+            $bottom: -$spacing * 1.5,
+            $left: 0
+          );
+          width: 100%;
+          height: $spacing * 1.5;
+          border-top-right-radius: $spacing * 3;
+          box-shadow: $spacing * 2 0 0 $color_gray;
+          display: none;
+        }
+
+        &.active,
+        &:hover {
+          .border_round_bottom,
+          .border_round_top {
+            display: block;
+          }
+        }
+        svg {
+          width: $spacing * 3;
+          height: $spacing * 3;
+
+          path {
+            @include transition();
+            fill: $color_gray;
+            stroke: $color_gray;
+          }
+        }
+
+        border-top-left-radius: $spacing * 4;
+        border-bottom-left-radius: $spacing * 4;
+
+        position: relative;
+        &:hover {
+          svg {
+            path {
+              fill: $color_blue_dark;
+              stroke: $color_blue_dark;
+            }
+          }
+        }
+        &.active {
+          svg {
+            path {
+              fill: $color_blue_dark;
+              stroke: $color_blue_dark;
+            }
+          }
+        }
+      }
+    }
+
+    body.darkmode & {
+      a {
+        @include AnchorElement(
+          $color: $color_gray,
+          $background_color: $color_blue_dark,
+          $color_hover: $color_white,
+          $background_hover: $color_blue_dark,
+          $color_active: $color_white,
+          $background_active: $color_blue_dark,
+          $padding: $spacing * 2 $spacing * 3,
+          $font_size: $spacing * 1.6,
+          $width: 100%
+        );
+
+        .border_round_top,
+        .border_round_bottom {
+          box-shadow: $spacing * 2 0 0 $color_blue_dark;
+        }
+        @include dynamicAlign($align: center);
+
+        svg {
+          path {
+            fill: $color_gray;
+            stroke: $color_gray;
+          }
+        }
+
+        &:hover {
+          svg {
+            path {
+              fill: $color_white;
+              stroke: $color_white;
+            }
+          }
+          // &::before {
+          //   content: "";
+          //   background: $color_blue_dark;
+          // }
+
+          // &::after {
+          //   content: "";
+          //   background: $color_blue_dark;
+          // }
+        }
+        &.active {
+          svg {
+            path {
+              fill: $color_white;
+              stroke: $color_white;
+            }
+          }
+          // &::before {
+          //   content: "";
+          //   background: $color_blue_dark;
+          // }
+
+          // &::after {
+          //   content: "";
+          //   background: $color_blue_dark;
+          // }
+        }
+      }
+    }
+  }
+}

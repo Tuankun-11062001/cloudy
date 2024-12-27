@@ -1,0 +1,148 @@
+.search {
+  position: relative;
+  &_form {
+    background: $color_white;
+    border-radius: $spacing * 5;
+    padding: 0 $spacing;
+
+    @include dynamicAlign($align: center);
+    svg {
+      width: $spacing * 2;
+      height: $spacing * 2;
+      path,
+      circle {
+        stroke: $color_gray_normal;
+      }
+    }
+
+    input {
+      background: transparent;
+      outline: none;
+      border: none;
+      font-size: $spacing * 1.4;
+      padding: $spacing * 2 0;
+
+      flex: 1;
+    }
+  }
+
+  &_list {
+    background: $color_white;
+    border-radius: $spacing;
+    height: 0;
+    @include gridSys($repeatColumn: 3, $margin: unset);
+    margin: $spacing - 0.5 $spacing * 2;
+    overflow: auto;
+    @include dynamicPosition($pos: absolute, $left: 0, $right: 0);
+    z-index: 5;
+    @include transition();
+    @include dynamicAlign($direction: column, $gap: $spacing * 2);
+
+    &.active {
+      padding: $spacing;
+      height: $spacing * 35;
+    }
+    .item {
+      box-shadow: 0 0 $spacing * 2 0 rgba($color_gray, 1);
+      border-radius: $spacing;
+
+      padding: $spacing;
+      a {
+        display: block;
+        @include dynamicAlign($direction: column, $align: center);
+        width: 100%;
+        cursor: pointer;
+      }
+
+      img {
+        width: 100%;
+        height: $spacing * 15;
+        object-fit: cover;
+        border-radius: $spacing;
+      }
+      &_content {
+        @include dynamicAlign($direction: column, $gap: $spacing - 0.5);
+        width: 100%;
+
+        h3 {
+          font-size: $spacing * 1.4;
+          font-weight: 600;
+          @include longText($line: 2);
+          color: $color_black;
+        }
+        p {
+          font-size: $spacing * 1.2;
+          color: $color_gray_normal;
+        }
+      }
+    }
+  }
+
+  @include sm {
+    &_list {
+      @include dynamicAlign($wrap: wrap);
+      .item {
+        width: calc((100% / 2) - $spacing);
+      }
+    }
+  }
+
+  @include md {
+    &_list {
+      @include dynamicAlign($wrap: wrap);
+      .item {
+        width: calc((100% / 3) - $spacing);
+      }
+    }
+  }
+
+  @include xl {
+    &_list {
+      .item {
+        @include dynamicAlign($align: center, $direction: column);
+
+        img {
+          width: $spacing * 15;
+          height: $spacing * 10;
+          object-fit: contain;
+        }
+        &_content {
+          h3 {
+            font-size: $spacing * 1.6;
+          }
+          p {
+            font-size: $spacing * 1.4;
+          }
+        }
+      }
+    }
+  }
+
+  // darkmode
+  body.darkmode & {
+    &_form {
+      background: $color_gray_dark;
+      input {
+        background: transparent;
+        color: $color_white;
+      }
+    }
+
+    &_list {
+      background: $color_gray_dark;
+      box-shadow: 0 0 $spacing * 2 0 rgba($color_gray, 0.2);
+      .item {
+        box-shadow: unset;
+        &_content {
+          h3 {
+            color: $color_white;
+          }
+        }
+        @include transition;
+        &:hover {
+          box-shadow: 0 0 $spacing * 2 0 rgba($color_gray, 1);
+        }
+      }
+    }
+  }
+}

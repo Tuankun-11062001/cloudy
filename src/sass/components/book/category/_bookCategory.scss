@@ -1,0 +1,53 @@
+.book_category {
+  margin-top: $spacing * 2;
+  h2 {
+    font-size: $spacing * 1.6;
+    font-weight: 400;
+    color: $color_black;
+  }
+  &_list {
+    @include dynamicAlign($gap: $spacing * 2, $wrap: wrap);
+    margin-top: $spacing * 2;
+    .book_category_card {
+      width: calc((100% / 3) - $spacing * 2);
+    }
+  }
+
+  @include sm {
+    h2 {
+      font-size: $spacing * 1.8;
+    }
+    &_list {
+      .book_category_card {
+        width: calc((100% / 4) - $spacing * 2);
+      }
+    }
+  }
+
+  @include md {
+    h2 {
+      font-size: $spacing * 1.8;
+    }
+    &_list {
+      .book_category_card {
+        width: calc((100% / 5) - $spacing * 2);
+      }
+    }
+  }
+
+  @include xl {
+    h2 {
+      font-size: $spacing * 2;
+    }
+    &_list {
+      .book_category_card {
+        width: calc((100% / 6) - $spacing * 2);
+      }
+    }
+  }
+  body.darkmode & {
+    h2 {
+      color: $color_white;
+    }
+  }
+}

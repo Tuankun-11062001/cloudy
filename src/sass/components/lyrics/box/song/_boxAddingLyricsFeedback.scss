@@ -1,0 +1,229 @@
+.box_adding_lyrics_feedback {
+  @include xl {
+    @include dynamicPosition(
+      $pos: fixed,
+      $left: 0,
+      $right: 0,
+      $top: 0,
+      $bottom: 0
+    );
+    @include glass();
+    z-index: 10;
+    animation: overplay 0.5s ease;
+    @include dynamicAlign(center, center);
+    @keyframes overplay {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    &_message {
+      background: rgba($color_pink, 0.5);
+      color: $color-white;
+      border-radius: $spacing;
+      padding: $spacing;
+      text-align: center;
+      width: 50%;
+      margin: auto;
+      box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.2);
+    }
+
+    &_content {
+      @keyframes lyrics_box_feedback {
+        from {
+          width: 0;
+          height: 0;
+          opacity: 0;
+          overflow: hidden;
+        }
+        to {
+          width: 70%;
+          height: 90%;
+          opacity: 1;
+
+          overflow: auto;
+        }
+      }
+      animation: lyrics_box_feedback 1s ease forwards;
+      animation-delay: 0.5s;
+      background: $color_white;
+      padding: $spacing * 2;
+      border-radius: $spacing * 2;
+      width: 0;
+      height: 0;
+      opacity: 0;
+      box-shadow: 0 0 $spacing * 2 $spacing rgba($color_gray_normal, 0.3);
+      @include dynamicAlign($direction: column);
+      &_head {
+        @include dynamicAlign($justify: space-between, $align: center);
+        padding-bottom: $spacing * 2;
+        border-bottom: $spacing - 0.9 solid $color_gray;
+        width: 100%;
+        h3 {
+          font-size: $spacing * 2;
+          font-weight: 600;
+          color: $color_black;
+        }
+        p {
+          cursor: pointer;
+          @include transition();
+          &:hover {
+            svg {
+              path {
+                stroke: $color_pink;
+              }
+            }
+          }
+          svg {
+            pointer-events: none;
+          }
+        }
+      }
+
+      &_body {
+        width: 100%;
+        height: 100%;
+        flex: 1;
+        .select_country {
+          @include dynamicAlign(center, center);
+          margin: $spacing * 2 0;
+          select {
+            padding: $spacing;
+            font-size: $spacing * 1.4;
+            border-radius: $spacing;
+            outline: none;
+          }
+        }
+
+        &_edit {
+          @include dynamicAlign();
+          &_left {
+            flex: 1;
+            &_control {
+              @include dynamicAlign();
+              margin-bottom: $spacing;
+              p {
+                padding: $spacing $spacing * 2;
+                border-radius: $spacing * 3;
+                font-size: $spacing * 1.4;
+                cursor: pointer;
+                color: $color_black;
+                &.active {
+                  background: $color_pink;
+                  color: $color_white;
+                }
+              }
+            }
+            &_content {
+              .tabs_original_content {
+                display: none;
+                &.active {
+                  display: block;
+                }
+              }
+            }
+          }
+          &_right {
+            flex: 1;
+            height: 100%;
+            @include dynamicAlign($direction: column);
+            &_control {
+              @include dynamicAlign();
+              margin-bottom: $spacing;
+              p {
+                padding: $spacing $spacing * 2;
+                border-radius: $spacing * 3;
+                font-size: $spacing * 1.4;
+                cursor: pointer;
+                &.active {
+                  background: $color_pink;
+                  color: $color_white;
+                }
+              }
+            }
+            &_content {
+              flex: 1;
+
+              .box_lyrics_feedback_content_tab {
+                height: 100%;
+                display: none;
+                &.active {
+                  display: block;
+                }
+              }
+            }
+          }
+        }
+      }
+      .box_adding_lyrics_feedback_submit {
+        width: max-content;
+        margin-top: $spacing * 5;
+        margin-left: auto;
+        @include transition();
+        @include button(
+          $color: $color_gray_normal,
+          $background: $color_gray,
+          $padding: $spacing $spacing * 2,
+          $color_hover: $color_white,
+          $background_hover: $color_pink
+        );
+      }
+    }
+
+    body.darkmode & {
+      &_content {
+        background: $color_blue_dark;
+        &_head {
+          h3 {
+            color: $color_white;
+          }
+          p {
+            svg {
+              path {
+                stroke: $color_gray;
+              }
+            }
+
+            &:hover {
+              svg {
+                path {
+                  stroke: $color_white;
+                }
+              }
+            }
+          }
+        }
+
+        &_body {
+          .select_country {
+            select {
+              background: $color_gray_dark;
+              color: $color_white;
+            }
+          }
+
+          &_edit {
+            &_left {
+              &_control {
+                p {
+                  color: $color_white;
+                }
+              }
+            }
+
+            &_right {
+              &_control {
+                p {
+                  color: $color_white;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

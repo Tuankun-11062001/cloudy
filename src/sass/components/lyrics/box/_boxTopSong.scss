@@ -1,0 +1,76 @@
+.box_top_song {
+  &_head {
+    margin-top: $spacing * 3;
+    padding: $spacing * 2 0;
+    h3 {
+      font-size: $spacing * 1.6;
+      font-weight: 600;
+      color: $color_black;
+    }
+  }
+
+  &_list {
+    @include dynamicAlign($wrap: wrap);
+    .lyrics_card {
+      width: calc((100% / 2) - $spacing);
+      img {
+        border-radius: $spacing;
+      }
+    }
+  }
+
+  @include sm {
+    &_head {
+      h3 {
+        font-size: $spacing * 1.8;
+      }
+    }
+    &_list {
+      .lyrics_card {
+        width: calc(100% / 2 - $spacing);
+      }
+    }
+  }
+
+  @include md {
+    &_head {
+      h3 {
+        font-size: $spacing * 1.8;
+      }
+    }
+    &_list {
+      .lyrics_card {
+        width: calc(100% / 4 - $spacing);
+      }
+    }
+  }
+
+  @include xl {
+    &_head {
+      margin-top: $spacing * 3;
+      padding: $spacing * 2 0;
+      h3 {
+        font-size: $spacing * 2;
+        font-weight: 600;
+        color: $color_black;
+      }
+    }
+
+    &_list {
+      @include dynamicAlign($wrap: wrap);
+      .lyrics_card {
+        width: calc(100% / 3 - $spacing);
+        img {
+          border-radius: $spacing;
+        }
+      }
+    }
+  }
+  body.darkmode & {
+    &_head {
+      h3 {
+        color: $color_white;
+      }
+    }
+  }
+}

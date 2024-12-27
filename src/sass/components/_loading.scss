@@ -1,0 +1,31 @@
+.loading {
+  @include dynamicPosition(
+    $pos: fixed,
+    $top: 0,
+    $left: 0,
+    $right: 0,
+    $bottom: 0
+  );
+  animation: animationLoading 0.5s linear;
+  z-index: 99;
+  @keyframes animationLoading {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  height: 100%;
+  width: 100%;
+  background: #6f94a2;
+  z-index: 99;
+  @include dynamicAlign($justify: center, $align: center);
+}
+
+.loading_client {
+  @include dynamicAlign($align: center, $direction: column, $justify: center);
+  img {
+    width: 50%;
+  }
+}

@@ -1,0 +1,63 @@
+.feedback {
+  .control {
+    @include dynamicAlign($align: center, $justify: space-between);
+    position: relative;
+
+    .cloudy_like {
+      svg {
+        pointer-events: none;
+      }
+      &.active {
+        svg {
+          path {
+            fill: $color_pink;
+          }
+        }
+      }
+    }
+
+    p {
+      @include dynamicAlign($align: center, $justify: center);
+      font-size: $spacing * 1.4;
+      cursor: pointer;
+      flex: 1;
+      padding: $spacing;
+      border-radius: $spacing * 2;
+      &:hover {
+        background: $color_gray;
+      }
+    }
+  }
+  @include xl {
+    margin-top: $spacing * 2;
+  }
+  // darkmode
+  body.darkmode & {
+    .control {
+      color: $color_white;
+      svg {
+        path {
+          fill: $color_gray;
+          stroke: $color_gray;
+        }
+      }
+
+      .cloudy_like {
+        &.active {
+          svg {
+            path {
+              fill: $color_pink;
+              stroke: $color_pink;
+            }
+          }
+        }
+      }
+
+      p {
+        &:hover {
+          background: $color_blue_dark;
+        }
+      }
+    }
+  }
+}

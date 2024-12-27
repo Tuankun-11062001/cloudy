@@ -1,0 +1,45 @@
+.home {
+  // new
+
+  .left {
+    .home_content {
+      width: 100%;
+      margin: auto;
+    }
+  }
+
+  .right {
+    display: none;
+  }
+
+  @include md {
+    position: relative;
+    @include dynamicAlign();
+    .left {
+      flex: 1;
+
+      .home_content {
+        width: 90%;
+        margin: auto;
+      }
+    }
+
+    .right {
+      display: block;
+      flex: 0.7;
+      height: 100%;
+    }
+  }
+
+  @include xl {
+    .left {
+      .home_content {
+        width: 60%;
+        margin: auto;
+      }
+    }
+    .right {
+      flex: 0.5;
+    }
+  }
+}

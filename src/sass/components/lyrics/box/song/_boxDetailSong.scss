@@ -1,0 +1,98 @@
+.box_detail_song {
+  background: $color_white;
+  padding: $spacing * 2;
+  border-radius: $spacing * 2;
+  @include dynamicAlign($direction: column);
+  &_head {
+    svg {
+      display: none;
+    }
+
+    h1 {
+      font-weight: 600;
+      color: $color_black;
+      font-size: $spacing * 1.6;
+    }
+  }
+
+  &_content {
+    @include dynamicAlign($direction: column);
+    p {
+      font-size: $spacing * 1.4;
+      font-weight: 400;
+      color: $color_gray_normal;
+    }
+
+    &_description {
+      p {
+        @include longText($line: 4);
+        line-height: $spacing * 2.5;
+        @include transition();
+        &.active {
+          @include longText($line: unset);
+        }
+      }
+
+      span {
+        display: block;
+        margin-top: $spacing;
+        cursor: pointer;
+        @include transition();
+        color: $color_black;
+        &:hover {
+          color: $color_pink;
+        }
+      }
+    }
+  }
+  @include xl {
+    &_head {
+      width: 100%;
+      @include dynamicAlign($align: center);
+      svg {
+        display: block;
+      }
+      abbr {
+        width: max-content;
+        @include dynamicAlign(center, center);
+      }
+      h1 {
+        font-size: $spacing * 2;
+      }
+    }
+
+    &_content {
+      p {
+        font-size: $spacing * 1.6;
+      }
+    }
+  }
+  // dark mode
+
+  body.darkmode & {
+    background: $color_gray_dark;
+    &_head {
+      svg {
+        path {
+          fill: $color_white;
+          stroke: $color_white;
+        }
+      }
+      h1 {
+        color: $color_white;
+      }
+    }
+
+    &_content {
+      p {
+        color: $color_white;
+      }
+      span {
+        color: $color_gray;
+        &:hover {
+          color: $color_white;
+        }
+      }
+    }
+  }
+}

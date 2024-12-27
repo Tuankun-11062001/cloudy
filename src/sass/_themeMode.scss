@@ -1,0 +1,7 @@
+@mixin darkMode {
+  @content;
+}
+
+@mixin lightMode {
+  @content;
+}

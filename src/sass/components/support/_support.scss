@@ -1,0 +1,203 @@
+.support_page {
+  h1 {
+    font-size: $spacing * 1.4;
+    padding: $spacing $spacing * 2;
+    border-radius: $spacing;
+    background: $color_pink;
+    color: $color_white;
+    font-weight: 600;
+    width: max-content;
+    margin-bottom: $spacing * 2;
+  }
+  &_head {
+    background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+    height: $spacing * 15;
+    border-radius: $spacing * 2;
+    @include dynamicAlign(center, center);
+    width: 100%;
+    object-fit: cover;
+  }
+  &_content {
+    margin: $spacing * 4 auto;
+    @include dynamicAlign($direction: column, $gap: $spacing * 4);
+  }
+  .support_about {
+    background: $color_white;
+    padding: $spacing * 2;
+    border-radius: $spacing * 2;
+    @include dynamicAlign($direction: column, $gap: $spacing * 2);
+    width: 100%;
+    h2 {
+      font-size: $spacing * 1.8;
+      font-style: italic;
+    }
+    p {
+      line-height: $spacing * 2.8;
+    }
+  }
+
+  .support_form {
+    width: 100%;
+    @include dynamicAlign($direction: column, $gap: $spacing * 2);
+    background: $color_white;
+    padding: $spacing * 2;
+    border-radius: $spacing * 2;
+    @include dynamicAlign($direction: column, $gap: $spacing * 2);
+    h2 {
+      font-size: $spacing * 2;
+      font-style: italic;
+    }
+
+    span {
+      color: $color_pink;
+    }
+
+    &_g {
+      @include dynamicAlign($direction: column, $align: center);
+      width: 100%;
+      border: 0.1rem solid rgba($color_gray_normal, 0.2);
+      border-radius: $spacing * 10;
+      padding: $spacing $spacing;
+      @include transition($second: 0.5s);
+      &:focus-within {
+        border-radius: $spacing * 2;
+        box-shadow: 0 0 $spacing * 2 rgba($color_gray_normal, 0.2);
+
+        span {
+          width: 100%;
+          padding: 0 $spacing;
+        }
+        input {
+          width: 100%;
+          padding: $spacing;
+          border-radius: $spacing;
+          border: 0.1rem solid rgba($color_gray_normal, 0.2);
+        }
+        textarea {
+          width: 100%;
+          padding: $spacing;
+          height: $spacing * 20;
+          border-radius: $spacing;
+          border: 0.1rem solid rgba($color_gray_normal, 0.2);
+        }
+      }
+      span {
+        width: 80%;
+        @include transition($second: 1s);
+        color: $color_gray_normal;
+        font-size: $spacing * 1.4;
+        font-style: italic;
+      }
+      input {
+        @include transition($second: 1s);
+        outline: none;
+        width: 80%;
+        border: none;
+        font-size: $spacing * 1.6;
+      }
+      textarea {
+        @include transition($second: 1s);
+        outline: none;
+        width: 80%;
+        height: $spacing * 2;
+        border: none;
+        font-size: $spacing * 1.6;
+        resize: none;
+      }
+    }
+
+    p {
+      margin-left: auto;
+      width: max-content;
+      @include transition();
+      @include button(
+        $padding: $spacing $spacing * 3,
+        $color: $color_gray_normal,
+        $border: 0.1rem solid $color_gray_normal,
+        $background_hover: $color_pink,
+        $color_hover: $color_white,
+        $border_hover: 0.1rem solid $color_pink
+      );
+    }
+  }
+  @include md {
+    &_head {
+      height: 25dvh;
+    }
+    &_content {
+      width: 80%;
+    }
+    .support_about {
+      h2 {
+        font-size: $spacing * 1.8;
+      }
+    }
+
+    .support_form {
+      &_g {
+        padding: $spacing $spacing * 2;
+      }
+    }
+  }
+
+  @include xl {
+    .support_about {
+      h2 {
+        font-size: $spacing * 2;
+      }
+    }
+  }
+  body.darkmode & {
+    h1 {
+      background: $color_white;
+      color: $color_blue_dark;
+    }
+    .support_about {
+      background: $color_gray_dark;
+      h2 {
+        color: $color_white;
+      }
+    }
+
+    .support_form {
+      background: $color_gray_dark;
+
+      h2 {
+        color: $color_white;
+      }
+
+      &_g {
+        border: 0.1rem solid rgba($color_gray, 0.2);
+        &:focus-within {
+          box-shadow: 0 0 $spacing * 2 rgba($color_gray, 0.2);
+
+          textarea {
+            color: $color_white;
+          }
+        }
+        span {
+          color: $color_gray;
+        }
+
+        textarea {
+          color: $color_white;
+          background: transparent;
+        }
+      }
+
+      p {
+        margin-left: auto;
+        width: max-content;
+        @include transition();
+        @include button(
+          $padding: $spacing $spacing * 3,
+          $color: $color_gray_normal,
+          $border: 0.1rem solid $color_gray,
+          $background_hover: $color_pink,
+          $color_hover: $color_white,
+          $border_hover: 0.1rem solid $color_pink
+        );
+      }
+    }
+  }
+}

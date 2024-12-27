@@ -1,0 +1,190 @@
+.box_comment {
+  margin-top: $spacing;
+  @include dynamicAlign($direction: column, $gap: $spacing * 2);
+
+  height: $spacing * 30;
+  overflow: auto;
+
+  &_login {
+    width: 100%;
+    text-align: center;
+    padding: $spacing;
+    background: rgba($color_pink, 0.5);
+    color: $color_white;
+    border-radius: $spacing;
+  }
+
+  .box_form_comment {
+    @include dynamicAlign($align: center, $gap: $spacing * 2);
+    width: 100%;
+    .login {
+      z-index: 10;
+    }
+    img {
+      width: $spacing * 3;
+      height: $spacing * 3;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    textarea {
+      flex: 1;
+      width: 100%;
+      height: $spacing * 2;
+      resize: none;
+      outline: none;
+      border: none;
+      border-bottom: $spacing - 0.9 solid $color_gray;
+      font-family: "Open Sans", sans-serif;
+      font-size: $spacing * 1.4;
+      &:focus {
+        border-bottom: $spacing - 0.9 solid $color_gray_normal;
+      }
+    }
+
+    p {
+      cursor: pointer;
+      @include transition();
+      &:hover {
+        svg {
+          path {
+            fill: $color_pink;
+          }
+        }
+      }
+    }
+  }
+
+  .comment {
+    @include dynamicAlign($gap: $spacing * 2);
+    width: 100%;
+    img {
+      width: $spacing * 3;
+      height: $spacing * 3;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    &_content {
+      @include dynamicAlign($direction: column);
+      width: 100%;
+      h5 {
+        font-weight: 550;
+      }
+
+      p {
+        font-size: $spacing * 1.4;
+      }
+
+      &_control {
+        @include dynamicAlign($align: center);
+        width: 100%;
+        p {
+          @include dynamicAlign($align: center);
+          padding: $spacing - 0.5 $spacing;
+          border-radius: $spacing * 2;
+          cursor: pointer;
+          &:hover {
+            background: $color_gray;
+          }
+          svg {
+            pointer-events: none;
+          }
+        }
+
+        .box_reply {
+          @include dynamicAlign($gap: $spacing * 2, $align: center);
+          opacity: 0;
+          z-index: -1;
+          @include transition;
+          &.active {
+            opacity: 1;
+            z-index: 2;
+          }
+          flex: 1;
+
+          textarea {
+            flex: 1;
+            width: 100%;
+            height: $spacing * 2;
+            resize: none;
+            outline: none;
+            border: none;
+            border-bottom: $spacing - 0.9 solid $color_gray;
+            font-family: "Open Sans", sans-serif;
+            font-size: $spacing * 1.4;
+            &:focus {
+              border-bottom: $spacing - 0.9 solid $color_gray_normal;
+            }
+          }
+        }
+      }
+
+      &_reply {
+        @include dynamicAlign($gap: $spacing * 2);
+        margin-top: $spacing;
+        .content_reply {
+          @include dynamicAlign($direction: column);
+        }
+      }
+    }
+  }
+
+  @include xl {
+  }
+  // dark mode
+
+  body.darkmode & {
+    .box_form_comment {
+      textarea {
+        background: transparent;
+        color: $color_white;
+      }
+
+      p {
+        svg {
+          path {
+            fill: $color_gray;
+          }
+        }
+        &:hover {
+          svg {
+            path {
+              fill: $color_pink;
+            }
+          }
+        }
+      }
+    }
+
+    .comment {
+      &_content {
+        color: $color_white;
+        &_control {
+          p {
+            svg {
+              path {
+                fill: $color_gray;
+              }
+            }
+            &:hover {
+              background: $color_blue_dark;
+              svg {
+                path {
+                  fill: $color_gray;
+                }
+              }
+            }
+          }
+
+          .box_reply {
+            textarea {
+              background: transparent;
+              color: $color_white;
+            }
+          }
+        }
+      }
+    }
+  }
+}

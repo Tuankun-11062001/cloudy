@@ -1,0 +1,125 @@
+.member {
+  display: none;
+  @include xl {
+    display: block;
+    padding: $spacing;
+    margin: $spacing * 2 0;
+    position: relative;
+    width: 100%;
+    &::before {
+      content: "";
+      display: block;
+      @include dynamicPosition(
+        $pos: absolute,
+        $top: 0,
+        $left: 50%,
+        $transform: translateX(-50%)
+      );
+      width: 95%;
+      height: $spacing - 0.8;
+      background: $color_gray;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      @include dynamicPosition(
+        $pos: absolute,
+        $bottom: 0,
+        $left: 50%,
+        $transform: translateX(-50%)
+      );
+      width: 95%;
+      height: $spacing - 0.8;
+      background: $color_gray;
+    }
+
+    p {
+      color: $color_blue_dark;
+      font-size: $spacing * 1.4;
+    }
+
+    .head {
+      @include dynamicAlign($justify: space-between, $align: center);
+      a {
+        @include AnchorElement(
+          $padding: none,
+          $font_size: $spacing * 1.4,
+          $color: $color_blue_dark,
+          $background_hover: unset,
+          $color_hover: $color_pink
+        );
+        width: max-content;
+      }
+    }
+
+    .list_member {
+      margin-top: $spacing * 2;
+      @include dynamicAlign(
+        $justify: space-between,
+        $align: center,
+        $wrap: wrap
+      );
+      img {
+        width: $spacing * 4;
+        height: $spacing * 4;
+        border-radius: $spacing * 10;
+        object-fit: cover;
+      }
+    }
+
+    &_button {
+      margin: $spacing * 2 0 $spacing 0;
+      text-align: center;
+      @include button(
+        $color: $color_blue_dark,
+        $font_size: $spacing * 1.6,
+        $background: $color_gray,
+        $padding: $spacing $spacing * 2,
+        $background_hover: $color_blue_dark,
+        $color_hover: $color_white,
+        $shadow: unset
+      );
+
+      @include transition();
+    }
+
+    // dark mode
+
+    body.darkmode & {
+      &::before,
+      &::after {
+        background: $color_blue_dark;
+      }
+
+      .head {
+        a {
+          @include AnchorElement(
+            $padding: none,
+            $font_size: $spacing * 1.4,
+            $color: $color_gray_normal,
+            $background_hover: unset,
+            $color_hover: $color_white
+          );
+          width: max-content;
+        }
+      }
+
+      P {
+        color: $color_gray;
+      }
+
+      &_button {
+        @include button(
+          $color: $color_white,
+          $font_size: $spacing * 1.6,
+          $background: linear-gradient(90deg, $color_blue, $color_pink),
+          $padding: $spacing $spacing * 2,
+          $background_hover: linear-gradient(90deg, $color_blue, $color_pink),
+          $color_hover: $color_white,
+          $shadow: unset
+        );
+      }
+    }
+  }
+}

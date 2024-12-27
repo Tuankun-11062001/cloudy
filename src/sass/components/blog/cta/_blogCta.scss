@@ -1,0 +1,83 @@
+.blog_cta {
+  @include dynamicAlign($justify: center, $align: center, $direction: column);
+
+  margin: $spacing * 5 auto;
+  padding: $spacing * 3;
+  background: $color_white;
+  border-radius: $spacing * 3;
+  box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.3);
+  background-size: cover;
+
+  &_head {
+    p {
+      color: $color_gray_normal;
+      text-align: center;
+      font-size: $spacing * 1.4;
+    }
+  }
+
+  &_content {
+    @include dynamicAlign($justify: center, $align: center, $direction: column);
+
+    h2 {
+      text-align: center;
+      font-size: $spacing * 1.8;
+      span {
+        color: $color_pink;
+      }
+    }
+
+    p {
+      color: $color_gray_normal;
+      text-align: center;
+      font-size: $spacing * 1.4;
+    }
+  }
+
+  @include md {
+    width: 70%;
+  }
+
+  @include xl {
+    width: 70%;
+
+    &_head {
+      p {
+        font-size: $spacing * 1.6;
+      }
+    }
+
+    &_content {
+      width: 75%;
+      h2 {
+        font-size: $spacing * 2.6;
+      }
+
+      p {
+        font-size: $spacing * 1.6;
+      }
+    }
+  }
+  body.darkmode & {
+    background: $color_gray_dark;
+    box-shadow: 0 0 $spacing * 3 0 rgba($color_white, 0.7);
+    &_head {
+      p {
+        color: $color_gray;
+      }
+    }
+
+    &_content {
+      h2 {
+        color: $color_white;
+        span {
+          color: $color_pink;
+        }
+      }
+
+      p {
+        color: $color_gray;
+      }
+    }
+  }
+}

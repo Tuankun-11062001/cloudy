@@ -1,0 +1,909 @@
+.shop_page {
+  h1 {
+    font-size: $spacing * 1.4;
+    padding: $spacing $spacing * 2;
+    border-radius: $spacing;
+    background: $color_pink;
+    color: $color_white;
+    font-weight: 600;
+    width: max-content;
+    margin-bottom: $spacing * 2;
+  }
+  .shop_search {
+    position: relative;
+    background: $color_white;
+    margin-block: $spacing * 2;
+    padding-inline: $spacing * 2;
+    @include dynamicAlign($align: center, $justify: center);
+    border-radius: $spacing * 3;
+    @include transition;
+    &:focus-within {
+      box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.2);
+      input {
+        flex: 1;
+      }
+    }
+    svg {
+      width: $spacing * 2;
+      height: $spacing * 2;
+      path {
+        stroke: $color_gray_normal;
+      }
+    }
+    input {
+      @include transition($second: 1s);
+      padding: $spacing * 1.5 $spacing;
+      font-size: $spacing * 1.4;
+      border: none;
+      outline: none;
+    }
+
+    &_result {
+      @include dynamicPosition($pos: absolute, $left: 0, $top: 110%);
+      height: 0;
+      overflow: hidden;
+      width: 100%;
+      background: $color_white;
+      border-radius: $spacing * 2;
+      @include transition($second: 1s);
+      z-index: -1;
+      opacity: 0;
+      @include dynamicAlign($wrap: wrap, $gap: $spacing);
+      .shop_product_card {
+        width: calc((100% / 2) - $spacing);
+      }
+      &.active {
+        padding: $spacing * 2;
+        height: $spacing * 40;
+        overflow: auto;
+        z-index: 5;
+        opacity: 1;
+      }
+    }
+  }
+  .shop_category {
+    @include dynamicAlign($direction: column);
+    margin-top: $spacing * 3;
+    //   background: $color_white;
+    border-radius: $spacing * 2;
+    &_head {
+      @include dynamicAlign($align: center, $justify: space-between);
+      width: 100%;
+      h2 {
+        font-size: $spacing * 1.4;
+        font-weight: 500;
+      }
+      .shop_expand_category_button {
+        width: $spacing * 3;
+        height: $spacing * 3;
+        @include dynamicAlign(center, center);
+        background: $color_white;
+        border-radius: 50%;
+        @include transition;
+        cursor: pointer;
+        &.active {
+          svg {
+            transform: rotate(180deg);
+          }
+        }
+        &:hover {
+          background: $color_pink;
+          svg {
+            path {
+              stroke: $color_white;
+            }
+          }
+        }
+        svg {
+          pointer-events: none;
+          width: $spacing * 2;
+          height: $spacing * 2;
+        }
+      }
+    }
+    &_list {
+      @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+      width: 100%;
+      height: 15dvh;
+      overflow: hidden;
+      background: $color_white;
+      border-radius: $spacing * 2;
+      margin-top: $spacing * 2;
+      @include transition($second: 1s);
+      &.active {
+        height: 50dvh;
+        overflow: auto;
+      }
+
+      .shop_category_card {
+        width: calc((100% / 2) - $spacing * 2);
+      }
+    }
+  }
+
+  .shop_season {
+    h2 {
+      font-size: $spacing * 1.4;
+      font-weight: 500;
+    }
+    &_list {
+      @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+      margin-top: $spacing * 2;
+      .shop_product_card {
+        width: calc((100% / 2) - $spacing * 2);
+      }
+    }
+  }
+
+  .shop_mydesign {
+    margin-top: $spacing * 2;
+    h2 {
+      font-size: $spacing * 1.4;
+      font-weight: 500;
+    }
+    &_list {
+      @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+      margin-top: $spacing * 2;
+      .shop_product_card {
+        width: calc((100% / 2) - $spacing * 2);
+      }
+    }
+  }
+
+  .shop_partner {
+    background: $color_white;
+    padding: $spacing;
+    border-radius: $spacing * 2;
+    h2 {
+      font-size: $spacing * 1.6;
+      font-weight: 500;
+      text-align: center;
+      margin-bottom: $spacing * 4;
+    }
+    &_list {
+      @include dynamicAlign(
+        $wrap: wrap,
+        $gap: $spacing * 2,
+        $align: center,
+        $justify: center
+      );
+      .shop_partner_card {
+        width: calc((100% / 2) - $spacing * 2);
+        height: $spacing * 6;
+      }
+    }
+  }
+
+  .shop_all {
+    margin: $spacing * 4 0;
+    &_nav {
+      @include dynamicAlign($align: center, $wrap: wrap);
+      span {
+        font-style: italic;
+        color: $color_gray_normal;
+        font-size: $spacing * 1.4;
+      }
+
+      p {
+        @include button(
+          $padding: $spacing $spacing * 3,
+          $font_size: $spacing * 1.4,
+          $color: $color_gray_normal,
+          $color_hover: $color_white,
+          $background_hover: $color_pink,
+          $color_active: $color_white,
+          $background_active: $color_pink
+        );
+      }
+
+      select {
+        @include button(
+          $padding: $spacing $spacing * 3,
+          $font_size: $spacing * 1.4,
+          $color: $color_gray_normal,
+          $color_hover: $color_white,
+          $background_hover: $color_pink
+        );
+        outline: none;
+      }
+    }
+    &_list {
+      margin-top: $spacing * 3;
+      @include dynamicAlign($wrap: wrap, $gap: $spacing);
+      .shop_product_card {
+        width: calc((100% / 2) - $spacing);
+      }
+    }
+  }
+
+  .shop_pagination {
+    margin-top: $spacing * 2;
+    @include dynamicAlign($align: center, $justify: center);
+    .item {
+      width: $spacing * 4;
+      height: $spacing * 4;
+      border-radius: $spacing;
+      background: $color_white;
+      @include dynamicAlign(center, center);
+      @include transition();
+      cursor: pointer;
+      &:hover {
+        background: $color_pink;
+        color: $color_white;
+      }
+      &.active {
+        background: $color_pink;
+        color: $color_white;
+      }
+    }
+  }
+
+  @include sm {
+    .shop_category,
+    .shop_season,
+    .shop_mydesign {
+      h2 {
+        font-size: $spacing * 1.6;
+      }
+      &_list {
+        .shop_category_card {
+          width: calc((100% / 3) - $spacing * 2);
+        }
+      }
+    }
+  }
+
+  @include md {
+    .shop_search {
+      &_result {
+        .shop_product_card {
+          width: calc((100% / 5) - $spacing);
+        }
+      }
+    }
+
+    .shop_season {
+      &_list {
+        .shop_product_card {
+          width: calc((100% / 4) - $spacing * 2);
+        }
+      }
+    }
+
+    .shop_category {
+      &_list {
+        .shop_category_card {
+          width: calc((100% / 6) - $spacing * 2);
+        }
+      }
+    }
+
+    .shop_partner {
+      &_list {
+        .shop_partner_card {
+          width: calc((100% / 4) - $spacing * 2);
+        }
+      }
+    }
+
+    .shop_all {
+      &_list {
+        @include dynamicAlign($wrap: wrap, $gap: $spacing);
+        .shop_product_card {
+          width: calc((100% / 5) - $spacing);
+        }
+      }
+    }
+  }
+
+  @include xl {
+    .shop_search {
+      margin: $spacing * 2;
+
+      input {
+        font-size: $spacing * 1.6;
+      }
+
+      &_result {
+        @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+        .shop_product_card {
+          width: calc((100% / 6) - $spacing * 2);
+        }
+      }
+    }
+    .shop_category {
+      padding: $spacing * 2;
+      &_head {
+        @include dynamicAlign($align: center);
+        h2 {
+          font-size: $spacing * 2;
+        }
+      }
+      &_list {
+        .shop_category_card {
+          width: calc((100% / 8) - $spacing * 2);
+        }
+      }
+    }
+
+    .shop_season {
+      padding: $spacing * 2;
+      h2 {
+        font-size: $spacing * 2;
+      }
+      &_list {
+        .shop_product_card {
+          width: calc((100% / 7) - $spacing * 2);
+        }
+      }
+    }
+
+    .shop_mydesign {
+      padding: $spacing * 2;
+      h2 {
+        font-size: $spacing * 2;
+      }
+      &_list {
+        .shop_product_card {
+          width: calc((100% / 7) - $spacing * 2);
+        }
+      }
+    }
+
+    .shop_partner {
+      padding: $spacing * 4 $spacing * 2;
+
+      h2 {
+        font-size: $spacing * 2;
+      }
+      &_list {
+        .shop_partner_card {
+          width: calc((100% / 6) - $spacing * 2);
+          height: $spacing * 6;
+        }
+      }
+    }
+
+    .shop_all {
+      margin: $spacing * 4 $spacing * 2;
+      &_nav {
+        @include dynamicAlign($align: center);
+        span {
+          font-size: $spacing * 1.6;
+        }
+
+        p {
+          @include button(
+            $padding: $spacing $spacing * 3,
+            $font_size: $spacing * 1.6,
+            $color: $color_gray_normal,
+            $color_hover: $color_white,
+            $background_hover: $color_pink,
+            $color_active: $color_white,
+            $background_active: $color_pink
+          );
+        }
+
+        select {
+          @include button(
+            $padding: $spacing $spacing * 3,
+            $font_size: $spacing * 1.6,
+            $color: $color_gray_normal,
+            $color_hover: $color_white,
+            $background_hover: $color_pink
+          );
+          outline: none;
+        }
+      }
+      &_list {
+        @include dynamicAlign($wrap: wrap, $gap: $spacing * 2, $align: center);
+        .shop_product_card {
+          width: calc((100% / 6) - $spacing * 2);
+          height: $spacing * 6;
+        }
+      }
+    }
+  }
+  body.darkmode & {
+    h1 {
+      background: $color_white;
+      color: $color_blue_dark;
+    }
+    .shop_search {
+      background: $color_gray_dark;
+
+      &:focus-within {
+        box-shadow: 0 0 $spacing * 2 0 rgba($color_white, 0.5);
+      }
+      svg {
+        path {
+          stroke: $color_gray;
+        }
+      }
+      input {
+        color: $color_white;
+        background: transparent;
+      }
+
+      &_result {
+        background: $color_gray_dark;
+      }
+    }
+
+    .shop_season {
+      h2 {
+        color: $color_white;
+      }
+    }
+
+    .shop_category {
+      &_head {
+        h2 {
+          color: $color_white;
+        }
+      }
+      &_list {
+        background: $color_gray_dark;
+      }
+    }
+
+    .shop_mydesign {
+      h2 {
+        color: $color_white;
+      }
+    }
+
+    .shop_partner {
+      background: $color_gray_dark;
+
+      h2 {
+        color: $color_white;
+      }
+    }
+  }
+}
+
+.shop_category_detail {
+  &_head {
+    @include dynamicAlign($align: center, $gap: $spacing);
+    .shop_back {
+      width: $spacing * 4;
+      height: $spacing * 4;
+      border-radius: 50%;
+      background: $color_white;
+      @include dynamicAlign(center, center);
+      @include transition;
+      cursor: pointer;
+      &:hover {
+        background: $color_pink;
+        svg {
+          path {
+            stroke: $color_white;
+          }
+        }
+      }
+      svg {
+        transform: rotate(90deg);
+        pointer-events: none;
+        path {
+          stroke: $color_gray_normal;
+        }
+      }
+    }
+    h1 {
+      font-weight: 500;
+      font-size: $spacing * 1.4;
+      font-style: italic;
+    }
+  }
+  @include dynamicAlign($direction: column);
+
+  &_list {
+    @include dynamicAlign($wrap: wrap, $gap: $spacing);
+    margin-top: $spacing * 3;
+    .shop_product_card {
+      width: calc((100% / 2) - $spacing);
+    }
+  }
+
+  @include sm {
+    &_list {
+      @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+
+      .shop_product_card {
+        width: calc((100% / 2) - $spacing * 2);
+      }
+    }
+  }
+
+  @include md {
+    &_list {
+      @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+      width: 100%;
+      .shop_product_card {
+        width: calc((100% / 5) - $spacing * 2);
+      }
+    }
+  }
+
+  @include xl {
+    &_head {
+      @include dynamicAlign($align: center, $gap: $spacing * 2);
+      .shop_back {
+        width: $spacing * 5;
+        height: $spacing * 5;
+      }
+      h1 {
+        font-size: $spacing * 1.8;
+      }
+    }
+
+    &_list {
+      @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+      width: 100%;
+      .shop_product_card {
+        width: calc((100% / 7) - $spacing * 2);
+      }
+    }
+  }
+  body.darkmode & {
+    &_head {
+      h1 {
+        color: $color_white;
+      }
+    }
+  }
+}
+
+.shop_detail {
+  @include dynamicAlign($direction: column);
+  &_slider {
+    order: 1;
+  }
+
+  &_content {
+    order: 2;
+    .shop_back {
+      width: $spacing * 4;
+      height: $spacing * 4;
+      border-radius: 50%;
+      background: $color_white;
+      @include dynamicAlign(center, center);
+      @include transition;
+      cursor: pointer;
+      &:hover {
+        background: $color_pink;
+        svg {
+          path {
+            stroke: $color_white;
+          }
+        }
+      }
+      svg {
+        transform: rotate(90deg);
+        pointer-events: none;
+        path {
+          stroke: $color_gray_normal;
+        }
+      }
+    }
+    @include dynamicAlign($direction: column, $gap: $spacing * 2);
+    &_tag {
+      @include dynamicAlign($align: center);
+      margin-top: $spacing * 2;
+
+      span {
+        background: $color_white;
+        padding: $spacing $spacing * 2;
+        font-size: $spacing * 1.4;
+        font-style: italic;
+        border-radius: $spacing;
+        color: $color_gray_normal;
+        box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.2);
+      }
+      &_design {
+        background: $color_pink !important;
+        color: $color_white !important;
+      }
+    }
+    &_title {
+      font-weight: 600;
+      font-size: $spacing * 1.6;
+      line-height: $spacing * 3.5;
+    }
+    &_des {
+      color: $color_gray_normal;
+      line-height: $spacing * 2.7;
+      white-space: pre-wrap;
+      font-size: $spacing * 1.4;
+    }
+
+    &_view {
+      @include dynamicAlign($align: center, $gap: $spacing * 2);
+      p {
+        @include dynamicAlign($align: center);
+        svg {
+          path {
+            fill: $color_gray_normal;
+          }
+        }
+      }
+
+      .cloudy {
+        cursor: pointer;
+        &.active {
+          svg {
+            path {
+              fill: $color_pink;
+              stroke: $color_pink;
+            }
+          }
+        }
+      }
+    }
+
+    &_act {
+      width: 100%;
+      @include dynamicAlign(
+        $direction: column,
+        $align: center,
+        $justify: center,
+        $gap: $spacing * 3
+      );
+      h2 {
+        font-size: $spacing * 2;
+        font-weight: 700;
+        color: $color_black;
+        padding: $spacing $spacing * 3;
+        border-bottom: 0.2rem solid rgba($color_gray_normal, 0.2);
+        text-align: center;
+      }
+
+      p {
+        @include transition;
+        @include button(
+          $color: $color_gray_normal,
+          $padding: $spacing $spacing * 4,
+          $color_hover: $color-white,
+          $background_hover: $color_pink,
+          $shadow: 0 0 $spacing * 3 0 rgba($color_gray_normal, 0.3),
+          $font_size: $spacing * 1.4
+        );
+      }
+    }
+
+    &_below {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      svg {
+        path {
+          stroke: $color_gray_normal;
+          fill: $color_gray_normal;
+        }
+      }
+    }
+
+    .shop_mydesign {
+      h2 {
+        font-size: $spacing * 1.6;
+        font-weight: 500;
+      }
+      &_list {
+        @include dynamicAlign($wrap: wrap, $gap: $spacing);
+        margin-top: $spacing * 2;
+        .shop_product_card {
+          width: calc((100% / 2) - $spacing);
+        }
+      }
+    }
+
+    .shop_relative_product {
+      h3 {
+        font-size: $spacing * 1.6;
+        font-style: italic;
+        font-weight: 500;
+      }
+      &_list {
+        @include dynamicAlign($wrap: wrap, $gap: $spacing);
+        margin-top: $spacing * 2;
+        .shop_product_card {
+          width: calc((100% / 2) - $spacing);
+        }
+      }
+    }
+  }
+
+  @include sm {
+    &_content {
+      &_title {
+        font-size: $spacing * 1.8;
+      }
+      &_des {
+        font-size: $spacing * 1.6;
+      }
+
+      &_act {
+        h2 {
+          font-size: $spacing * 2.5;
+        }
+
+        p {
+          @include button(
+            $color: $color_gray_normal,
+            $padding: $spacing $spacing * 4,
+            $color_hover: $color-white,
+            $background_hover: $color_pink,
+            $shadow: 0 0 $spacing * 3 0 rgba($color_gray_normal, 0.3)
+          );
+        }
+      }
+
+      .shop_mydesign {
+        h2 {
+          font-size: $spacing * 1.8;
+        }
+        &_list {
+          @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+
+          .shop_product_card {
+            width: calc((100% / 2) - $spacing * 2);
+          }
+        }
+      }
+
+      .shop_relative_product {
+        h3 {
+          font-size: $spacing * 1.8;
+        }
+        &_list {
+          @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+
+          .shop_product_card {
+            width: calc((100% / 2) - $spacing * 2);
+          }
+        }
+      }
+    }
+  }
+
+  @include md {
+    &_content {
+      &_act {
+        h2 {
+          font-size: $spacing * 2.8;
+        }
+
+        p {
+          @include button(
+            $color: $color_gray_normal,
+            $padding: $spacing $spacing * 4,
+            $color_hover: $color-white,
+            $background_hover: $color_pink,
+            $shadow: 0 0 $spacing * 3 0 rgba($color_gray_normal, 0.3)
+          );
+        }
+      }
+
+      .shop_mydesign {
+        width: 100%;
+        &_list {
+          @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+          width: 100%;
+          .shop_product_card {
+            width: calc((100% / 5) - $spacing * 2);
+          }
+        }
+      }
+
+      .shop_relative_product {
+        width: 100%;
+        &_list {
+          @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+          width: 100%;
+          .shop_product_card {
+            width: calc((100% / 5) - $spacing * 2);
+          }
+        }
+      }
+    }
+  }
+
+  @include xl {
+    &_content {
+      margin-right: 52%;
+      .shop_back {
+        width: $spacing * 5;
+        height: $spacing * 5;
+      }
+
+      &_title {
+        font-size: $spacing * 2.5;
+      }
+
+      &_act {
+        @include dynamicAlign($align: flex-end, $gap: $spacing * 3);
+        h2 {
+          text-align: start;
+          font-size: $spacing * 3;
+        }
+      }
+
+      &_below {
+        padding: $spacing * 3;
+      }
+
+      .shop_mydesign {
+        h2 {
+          font-size: $spacing * 2;
+        }
+        &_list {
+          .shop_product_card {
+            width: calc((100% / 3) - $spacing * 2);
+          }
+        }
+      }
+
+      .shop_relative_product {
+        &_list {
+          .shop_product_card {
+            width: calc((100% / 3) - $spacing * 2);
+          }
+        }
+      }
+    }
+  }
+  body.darkmode & {
+    &_content {
+      &_title {
+        color: $color_white;
+      }
+      &_des {
+        color: $color_gray;
+        white-space: pre-wrap;
+      }
+
+      &_view {
+        p {
+          color: $color-gray;
+          svg {
+            path {
+              fill: $color_gray;
+            }
+          }
+        }
+      }
+
+      &_act {
+        h2 {
+          color: $color_white;
+        }
+
+        p {
+          @include transition;
+          @include button(
+            $color: $color_gray_normal,
+            $background: $color_gray,
+            $padding: $spacing $spacing * 4,
+            $color_hover: $color-white,
+            $background_hover: linear-gradient(90deg, $color_pink, $color_blue),
+            $shadow: 0 0 $spacing * 3 0 rgba($color_gray_normal, 0.3)
+          );
+        }
+      }
+
+      .shop_mydesign {
+        h2 {
+          color: $color_white;
+        }
+      }
+
+      .shop_relative_product {
+        h3 {
+          color: $color_white;
+        }
+      }
+    }
+  }
+}

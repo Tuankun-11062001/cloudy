@@ -1,0 +1,66 @@
+.box_lyrics_user_song {
+  @include xl {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    background: $color_white;
+    border-radius: $spacing * 2;
+    &.active {
+      padding: $spacing * 2;
+      width: 100%;
+      height: 100%;
+      flex: 1;
+      overflow: auto;
+    }
+
+    &_head {
+      @include dynamicAlign($align: center);
+      &_close {
+        cursor: pointer;
+        @include transition();
+        &:hover {
+          svg {
+            path {
+              stroke: $color_pink;
+            }
+          }
+        }
+        svg {
+          pointer-events: none;
+        }
+      }
+    }
+
+    .box_lyrics_user_tab_content {
+      display: none;
+      &.active {
+        display: block;
+        width: 100%;
+        height: $spacing * 60;
+        background: $color_white;
+        padding: $spacing * 2;
+        border-radius: $spacing * 2;
+        overflow: auto;
+      }
+    }
+
+    body.darkmode & {
+      &_head {
+        &_close {
+          svg {
+            path {
+              stroke: $color_gray;
+            }
+          }
+          &:hover {
+            svg {
+              path {
+                stroke: $color_white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

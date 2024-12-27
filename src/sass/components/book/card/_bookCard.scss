@@ -1,0 +1,844 @@
+.book_slider_card {
+  width: 100dvw;
+  height: 100%;
+
+  position: relative;
+  background: $color_white;
+
+  border-radius: $spacing * 2;
+
+  &.active {
+    .info {
+      opacity: 1;
+      h2,
+      h3,
+      p,
+      .other,
+      .check {
+        margin-left: 0;
+        opacity: 1;
+      }
+    }
+  }
+  .info {
+    @include dynamicPosition($pos: absolute, $left: 5%, $bottom: 5%);
+    @include dynamicAlign($direction: column, $gap: $spacing);
+    opacity: 0;
+    width: 80%;
+    background: $color_white;
+    padding: $spacing;
+    border-radius: $spacing;
+    box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.2);
+    h2 {
+      width: 90%;
+      font-size: $spacing * 1.4;
+      color: $color_black;
+      margin-left: $spacing * 3;
+      opacity: 0;
+      @include transition($second: 1s, $delay: 0.6s);
+      @include longText($line: 2);
+    }
+    h3 {
+      font-weight: 400;
+      font-size: $spacing * 1.2;
+      background: $color_gray;
+      padding: $spacing - 0.5 $spacing * 2;
+      border-radius: $spacing;
+      margin-left: $spacing * 5;
+      opacity: 0;
+      @include transition($second: 1s, $delay: 0.7s);
+    }
+    .des {
+      color: $color_gray_normal;
+      margin-left: $spacing * 5;
+      opacity: 0;
+      @include longText($line: 2);
+      width: 95%;
+      @include transition($second: 1s, $delay: 0.7s);
+      font-size: $spacing * 1.2;
+    }
+    .other {
+      display: none;
+    }
+
+    .check {
+      @include transition($second: 1s, $delay: 1s);
+
+      opacity: 0;
+      margin-left: $spacing * 5;
+      p {
+        @include transition();
+
+        @include button(
+          $background: $color_gray,
+          $color: $color_gray_normal,
+          $background_hover: $color_pink,
+          $color_hover: $color_white,
+          $font_size: $spacing * 1.2,
+          $padding: $spacing - 0.5 $spacing
+        );
+      }
+    }
+  }
+  .image {
+    width: inherit;
+    height: inherit;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: right bottom;
+      border-radius: $spacing * 2;
+    }
+  }
+
+  @include sm {
+    .info {
+      @include dynamicPosition($pos: absolute, $left: 5%, $top: 5%);
+
+      h2 {
+        font-size: $spacing * 1.6;
+      }
+      h3 {
+        font-size: $spacing * 1.4;
+      }
+      .des {
+        font-size: $spacing * 1.4;
+      }
+
+      .check {
+        p {
+          @include button(
+            $background: $color_gray,
+            $color: $color_gray_normal,
+            $background_hover: $color_pink,
+            $color_hover: $color_white,
+            $font_size: $spacing * 1.2
+          );
+        }
+      }
+    }
+  }
+
+  @include md {
+    .info {
+      @include dynamicPosition($pos: absolute, $left: 2%, $bottom: 5%);
+      width: 60%;
+      h2 {
+        font-size: $spacing * 1.8;
+      }
+      h3 {
+        font-size: $spacing * 1.6;
+      }
+      .des {
+        font-size: $spacing * 1.4;
+      }
+
+      .check {
+        p {
+          @include button(
+            $background: $color_gray,
+            $color: $color_gray_normal,
+            $background_hover: $color_pink,
+            $color_hover: $color_white,
+            $font_size: $spacing * 1.4
+          );
+        }
+      }
+    }
+  }
+
+  @include xl {
+    width: 57dvw;
+    height: 100%;
+
+    .info {
+      width: 60%;
+
+      padding: $spacing * 2;
+      border-radius: $spacing * 2;
+      @include dynamicPosition($pos: absolute, $left: 6%, $bottom: 5%);
+      h2 {
+        font-size: $spacing * 3.5;
+      }
+      h3 {
+        font-size: $spacing * 1.8;
+      }
+      .des {
+        line-height: $spacing * 2.5;
+
+        margin-left: $spacing * 5;
+
+        @include longText($line: 3);
+      }
+      .other {
+        width: 100%;
+        opacity: 0;
+        color: $color_gray_normal;
+
+        @include transition($second: 1s, $delay: 0.9s);
+        margin-left: $spacing * 5;
+        @include dynamicAlign($align: center);
+        p {
+          @include dynamicAlign($align: center);
+
+          svg {
+            path {
+              fill: $color_gray_normal;
+            }
+          }
+        }
+      }
+
+      .check {
+        p {
+          @include button(
+            $background: $color_gray,
+            $color: $color_gray_normal,
+            $background_hover: $color_pink,
+            $color_hover: $color_white,
+            $font_size: $spacing * 1.6
+          );
+        }
+      }
+    }
+  }
+}
+
+.book_category_card {
+  p {
+    padding: $spacing;
+    background: $color_white;
+    border-radius: $spacing * 2;
+    text-align: center;
+    @include transition;
+    cursor: pointer;
+    color: $color_gray_normal;
+    font-size: $spacing * 1.2;
+    &:hover {
+      background: $color_pink;
+      color: $color_white;
+    }
+  }
+
+  @include sm {
+    p {
+      font-size: $spacing * 1.4;
+    }
+  }
+  @include xl {
+    p {
+      padding: $spacing * 2;
+
+      font-size: $spacing * 1.6;
+    }
+  }
+  body.darkmode & {
+    p {
+      background: $color_gray_dark;
+      color: $color_white;
+      &:hover {
+        background: $color_white;
+        color: $color_blue_dark;
+      }
+    }
+  }
+}
+
+.book_card {
+  @include dynamicAlign($gap: $spacing, $direction: column, $align: center);
+  background: $color_white;
+  padding: $spacing * 2;
+  border-radius: $spacing * 2;
+  @include transition;
+  &:hover {
+    box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.3);
+  }
+  &_image {
+    position: relative;
+
+    width: $spacing * 15;
+    height: $spacing * 20;
+    object-fit: contain;
+    border-radius: $spacing;
+    @include transition;
+  }
+
+  .info {
+    @include dynamicAlign($direction: column);
+    flex: 1;
+    h2 {
+      color: $color_black;
+      font-size: $spacing * 1.4;
+      font-weight: 600;
+      @include longText($line: 2);
+    }
+    p {
+      color: $color_gray_normal;
+      font-size: $spacing * 1.2;
+    }
+    .des {
+      @include longText($line: 4);
+      width: 100%;
+      font-size: $spacing * 1.2;
+    }
+    .other {
+      @include dynamicAlign($align: center);
+      p {
+        @include dynamicAlign($align: center);
+        svg {
+          path {
+            fill: $color_gray;
+          }
+        }
+      }
+    }
+    .bottom {
+      display: none;
+    }
+  }
+
+  .more_detail {
+    display: none;
+  }
+
+  @include sm {
+    .info {
+      h2 {
+        font-size: $spacing * 1.6;
+      }
+      p {
+        font-size: $spacing * 1.4;
+      }
+      .des {
+        font-size: $spacing * 1.4;
+      }
+    }
+  }
+
+  @include xl {
+    @include dynamicAlign($gap: $spacing * 3);
+
+    &:hover {
+      .book_card_image {
+        top: -$spacing * 7;
+      }
+    }
+    &_image {
+      top: -$spacing * 5;
+      width: $spacing * 20;
+      height: $spacing * 25;
+    }
+
+    .info {
+      h2 {
+        font-size: $spacing * 2;
+      }
+      p {
+        font-size: $spacing * 1.6;
+      }
+
+      .bottom {
+        @include dynamicAlign();
+        p {
+          @include button(
+            $color: $color_gray_normal,
+            $background: $color_gray,
+            $font_size: $spacing * 1.4,
+            $color_hover: $color_white,
+            $background_hover: $color_pink
+          );
+        }
+      }
+    }
+
+    .more_detail {
+      display: block;
+      &.active {
+        opacity: 1;
+        z-index: 10;
+        .more_detail_content {
+          &_left {
+            opacity: 1;
+          }
+          &_right {
+            flex: 1;
+            opacity: 1;
+            height: $spacing * 65;
+            overflow: auto;
+            &_demo {
+              opacity: 1;
+            }
+          }
+        }
+      }
+      @include dynamicPosition(
+        $pos: fixed,
+        $left: 0,
+        $top: 0,
+        $right: 0,
+        $bottom: 0
+      );
+      @include glass(
+        $blur: blur($spacing - 0.8),
+        $background: rgba($color_gray_normal, 0.2)
+      );
+      z-index: -1;
+      opacity: 0;
+      @include transition($second: 0.7s);
+      &_content {
+        @include dynamicPosition(
+          $pos: absolute,
+          $left: 50%,
+          $top: 50%,
+          $transform: translate(-50%, -50%)
+        );
+        @include dynamicAlign($gap: $spacing * 5);
+        width: 80%;
+        @include transition($second: 1s, $delay: 0.9s);
+        &_left {
+          position: relative;
+          .close_detail {
+            @include dynamicPosition($pos: absolute, $right: 2%, $top: 2%);
+            cursor: pointer;
+            &:hover {
+              svg {
+                path {
+                  stroke: $color_pink;
+                }
+              }
+            }
+            svg {
+              @include transition();
+              pointer-events: none;
+            }
+          }
+          padding: $spacing * 2;
+          background: $color_white;
+          border-radius: $spacing * 2;
+          @include dynamicAlign(
+            $direction: column,
+            $justify: center,
+            $align: center
+          );
+          width: $spacing * 50;
+          opacity: 0;
+          @include transition($second: 1s, $delay: 0.9s);
+
+          img {
+            width: $spacing * 25;
+            height: $spacing * 30;
+            object-fit: contain;
+            border-radius: $spacing;
+          }
+          &_info {
+            @include dynamicAlign($direction: column, $gap: $spacing);
+            h2 {
+              font-size: $spacing * 2.5;
+            }
+
+            .des {
+              @include longText($line: 3);
+            }
+            .other {
+              @include dynamicAlign();
+              p {
+                @include dynamicAlign($align: center);
+              }
+            }
+
+            .check {
+              @include transition;
+              @include button(
+                $color: $color_gray_normal,
+                $background: $color_gray,
+                $color_hover: $color_white,
+                $background_hover: $color_pink
+              );
+            }
+          }
+        }
+        &_right {
+          flex: 0;
+          opacity: 0;
+          height: 0;
+          overflow: hidden;
+          @include transition($second: 1s, $delay: 0.9s);
+          background: $color_white;
+          padding: $spacing * 2;
+          border-radius: $spacing * 2;
+          @include dynamicAlign($direction: column);
+
+          h2 {
+            font-weight: 600;
+          }
+          &_demo {
+            opacity: 0;
+            @include transition($second: 1s, $delay: 2s);
+            white-space: pre-wrap;
+          }
+        }
+      }
+    }
+  }
+  body.darkmode & {
+    background: $color_gray_dark;
+    &:hover {
+      box-shadow: 0 0 $spacing * 2 0 rgba($color_white, 0.5);
+    }
+
+    .info {
+      h2 {
+        color: $color_white;
+      }
+      p {
+        color: $color_white;
+      }
+      .des {
+        color: $color_gray;
+      }
+
+      .bottom {
+        @include dynamicAlign();
+        p {
+          @include button(
+            $color: $color_gray_normal,
+            $background: $color_gray,
+            $font_size: $spacing * 1.4,
+            $color_hover: $color_white,
+            $background_hover: $color_pink
+          );
+        }
+      }
+    }
+
+    .more_detail {
+      &_content {
+        &_left {
+          .close_detail {
+            svg {
+              path {
+                stroke: $color_gray;
+              }
+            }
+            &:hover {
+              svg {
+                path {
+                  stroke: $color_pink;
+                }
+              }
+            }
+          }
+
+          background: $color_gray_dark;
+
+          &_info {
+            h2 {
+              color: $color_white;
+            }
+
+            p {
+              color: $color_gray;
+            }
+            .des {
+              color: $color_gray;
+            }
+            .other {
+              p {
+                color: $color_gray;
+                svg {
+                  path {
+                    fill: $color_gray;
+                  }
+                }
+              }
+            }
+
+            .check {
+              @include transition;
+              @include button(
+                $color: $color_gray_normal,
+                $background: $color_gray,
+                $color_hover: $color_white,
+                $background_hover: $color_pink
+              );
+            }
+          }
+        }
+        &_right {
+          background: $color_gray_dark;
+
+          h3 {
+            color: $color_white;
+          }
+        }
+      }
+    }
+  }
+}
+
+.book_card_horizal {
+  a {
+    @include dynamicAlign($direction: column, $align: center);
+    width: 100%;
+    padding: $spacing;
+    border-radius: $spacing;
+    cursor: pointer;
+    @include transition;
+  }
+  @include transition;
+  &:hover {
+    background: $color_gray;
+    border-radius: $spacing;
+  }
+  img {
+    width: $spacing * 15;
+    height: $spacing * 15;
+    object-fit: contain;
+  }
+  .info {
+    @include dynamicAlign($direction: column);
+    width: 100%;
+    flex: 1;
+    h3 {
+      font-size: $spacing * 1.6;
+      color: $color_gray_normal;
+    }
+    p {
+      font-size: $spacing * 1.4;
+      color: $color_gray_normal;
+    }
+  }
+  @include xl {
+  }
+  body.darkmode & {
+    &:hover {
+      background: $color_blue_dark;
+    }
+    .info {
+      h3 {
+        color: $color_white;
+      }
+      p {
+        color: $color_gray;
+      }
+    }
+  }
+}
+
+.book_category_slider_card {
+  width: 100dvw;
+  height: 100%;
+  @include dynamicAlign();
+  background: $color_white;
+
+  border-radius: $spacing * 2;
+  position: relative;
+  &.active {
+    .info {
+      opacity: 1;
+      h1,
+      h3,
+      p,
+      .other,
+      .check {
+        margin-left: 0;
+        opacity: 1;
+      }
+    }
+  }
+  .info {
+    @include dynamicPosition(
+      $pos: absolute,
+      $left: 2%,
+      $top: 50%,
+      $transform: translateY(-50%)
+    );
+    flex: 1;
+    @include dynamicAlign($direction: column, $gap: $spacing);
+
+    opacity: 0;
+    background: $color_white;
+    border-radius: $spacing;
+    padding: $spacing;
+    width: 80%;
+    h1 {
+      width: 90%;
+      font-size: $spacing * 1.4;
+      color: $color_black;
+      margin-left: $spacing * 3;
+      opacity: 0;
+      @include transition($second: 1s, $delay: 0.6s);
+    }
+    h3 {
+      font-weight: 400;
+      font-size: $spacing * 1.2;
+      background: $color_gray;
+      padding: $spacing - 0.5 $spacing * 2;
+      border-radius: $spacing;
+      margin-left: $spacing * 5;
+      opacity: 0;
+      @include transition($second: 1s, $delay: 0.7s);
+    }
+    .des {
+      font-size: $spacing * 1.2;
+      color: $color_gray_normal;
+      margin-left: $spacing * 5;
+      opacity: 0;
+      @include longText($line: 2);
+
+      @include transition($second: 1s, $delay: 0.7s);
+    }
+    .other {
+      display: none;
+    }
+
+    .check {
+      @include transition($second: 1s, $delay: 1s);
+
+      opacity: 0;
+      margin-left: $spacing * 5;
+      p {
+        @include transition();
+
+        @include button(
+          $background: $color_gray,
+          $color: $color_gray_normal,
+          $background_hover: $color_pink,
+          $color_hover: $color_white,
+          $font_size: $spacing * 1.2,
+          $padding: $spacing - 0.5 $spacing
+        );
+      }
+    }
+  }
+  .image {
+    width: 100%;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  @include sm {
+    .info {
+      h1 {
+        font-size: $spacing * 1.6;
+      }
+      h3 {
+        font-size: $spacing * 1.2;
+      }
+      .des {
+        font-size: $spacing * 1.4;
+      }
+
+      .check {
+        p {
+          @include button(
+            $background: $color_gray,
+            $color: $color_gray_normal,
+            $background_hover: $color_pink,
+            $color_hover: $color_white,
+            $font_size: $spacing * 1.4,
+            $padding: $spacing - 0.5 $spacing
+          );
+        }
+      }
+    }
+  }
+
+  @include md {
+    .info {
+      width: 70%;
+      @include dynamicPosition($pos: absolute, $left: 2%, $bottom: 5%);
+      h1 {
+        font-size: $spacing * 1.8;
+      }
+      h3 {
+        font-size: $spacing * 1.4;
+      }
+      .des {
+        font-size: $spacing * 1.4;
+      }
+
+      .check {
+        p {
+          @include button(
+            $background: $color_gray,
+            $color: $color_gray_normal,
+            $background_hover: $color_pink,
+            $color_hover: $color_white,
+            $font_size: $spacing * 1.4,
+            $padding: $spacing
+          );
+        }
+      }
+    }
+  }
+
+  @include xl {
+    width: 80dvw;
+
+    padding: $spacing * 2;
+
+    .info {
+      position: unset;
+      transform: unset;
+      flex: 1;
+      @include dynamicAlign($direction: column, $gap: $spacing * 2);
+      margin-left: $spacing * 5;
+      opacity: 0;
+      h1 {
+        width: 90%;
+        font-size: $spacing * 3;
+      }
+      h3 {
+        font-size: $spacing * 1.8;
+      }
+      .des {
+        line-height: $spacing * 2.5;
+
+        @include longText($line: 4);
+        width: 95%;
+      }
+      .other {
+        width: 100%;
+        opacity: 0;
+        color: $color_gray_normal;
+
+        @include transition($second: 1s, $delay: 0.9s);
+        margin-left: $spacing * 5;
+        @include dynamicAlign($align: center);
+        p {
+          @include dynamicAlign($align: center);
+
+          svg {
+            path {
+              fill: $color_gray_normal;
+            }
+          }
+        }
+      }
+
+      .check {
+        p {
+          @include button(
+            $background: $color_gray,
+            $color: $color_gray_normal,
+            $background_hover: $color_pink,
+            $color_hover: $color_white,
+            $font_size: $spacing * 1.6
+          );
+        }
+      }
+    }
+    .image {
+      flex: 1;
+      img {
+        object-fit: contain;
+      }
+    }
+  }
+}

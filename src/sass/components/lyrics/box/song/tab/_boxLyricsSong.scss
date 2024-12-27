@@ -1,0 +1,78 @@
+.box_lyrics_song {
+  background: $color_white;
+  border-radius: $spacing * 2;
+  padding: $spacing;
+  width: 100%;
+
+  &_tab {
+    padding: $spacing;
+    border-radius: $spacing * 3;
+    border: $spacing - 0.9 solid $color_gray;
+    width: 100%;
+    @include dynamicAlign();
+    margin-bottom: $spacing;
+
+    h3 {
+      font-size: $spacing * 1.4;
+      font-weight: 500;
+      width: max-content;
+      padding: $spacing $spacing * 2;
+      border-radius: $spacing * 2;
+      cursor: pointer;
+      &.active {
+        background: $color_pink;
+        color: $color_white;
+      }
+    }
+  }
+
+  &_content {
+    width: 100%;
+    height: $spacing * 60;
+    background: $color_white;
+    padding: $spacing * 2;
+    border-radius: $spacing * 2;
+    overflow: auto;
+    h2 {
+      font-size: $spacing * 1.6;
+      color: $color_black;
+    }
+    &_tab {
+      display: none;
+      &.active {
+        display: block;
+      }
+    }
+  }
+  @include xl {
+    padding: $spacing * 2;
+
+    &_tab {
+      h3 {
+        font-size: $spacing * 1.4;
+
+        padding: $spacing $spacing * 3;
+      }
+    }
+
+    &_content {
+      h1 {
+        font-size: $spacing * 2;
+      }
+    }
+  }
+  body.darkmode & {
+    background: $color_gray_dark;
+    &_tab {
+      h3 {
+        color: $color_white;
+      }
+    }
+    &_content {
+      background: $color_blue_dark;
+      h1 {
+        color: $color_white;
+      }
+    }
+  }
+}

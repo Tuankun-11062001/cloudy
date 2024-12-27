@@ -1,0 +1,111 @@
+.box_lyrics_trending {
+  background: $color_white;
+  border-radius: $spacing * 2;
+  padding: $spacing;
+  width: 100%;
+  margin-top: $spacing * 3;
+  &_head {
+    @include dynamicAlign($align: center);
+    border-bottom: $spacing - 0.9 solid $color_gray;
+    padding-bottom: $spacing;
+    font-size: $spacing * 1.4;
+    svg {
+      path {
+        fill: $color_pink;
+      }
+    }
+  }
+
+  &_list {
+    margin-top: $spacing;
+    @include dynamicAlign($direction: column);
+    height: $spacing * 30;
+    overflow: auto;
+    a {
+      width: 100%;
+    }
+    .item {
+      @include dynamicAlign($align: center);
+      width: 100%;
+      padding: $spacing;
+      border-radius: $spacing;
+      cursor: pointer;
+      font-size: $spacing * 1.4;
+
+      &_no {
+        width: $spacing * 2;
+        color: $color_black;
+      }
+
+      h4 {
+        font-weight: 500;
+        flex: 1;
+        @include longText($line: 1);
+        color: $color_gray_normal;
+      }
+
+      &_singer {
+        flex: 1;
+        @include longText($line: 1);
+        color: $color_gray_normal;
+      }
+
+      span {
+        @include dynamicAlign($align: center);
+        margin-left: auto;
+        color: $color_gray_normal;
+      }
+      @include transition;
+
+      &:hover {
+        background: $color_gray;
+      }
+    }
+  }
+
+  @include sm {
+    &_head {
+      font-size: $spacing * 1.6;
+    }
+
+    &_list {
+      .item {
+        font-size: $spacing * 1.6;
+        width: 100%;
+      }
+    }
+  }
+
+  @include xl {
+  }
+  body.darkmode & {
+    background: $color_gray_dark;
+    &_head {
+      color: $color_white;
+    }
+
+    &_list {
+      .item {
+        color: $color_white;
+        &_no {
+          color: $color_white;
+        }
+        h4,
+        span,
+        &_singer {
+          color: $color_white;
+        }
+
+        svg {
+          path {
+            fill: $color_white;
+          }
+        }
+
+        &:hover {
+          background: $color_blue_dark;
+        }
+      }
+    }
+  }
+}

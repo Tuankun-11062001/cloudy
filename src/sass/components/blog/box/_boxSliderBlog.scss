@@ -1,0 +1,205 @@
+.box_slider_blog {
+  width: 100dvw;
+  height: 100%;
+  background: white;
+  border-radius: $spacing * 3;
+
+  position: relative;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &.active {
+    .info {
+      left: 2%;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  .info {
+    @include dynamicPosition($pos: absolute, $left: 34%, $bottom: $spacing);
+    @include dynamicAlign($direction: column);
+    transition: 1s ease;
+    transition-delay: 1s;
+
+    opacity: 0;
+    visibility: hidden;
+    z-index: 2;
+    background: $color_white;
+    width: 55%;
+    padding: $spacing;
+    border-radius: $spacing * 2;
+    h2 {
+      font-size: $spacing * 1.6;
+      @include longText($line: 2);
+      abbr {
+        text-decoration: none;
+      }
+    }
+
+    &_des {
+      font-size: $spacing * 1.4;
+      color: $color_gray_normal;
+      line-height: $spacing * 2.5;
+      @include longText($line: 2);
+    }
+
+    &_bottom {
+      @include dynamicAlign($justify: space-between, $align: center);
+      width: 100%;
+      a {
+        color: $color_gray_normal;
+      }
+      .check {
+        @include dynamicAlign($align: center);
+
+        background: $color_gray;
+        width: max-content;
+        font-size: $spacing * 1.4;
+        padding: $spacing - 0.5;
+        border-radius: $spacing;
+        cursor: pointer;
+        @include transition();
+        &:hover {
+          background: $color_pink;
+          color: $color_white;
+          svg {
+            path {
+              stroke: $color_white;
+            }
+          }
+        }
+        svg {
+          pointer-events: none;
+          transform: rotate(-90deg);
+        }
+      }
+
+      .other {
+        display: none;
+      }
+    }
+  }
+  @include xl {
+    width: 80dvw;
+    max-width: 100vw;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+
+    &.active {
+      .info {
+        left: 28%;
+      }
+    }
+    .info {
+      padding: $spacing * 2;
+
+      h2 {
+        font-size: $spacing * 3;
+      }
+
+      &_des {
+        font-size: $spacing * 1.6;
+
+        @include longText($line: 4);
+      }
+
+      &_bottom {
+        .check {
+          font-size: $spacing * 1.6;
+          padding: $spacing;
+        }
+
+        .other {
+          @include dynamicAlign($align: center);
+
+          p {
+            @include dynamicAlign($align: center);
+            color: $color_gray_normal;
+            + svg {
+              path {
+                stroke: $color_gray;
+                fill: $color_gray;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.box_blog_category_slider {
+  width: 100dvw;
+  height: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .info {
+    display: none;
+  }
+  @include xl {
+    position: relative;
+    width: 80dvw;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    &.active {
+      .info {
+        opacity: 1;
+        left: $spacing * 2;
+      }
+    }
+    .info {
+      @include dynamicPosition(
+        $pos: absolute,
+        $bottom: $spacing * 2,
+        $left: $spacing * 5
+      );
+      transition: 1s ease 1.3s;
+
+      @include dynamicAlign($direction: column);
+      opacity: 0;
+      background: $color_white;
+      width: 50%;
+      padding: $spacing * 2;
+      border-radius: $spacing * 2;
+      span {
+        background: $color_gray;
+        padding: $spacing - 0.5;
+        border-radius: $spacing - 0.5;
+      }
+
+      h3 {
+        font-size: $spacing * 2;
+        font-weight: 500;
+      }
+
+      .des {
+        font-size: $spacing * 1.6;
+        color: $color_gray_normal;
+        line-height: $spacing * 2.5;
+        @include longText($line: 3);
+      }
+
+      .check {
+        @include button(
+          $background: $color_gray,
+          $color: $color_gray_normal,
+          $padding: $spacing $spacing * 2,
+          $color_hover: $color_white,
+          $background_hover: $color_pink
+        );
+      }
+    }
+  }
+}

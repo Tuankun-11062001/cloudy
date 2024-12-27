@@ -1,0 +1,201 @@
+.header {
+  &_content_xl {
+    display: none;
+  }
+  &_content_mb {
+    @include dynamicPosition(
+      $pos: fixed,
+      $left: 0,
+      $right: 0,
+      $bottom: - $spacing * 6
+    );
+    &.active {
+      bottom: $spacing * 5;
+      opacity: 1;
+    }
+    @include transition($second: 1s);
+    opacity: 0;
+    background: $color_white;
+    box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.5);
+    width: 95dvw;
+    margin: auto;
+    padding: $spacing;
+    border-radius: $spacing;
+    @include dynamicAlign($align: center, $justify: center);
+    z-index: 10;
+    .other {
+      @include dynamicAlign($align: center);
+    }
+    .nav {
+      @include dynamicAlign($align: center, $gap: $spacing);
+      a {
+        p {
+          display: none;
+        }
+        svg {
+          width: $spacing * 2.5;
+          height: $spacing * 2.5;
+          object-fit: contain;
+          path {
+            stroke: $color_gray;
+            fill: $color_gray;
+          }
+        }
+
+        &.active,
+        &:hover {
+          svg {
+            path {
+              stroke: $color_black;
+              fill: $color_black;
+            }
+          }
+        }
+      }
+    }
+
+    .motify_mb {
+      position: relative;
+      &_sub_menu {
+        @include dynamicPosition(
+          $pos: absolute,
+          $right: -$spacing * 30,
+          $top: -$spacing * 7
+        );
+        opacity: 0;
+        @include transition($second: 1s);
+        z-index: 10;
+        &.active {
+          right: 0;
+          opacity: 1;
+        }
+        @include dynamicAlign($align: center, $gap: $spacing * 2);
+        background: $color_white;
+        padding: $spacing;
+        border-radius: $spacing;
+        box-shadow: 0 0 $spacing * 2 0 rgba($color_gray_normal, 0.5);
+      }
+    }
+  }
+
+  @include sm {
+    &_content_xl {
+      display: none;
+    }
+    &_content_mb {
+      .nav {
+        @include dynamicAlign($align: center, $gap: $spacing * 2);
+        a {
+          svg {
+            width: $spacing * 3;
+            height: $spacing * 3;
+          }
+        }
+      }
+    }
+  }
+
+  @include xl {
+    &_content_mb {
+      display: none;
+    }
+    &_content_xl {
+      @include dynamicPosition($pos: fixed, $left: 0, $top: 0, $bottom: 0);
+      width: $spacing * 30;
+      border-radius: $spacing;
+      z-index: 9;
+      background: $color_white;
+      @include dynamicAlign($direction: column);
+
+      .logo {
+        width: 100%;
+        height: $spacing * 15;
+        display: block;
+        position: relative;
+        img {
+          @include dynamicPosition(
+            $pos: absolute,
+            $left: 50%,
+            $transform: translateX(-50%)
+          );
+
+          width: $spacing * 20;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+
+      .other {
+        @include dynamicAlign($align: center, $justify: space-between);
+        padding: $spacing;
+        width: 100%;
+        p {
+          pointer-events: none;
+        }
+      }
+
+      // dark mode
+
+      body.darkmode & {
+        @include darkMode {
+          background: $color_gray_dark;
+        }
+      }
+    }
+  }
+
+  body.darkmode & {
+    &_content_mb {
+      background: $color_gray_dark;
+      .nav {
+        &_item {
+          a {
+            svg {
+              path {
+                stroke: transparent;
+                fill: rgba($color_white, 0.5);
+              }
+            }
+
+            &.active {
+              svg {
+                path {
+                  stroke: $color_white;
+                  fill: $color_white;
+                }
+              }
+            }
+          }
+          &:nth-child(2) {
+            svg {
+              path {
+                stroke: rgba($color_white, 0.5);
+                fill: rgba($color_white, 0.5);
+              }
+            }
+          }
+        }
+      }
+
+      .motify_mb {
+        p {
+          svg {
+            circle {
+              stroke: rgba($color_white, 0.5);
+            }
+          }
+        }
+        &_sub_menu {
+          &.active {
+            right: 0;
+            opacity: 1;
+          }
+
+          background: $color_gray_dark;
+
+          box-shadow: 0 0 $spacing * 2 0 rgba($color_white, 0.1);
+        }
+      }
+    }
+  }
+}

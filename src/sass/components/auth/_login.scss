@@ -1,0 +1,226 @@
+.login {
+  @include overlay();
+  &.active {
+    overflow: hidden;
+  }
+  .content {
+    @include glass($background: $color_white);
+    width: 90%;
+    @include dynamicPosition(
+      $pos: absolute,
+      $left: 50%,
+      $top: 50%,
+      $transform: translate(-50%, -50%)
+    );
+
+    animation: loginAmimate 1s ease;
+
+    @keyframes loginAmimate {
+      from {
+        top: -$spacing * 20;
+      }
+      to {
+        top: 50%;
+      }
+    }
+
+    padding: $spacing * 2;
+
+    .head {
+      @include dynamicAlign($align: center, $justify: space-between);
+      padding-bottom: $spacing * 2;
+      position: relative;
+      &::after {
+        content: "";
+        @include dynamicPosition($pos: absolute, $left: 0, $bottom: 0);
+        display: block;
+        width: 100%;
+        height: $spacing - 0.8;
+        background: $color_blue_dark;
+      }
+      h1 {
+        font-size: $spacing * 2.5;
+        font-weight: 500;
+      }
+
+      svg {
+        cursor: pointer;
+        path {
+          stroke: $color_blue_dark;
+        }
+        @include transition();
+
+        &:hover {
+          transform: rotate(180deg);
+          path {
+            stroke: $color_pink;
+          }
+        }
+      }
+    }
+
+    .hint {
+      margin: $spacing * 2 0;
+      p {
+        font-size: $spacing * 1.4;
+        color: gray;
+      }
+    }
+
+    .form {
+      @include dynamicAlign($direction: column, $gap: $spacing * 2);
+      margin-top: $spacing * 2;
+      .group {
+        @include dynamicAlign($align: center);
+        background: $color_gray_light;
+        width: 100%;
+        padding: $spacing;
+        border-radius: $spacing * 2;
+        @include transition();
+        svg {
+          path,
+          circle,
+          rect {
+            stroke: gray;
+          }
+        }
+        input {
+          border: none;
+          outline: none;
+          background: unset;
+          font-size: $spacing * 1.6;
+          width: 100%;
+        }
+
+        &:focus-within {
+          background: $color_gray;
+          svg {
+            path,
+            circle,
+            rect {
+              stroke: $color_blue_dark;
+            }
+          }
+        }
+      }
+    }
+
+    .error {
+      margin: $spacing 0;
+      font-size: $spacing * 1.4;
+      color: $color_pink;
+    }
+
+    .submit {
+      @include dynamicPosition(
+        $pos: relative,
+        $left: 50%,
+        $transform: translateX(-50%)
+      );
+      width: max-content;
+      margin-top: $spacing * 2;
+      padding: $spacing $spacing * 2;
+      border-radius: $spacing * 2;
+      background: $color_gray;
+      font-size: $spacing * 1.6;
+      @include transition();
+      cursor: pointer;
+      &:hover {
+        background: $color_blue_dark;
+        color: $color_white;
+      }
+    }
+
+    .bottom {
+      color: gray;
+      margin-top: $spacing * 2;
+      font-size: $spacing * 1.4;
+      text-align: center;
+      span {
+        cursor: pointer;
+        &:hover {
+          color: $color_pink;
+        }
+      }
+    }
+  }
+
+  @include md {
+    .content {
+      width: 60%;
+    }
+  }
+
+  @include xl {
+    .content {
+      width: 40%;
+    }
+  }
+
+  @include xl {
+    .content {
+      width: 30%;
+    }
+  }
+
+  // darkmode
+  body.darkmode & {
+    .content {
+      @include glass($background: $color_blue_dark);
+
+      .head {
+        h1 {
+          color: $color_white;
+        }
+
+        svg {
+          path {
+            stroke: $color_gray;
+          }
+
+          &:hover {
+            path {
+              stroke: $color_white;
+            }
+          }
+        }
+        &::after {
+          background: $color_gray;
+        }
+      }
+
+      .form {
+        .group {
+          background: transparent;
+          border: $spacing - 0.9 solid $color_gray;
+          &:focus-within {
+            border: $spacing - 0.9 solid $color_white;
+            color: $color_white;
+            box-shadow: 0 0 $spacing $spacing rgba($color_gray_light, 0.1);
+
+            svg {
+              path,
+              circle,
+              rect {
+                stroke: $color_white;
+              }
+            }
+          }
+
+          input {
+            color: $color_white;
+            width: 100%;
+          }
+        }
+      }
+
+      .bottom {
+        span {
+          &:hover {
+            color: $color_white;
+          }
+        }
+      }
+    }
+  }
+}

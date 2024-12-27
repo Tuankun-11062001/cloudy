@@ -1,0 +1,191 @@
+.blog_slider {
+  max-width: 100vw;
+  height: $spacing * 20;
+  overflow: hidden;
+  position: relative;
+  border-radius: $spacing;
+  &_items {
+    @include dynamicPosition($pos: absolute, $top: 0, $left: 0);
+    width: max-content;
+    height: 100%;
+    @include dynamicAlign();
+    transition: 1s ease;
+  }
+
+  .slider_control {
+    @include dynamicPosition(
+      $pos: absolute,
+      $bottom: $spacing,
+      $right: $spacing
+    );
+    z-index: 3;
+    background: $color_white;
+    @include dynamicAlign($align: center);
+    padding: $spacing - 0.5;
+    border-radius: $spacing * 2;
+
+    &_prev {
+      @include transition;
+      cursor: pointer;
+      margin: auto;
+      &:hover {
+        svg {
+          path {
+            stroke: $color_pink;
+          }
+        }
+      }
+      svg {
+        pointer-events: none;
+        transform: rotate(90deg);
+      }
+    }
+
+    &_next {
+      @include transition;
+      cursor: pointer;
+      &:hover {
+        svg {
+          path {
+            stroke: $color_pink;
+          }
+        }
+      }
+      svg {
+        pointer-events: none;
+        transform: rotate(-90deg);
+      }
+    }
+
+    &_dots {
+      @include dynamicAlign($align: center);
+      span {
+        width: $spacing;
+        height: $spacing;
+        background: $color_gray;
+        display: block;
+        border-radius: $spacing * 2;
+        @include transition();
+        cursor: pointer;
+        &.active {
+          width: $spacing * 3;
+          border-radius: $spacing;
+          background: $color_pink;
+        }
+      }
+    }
+  }
+
+  @include sm {
+  }
+  @include md {
+    height: 45dvh;
+  }
+
+  @include xl {
+    width: 80dvw;
+    max-width: 100vw;
+    height: $spacing * 60;
+
+    .slider_control {
+      padding: $spacing;
+    }
+  }
+}
+
+.blog_category_slider {
+  max-width: 100vw;
+  height: $spacing * 15;
+  position: relative;
+  border-radius: $spacing * 2;
+  overflow: hidden;
+  margin-top: $spacing * 2;
+  &_items {
+    @include dynamicPosition($pos: absolute, $top: 0, $left: 0);
+    width: max-content;
+    height: 100%;
+    @include dynamicAlign();
+    transition: 1s ease;
+  }
+
+  &_control {
+    @include dynamicPosition(
+      $pos: absolute,
+      $bottom: $spacing,
+      $right: $spacing
+    );
+    z-index: 3;
+    background: $color_white;
+    @include dynamicAlign($align: center);
+    padding: $spacing - 0.5;
+    border-radius: $spacing * 2;
+
+    &_prev {
+      @include transition;
+      cursor: pointer;
+      margin: auto;
+      &:hover {
+        svg {
+          path {
+            stroke: $color_pink;
+          }
+        }
+      }
+      svg {
+        pointer-events: none;
+        transform: rotate(90deg);
+      }
+    }
+
+    &_next {
+      @include transition;
+      cursor: pointer;
+      &:hover {
+        svg {
+          path {
+            stroke: $color_pink;
+          }
+        }
+      }
+      svg {
+        pointer-events: none;
+        transform: rotate(-90deg);
+      }
+    }
+
+    &_dots {
+      @include dynamicAlign($align: center);
+      span {
+        width: $spacing;
+        height: $spacing;
+        background: $color_gray;
+        display: block;
+        border-radius: $spacing * 2;
+        @include transition();
+        cursor: pointer;
+        &.active {
+          width: $spacing * 3;
+          border-radius: $spacing;
+          background: $color_pink;
+        }
+      }
+    }
+  }
+
+  @include sm {
+    height: $spacing * 20;
+  }
+
+  @include xl {
+    width: 80dvw;
+    height: 50dvh;
+    background: $color_white;
+    border-radius: $spacing * 3;
+
+    margin-top: $spacing * 3;
+
+    &_control {
+      padding: $spacing;
+    }
+  }
+}
