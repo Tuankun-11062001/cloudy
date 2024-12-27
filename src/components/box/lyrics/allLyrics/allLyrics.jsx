@@ -12,7 +12,7 @@ const AllLyrics = () => {
 
   const loadLyrics = async (pageNumber) => {
     setLoading(true);
-    const res = await lyricsApi.getLyrics(
+    const res = await lyricsApi.getFillterLyrics(
       `${stringQuery ? stringQuery + "&" : "?"}page=${pageNumber}`
     );
     const newProducts = res.data.data;

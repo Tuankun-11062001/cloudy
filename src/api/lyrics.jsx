@@ -5,6 +5,14 @@ const API = process.env.NEXT_PUBLIC_SERVER_URL;
 export const lyricsApi = {
   getLyrics: async (data) => {
     try {
+      const res = axios.get(`${API}/lyrics`);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  },
+  getFillterLyrics: async (data) => {
+    try {
       const res = axios.get(`${API}/lyrics${data}`);
       return res;
     } catch (error) {

@@ -6,76 +6,50 @@ import { shopApi } from "@/api/shop";
 export const revalidate = 10;
 
 export default async function sitemap() {
-  // lyrics
-  const lyricsAPI = async () => {
+  // Helper function for API calls
+  const fetchData = async (apiFunction, errorMessage) => {
     try {
-      const data = await lyricsApi.getLyrics();
-      return data?.data || [];
+      const data = await apiFunction();
+      return data?.data?.data || [];
     } catch (error) {
-      console.error("Error fetching lyrics:", error);
+      console.error(errorMessage, error);
       return [];
     }
   };
 
-  const lyrics = await lyricsAPI();
-
-  const lyricsUrls = lyrics?.data?.map((lyric) => ({
-    url: `https://www.storecloudy.com/lyrics/${lyric.title}`,
-    lastModified: new Date(lyric.updatedAt),
+  // lyrics
+  const lyrics = await fetchData(lyricsApi.getLyrics, "Error fetching lyrics:");
+  const lyricsUrls = lyrics.map((lyric) => ({
+    url: `https://www.storecloudy.com/lyrics/${encodeURIComponent(
+      lyric.title
+    )}`,
+    lastModified: lyric.updatedAt ? new Date(lyric.updatedAt) : new Date(),
   }));
 
-  // book
-  const getBooks = async () => {
-    try {
-      const data = await bookApi.getBook();
-      return data?.data || []; // Đảm bảo trả về mảng nếu không có dữ liệu
-    } catch (error) {
-      console.error("Error fetching books:", error);
-      return []; // Trả về mảng rỗng nếu có lỗi
-    }
-  };
-
-  const books = await getBooks();
-
-  const booksUrls = books?.data?.map((book) => ({
-    url: `https://www.storecloudy.com/book/${book.title}`,
-    lastModified: new Date(book.updatedAt),
+  // books
+  const books = await fetchData(bookApi.getBook, "Error fetching books:");
+  const booksUrls = books.map((book) => ({
+    url: `https://www.storecloudy.com/book/${encodeURIComponent(book.title)}`,
+    lastModified: book.updatedAt ? new Date(book.updatedAt) : new Date(),
   }));
 
-  // blog
-  const getBlogs = async () => {
-    try {
-      const data = await blogsApi.getBlogs();
-      return data?.data || []; // Đảm bảo trả về mảng nếu không có dữ liệu
-    } catch (error) {
-      console.error("Error fetching blogs:", error);
-      return []; // Trả về mảng rỗng nếu có lỗi
-    }
-  };
-
-  const blogs = await getBlogs();
-
-  const blogsUrls = blogs?.data?.map((blog) => ({
-    url: `https://www.storecloudy.com/blog/${blog.title}`,
-    lastModified: new Date(blog.updatedAt),
+  // blogs
+  const blogs = await fetchData(blogsApi.getBlogs, "Error fetching blogs:");
+  const blogsUrls = blogs.map((blog) => ({
+    url: `https://www.storecloudy.com/blog/${encodeURIComponent(blog.title)}`,
+    lastModified: blog.updatedAt ? new Date(blog.updatedAt) : new Date(),
   }));
 
-  // shop
-  const getProducts = async () => {
-    try {
-      const data = await shopApi.getProduct();
-      return data?.data || []; // Đảm bảo trả về mảng nếu không có dữ liệu
-    } catch (error) {
-      console.error("Error fetching products:", error);
-      return []; // Trả về mảng rỗng nếu có lỗi
-    }
-  };
-
-  const products = await getProducts();
-
-  const productsUrls = products?.data?.map((product) => ({
-    url: `https://www.storecloudy.com/shop/${product.title}`,
-    lastModified: new Date(product.updatedAt),
+  // products
+  const products = await fetchData(
+    shopApi.getProduct,
+    "Error fetching products:"
+  );
+  const productsUrls = products.map((product) => ({
+    url: `https://www.storecloudy.com/shop/${encodeURIComponent(
+      product.title
+    )}`,
+    lastModified: product.updatedAt ? new Date(product.updatedAt) : new Date(),
   }));
 
   return [
