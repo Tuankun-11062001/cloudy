@@ -20,23 +20,21 @@ export default async function sitemap() {
   // lyrics
   const lyrics = await fetchData(lyricsApi.getLyrics, "Error fetching lyrics:");
   const lyricsUrls = lyrics.map((lyric) => ({
-    url: `https://www.storecloudy.com/lyrics/${encodeURIComponent(
-      lyric.title
-    )}`,
+    url: `https://www.storecloudy.com/lyrics/${lyric?._id}`,
     lastModified: lyric.updatedAt ? new Date(lyric.updatedAt) : new Date(),
   }));
 
   // books
   const books = await fetchData(bookApi.getBook, "Error fetching books:");
   const booksUrls = books.map((book) => ({
-    url: `https://www.storecloudy.com/book/${encodeURIComponent(book.title)}`,
+    url: `https://www.storecloudy.com/book/${book?._id}`,
     lastModified: book.updatedAt ? new Date(book.updatedAt) : new Date(),
   }));
 
   // blogs
   const blogs = await fetchData(blogsApi.getBlogs, "Error fetching blogs:");
   const blogsUrls = blogs.map((blog) => ({
-    url: `https://www.storecloudy.com/blog/${encodeURIComponent(blog.title)}`,
+    url: `https://www.storecloudy.com/blog/${blog?._id}`,
     lastModified: blog.updatedAt ? new Date(blog.updatedAt) : new Date(),
   }));
 
@@ -46,9 +44,7 @@ export default async function sitemap() {
     "Error fetching products:"
   );
   const productsUrls = products.map((product) => ({
-    url: `https://www.storecloudy.com/shop/${encodeURIComponent(
-      product.title
-    )}`,
+    url: `https://www.storecloudy.com/shop/${product?._id}`,
     lastModified: product.updatedAt ? new Date(product.updatedAt) : new Date(),
   }));
 
