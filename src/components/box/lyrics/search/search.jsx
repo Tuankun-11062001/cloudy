@@ -1,6 +1,7 @@
 "use client";
 import { lyricsApi } from "@/api/lyrics";
 import { appSvg } from "@/data/svg";
+import Link from "next/link";
 
 import React, { useEffect, useState } from "react";
 const Search = () => {
