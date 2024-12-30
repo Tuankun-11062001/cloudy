@@ -3,9 +3,9 @@ import { BlogCategoryCard } from "@/components/box/blog/card/blogCategoryCard";
 import React, { Suspense } from "react";
 
 export const metadata = {
-  title: "Category",
+  title: "Thể loại blog",
   description:
-    "Explore a wide range of categories including Health, Programming, Languages, Games, and Valuable Knowledge. Whether you're looking to improve your well-being, enhance your coding skills, learn a new language, enjoy exciting games, or gain useful insights, our diverse collection of topics has something for everyone. Stay informed and engaged with content that enriches your mind and life.",
+    "Khám phá nhiều thể loại khác nhau bao gồm Sức khỏe, Lập trình, Ngôn ngữ, Trò chơi và Kiến thức quý giá. Dù bạn đang tìm cách cải thiện sức khỏe, nâng cao kỹ năng lập trình, học một ngôn ngữ mới, tận hưởng các trò chơi thú vị, hay thu thập những hiểu biết hữu ích, bộ sưu tập chủ đề đa dạng của chúng tôi có điều gì đó dành cho mọi người. Hãy luôn cập nhật và gắn kết với những nội dung làm phong phú tâm trí và cuộc sống của bạn.",
 };
 
 const BlogCategoryPage = async () => {

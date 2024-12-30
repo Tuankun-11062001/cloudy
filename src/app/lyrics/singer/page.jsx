@@ -4,9 +4,9 @@ import { SingerCard } from "@/components/box/lyrics/card/lyricsCard";
 import React, { Suspense } from "react";
 
 export const metadata = {
-  title: "Singer",
+  title: "Ca sĩ",
   description:
-    "Explore the best songs from the world’s top artists. Stay updated with the latest chart-topping hits and timeless classics from your favorite singers. Whether you're into pop, rock, hip-hop, or any other genre, you'll find the most popular tracks and iconic performances right here, constantly updated with new releases.",
+    "Khám phá những bài hát hay nhất từ các nghệ sĩ hàng đầu thế giới. Cập nhật những ca khúc đứng đầu bảng xếp hạng và những bản nhạc bất hủ từ những ca sĩ yêu thích của bạn. Dù bạn yêu thích pop, rock, hip-hop hay bất kỳ thể loại nào khác, bạn sẽ tìm thấy những bài hát phổ biến nhất và những màn trình diễn huyền thoại ngay tại đây, luôn được cập nhật với các sản phẩm âm nhạc mới.",
 };
 
 const Singer = async () => {

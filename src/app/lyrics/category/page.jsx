@@ -6,9 +6,9 @@ import {
 import React, { Suspense } from "react";
 
 export const metadata = {
-  title: "Category lyrics",
+  title: "Thể loại Lời bài hát",
   description:
-    "Discover the latest songs and music genres in our ever-expanding collection. Stay updated with fresh lyrics and explore new categories that cater to diverse musical tastes. Whether you're into trending hits or niche genres, you'll find the newest tracks here, regularly updated to keep you in tune with the latest musical trends.",
+    "Khám phá những bài hát và thể loại âm nhạc mới nhất trong bộ sưu tập ngày càng mở rộng của chúng tôi. Cập nhật những lời bài hát mới và khám phá các thể loại mới phục vụ sở thích âm nhạc đa dạng. Dù bạn yêu thích các bài hát hot đang thịnh hành hay những thể loại đặc biệt, bạn sẽ tìm thấy những bài hát mới nhất tại đây, được cập nhật thường xuyên để giúp bạn luôn bắt kịp xu hướng âm nhạc mới.",
 };
 
 const LyricsCategoryPage = async () => {

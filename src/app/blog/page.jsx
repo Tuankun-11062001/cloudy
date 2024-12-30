@@ -12,7 +12,7 @@ import { BlogSlider } from "@/components/box/blog/slider/slider";
 export const metadata = {
   title: "Blog",
   description:
-    "Love blog - Life blog - Enhance quality of life ❤️️ Blog: In this section, I will write about life, programming lessons, and share valuable knowledge. Each post is an opportunity for us to explore and learn together, helping you better prepare for life's challenges.",
+    "Blog tình yêu - Blog cuộc sống - Nâng cao chất lượng cuộc sống ❤️️ Blog: Trong mục này, tôi sẽ viết về cuộc sống, bài học lập trình và chia sẻ những kiến thức quý giá. Mỗi bài viết là một cơ hội để chúng ta cùng khám phá và học hỏi, giúp bạn chuẩn bị tốt hơn cho những thử thách trong cuộc sống.",
 };
 
 const BlogPage = async () => {
