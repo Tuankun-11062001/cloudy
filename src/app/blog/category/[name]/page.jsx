@@ -5,7 +5,7 @@ import { BlogCategorySlider } from "@/components/box/blog/slider/slider";
 import { Suspense } from "react";
 
 const DetailCategory = async ({ searchParams }) => {
-  const { id } = await searchParams;
+  const { id, name } = await searchParams;
   const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
   const resCategory = await fetch(`${baseUrl}/blogs/recommend/${id}`, {
