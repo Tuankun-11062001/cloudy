@@ -414,6 +414,7 @@
         h5 {
           color: $color_white;
         }
+
         .search_language {
           background: $color_gray_dark;
           svg {
@@ -427,6 +428,9 @@
           }
         }
 
+        &_list {
+          color: $color_white;
+        }
         &_user {
           .info {
             h3,
@@ -489,6 +493,9 @@
 
     .box_comment_song {
       h4 {
+        color: $color_white;
+      }
+      p {
         color: $color_white;
       }
       &_reply {

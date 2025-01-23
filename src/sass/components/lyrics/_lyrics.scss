@@ -217,6 +217,7 @@
       font-size: $spacing * 1.6;
       font-style: italic;
       font-weight: 400;
+      color: $color_black;
     }
   }
   &_list {
@@ -246,6 +247,9 @@
 
   @include sm {
     &_head {
+      h1 {
+        color: $color_white;
+      }
       span {
         font-size: $spacing * 1.8;
       }
@@ -473,6 +477,11 @@
               }
             }
           }
+        }
+      }
+      &_middle {
+        h2 {
+          color: $color_white;
         }
       }
     }

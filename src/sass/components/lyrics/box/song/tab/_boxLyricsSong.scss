@@ -43,6 +43,24 @@
         display: block;
       }
     }
+
+    .shop_ads_product {
+      margin-top: $spacing * 3;
+      padding: $spacing * 2 0;
+      border-top: $spacing - 0.8 solid $color_gray;
+      h2 {
+        font-size: $spacing * 1.6;
+        color: $color_black;
+      }
+
+      .list {
+        @include dynamicAlign($wrap: wrap, $gap: $spacing);
+        margin-top: $spacing * 2;
+        .shop_product_card {
+          width: calc((100% / 2) - $spacing);
+        }
+      }
+    }
   }
   @include xl {
     padding: $spacing * 2;
@@ -59,6 +77,15 @@
       h1 {
         font-size: $spacing * 2;
       }
+
+      .shop_ads_product {
+        .list {
+          @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+          .shop_product_card {
+            width: calc((100% / 3) - $spacing * 2);
+          }
+        }
+      }
     }
   }
   body.darkmode & {
@@ -72,6 +99,12 @@
       background: $color_blue_dark;
       h1 {
         color: $color_white;
+      }
+      .shop_ads_product {
+        border-top: $spacing - 0.8 solid $color_white;
+        h2 {
+          color: $color_white;
+        }
       }
     }
   }

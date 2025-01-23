@@ -35,6 +35,7 @@
   @include xl {
     h2 {
       font-size: $spacing * 2;
+      color: $color_white;
     }
     &_list {
       .lyrics_card {

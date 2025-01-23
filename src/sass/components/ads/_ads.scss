@@ -81,6 +81,9 @@
   }
 
   body.darkmode & {
+    .container {
+      background: $color_gray_dark;
+    }
     p {
       border: 0.1rem solid $color_white;
       svg {

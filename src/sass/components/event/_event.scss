@@ -1,0 +1,427 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+.home_event {
+  display: none;
+
+  @include xl {
+    width: 100%;
+    position: relative;
+    height: 90dvh;
+    overflow: hidden;
+    display: block;
+    &_game {
+      position: relative;
+      @include dynamicAlign();
+      width: 100%;
+      #canvas {
+        background: #fff;
+        margin-top: 1%;
+        order: 2;
+        flex: 1;
+      }
+    }
+
+    &_info {
+      flex: 1;
+      order: 1;
+      @include dynamicAlign($direction: column, $gap: $spacing * 2);
+      position: relative;
+      width: 100%;
+      span {
+        font-family: "Press Start 2P", cursive;
+        color: $color_white;
+        border: 0.1rem solid $color_white;
+        border-radius: $spacing;
+        padding: $spacing;
+      }
+      img {
+        position: relative;
+        top: -$spacing * 5;
+        width: 60%;
+        margin: auto;
+      }
+
+      h1,
+      h2 {
+        font-size: $spacing * 4;
+        text-align: center;
+        width: 100%;
+        position: relative;
+        top: -$spacing * 24;
+        color: $color_white;
+        font-family: "Press Start 2P", cursive;
+      }
+      h2 {
+        top: -$spacing * 22;
+        font-size: $spacing * 5;
+      }
+
+      hr {
+        position: relative;
+        top: -$spacing * 21;
+        width: 60%;
+        height: 0.1rem;
+        margin: auto;
+        background: $color_white;
+      }
+
+      &_rule {
+        @include dynamicAlign(center, center, $direction: column);
+        position: relative;
+        width: 100%;
+        top: -$spacing * 21;
+        color: $color_white;
+        strong {
+          border: 0.1rem solid $color_white;
+          padding: $spacing - 0.5 $spacing;
+          border-radius: $spacing;
+          @include transition;
+          cursor: pointer;
+          &:hover {
+            background: $color_pink;
+            color: $color_white;
+          }
+        }
+      }
+
+      #score {
+        font-size: larger;
+        position: absolute;
+        right: 0;
+        top: 0;
+        text-transform: uppercase;
+        font-family: Arial, Helvetica, sans-serif;
+        border: 1px solid #cccccc;
+        padding: 12px;
+        border-radius: 25px;
+        box-shadow: inset 0 0 8px lightgreen;
+        color: #cccccc;
+      }
+
+      #high-score {
+        color: yellow;
+        font-family: "Press Start 2P", cursive;
+        display: none;
+      }
+
+      &_play {
+        @include dynamicAlign(center, center, $direction: column);
+        position: relative;
+        top: -$spacing * 20;
+        left: 50%;
+        transform: translateX(-50%);
+        #controls {
+          @include dynamicAlign();
+        }
+
+        #control-keys {
+          width: 100%;
+          @include dynamicAlign(center, center);
+          color: #ccccccd7;
+          padding: 12px;
+          font-size: 1.2em;
+          line-height: 48px;
+          box-shadow: 0 0 8px lightgreen;
+        }
+
+        #reset,
+        #show-grid,
+        .pause-active {
+          background: #000d36;
+          color: #cccccc;
+          border-radius: 25px;
+          width: 120px;
+          padding: 12px;
+          margin-top: 18px;
+          box-shadow: 0 0 3px lightgreen;
+          font-size: 0.8em;
+          font-weight: bold;
+          transition: box-shadow 0.3s;
+          text-shadow: 0 0 8px lightseagreen;
+          text-transform: uppercase;
+        }
+
+        .pause-not-active {
+          background: rgba(239, 239, 240, 0.4);
+          box-shadow: none;
+          color: #cccccc;
+          border-radius: 25px;
+          width: 120px;
+          padding: 12px;
+          margin-top: 18px;
+          font-size: 0.8em;
+          font-weight: bold;
+          text-shadow: 0 0 8px lightseagreen;
+          text-transform: uppercase;
+        }
+
+        #reset:hover,
+        #show-grid:hover,
+        .pause-active:hover {
+          box-shadow: 0 0 12px lightgreen;
+          color: yellowgreen;
+        }
+      }
+
+      .scroll_down {
+        @include dynamicPosition($pos: absolute, $top: 78%, $right: 3%);
+        @include dynamicAlign(center, center);
+        width: $spacing * 5;
+        height: $spacing * 5;
+        color: $color_white;
+        border: 0.1rem solid $color_white;
+        border-radius: 50%;
+        animation: bg 4s alternate-reverse infinite;
+        cursor: pointer;
+        &.fade {
+          display: none;
+        }
+        @keyframes bg {
+          0% {
+            background: $color_gray_dark;
+            transform: scale(0.8);
+            box-shadow: 0 0 $spacing * 3 rgba($color_gray_dark, 0.5);
+          }
+          50% {
+            background: $color_gray;
+            transform: scale(1);
+            box-shadow: 0 0 $spacing * 3 rgba($color_gray, 0.5);
+          }
+          100% {
+            background: $color_pink;
+            transform: scale(1.3);
+            box-shadow: 0 0 $spacing * 3 rgba($color_pink, 0.5);
+          }
+        }
+        svg {
+          width: $spacing * 3;
+          height: $spacing * 3;
+          pointer-events: none;
+          path {
+            stroke: $color_white;
+          }
+        }
+      }
+    }
+
+    &_over {
+      @include glass($background: rgba($color_gray_dark, 0.5));
+      padding: $spacing * 2 $spacing * 4;
+      opacity: 0;
+
+      @include dynamicPosition(
+        $pos: absolute,
+        $right: -50%,
+        $top: 40%,
+        $transform: translate(0, -50%)
+      );
+      width: max-content;
+      @include transition($second: 1s);
+      &.active {
+        opacity: 1;
+        right: 9%;
+      }
+      @include dynamicAlign(center, center, $direction: column);
+      h3 {
+        color: $color_white;
+        font-size: $spacing * 4;
+      }
+      p {
+        font-size: $spacing * 2;
+        color: $color_white;
+      }
+    }
+    #play {
+      position: absolute;
+      top: 38%;
+      width: max-content;
+      left: 75%;
+      transform: translateX(-50%);
+      font-family: "Press Start 2P", cursive;
+      font-size: 1.3em;
+      padding: 20px;
+      color: lightgreen;
+      animation: animate-play 1.4s linear infinite;
+    }
+    @keyframes animate-play {
+      0% {
+        text-shadow: 0 0 4px lightgreen;
+      }
+      50% {
+        text-shadow: 0 0 8px lightgreen;
+      }
+      100% {
+        text-shadow: 0 0 4px lightgreen;
+      }
+    }
+
+    &_register {
+      @include dynamicPosition($pos: absolute, $left: 0, $top: 0);
+
+      width: 0;
+      height: 0;
+      opacity: 0;
+      @include transition($second: 1s);
+      overflow: hidden;
+      &.active {
+        opacity: 1;
+        width: 48%;
+        height: $spacing * 80;
+      }
+      &_close {
+        @include dynamicPosition($pos: absolute, $right: 2%, $top: 2%);
+        @include dynamicAlign(center, center);
+        background: transparent !important;
+        svg {
+          path {
+            stroke: $color_white;
+          }
+        }
+        width: $spacing * 4;
+        height: $spacing * 4;
+        padding: unset !important;
+        border-radius: 50% !important;
+      }
+      @include glass(
+        $background: rgba($color_gray_dark, 0.5),
+        $blur: blur($spacing * 1.2)
+      );
+      @include dynamicAlign(
+        center,
+        center,
+        $direction: column,
+        $gap: $spacing * 2
+      );
+      h2 {
+        font-size: $spacing * 3;
+        color: $color_white;
+      }
+
+      .error {
+        color: $color_white;
+      }
+      .g {
+        @include dynamicAlign($direction: column);
+        width: 50%;
+        span {
+          color: $color_gray;
+        }
+        input {
+          border: 0.1rem solid $color_white;
+          border-radius: $spacing * 2;
+          font-size: $spacing * 1.6;
+          width: 100%;
+          padding: $spacing $spacing * 2;
+          background: transparent;
+          outline: none;
+          color: $color_white;
+          &::placeholder {
+            color: $color_gray;
+          }
+        }
+      }
+
+      p {
+        color: $color_gray_dark;
+        border: 0.1rem solid $color_white;
+        background: $color_white;
+        padding: $spacing $spacing * 2;
+        border-radius: $spacing * 2;
+        cursor: pointer;
+        @include transition;
+        &:hover {
+          background: $color_pink;
+          color: $color_white;
+        }
+      }
+    }
+  }
+}
+
+.home_event_banner_mb {
+  @include dynamicAlign(center, center, $direction: column);
+  position: relative;
+
+  img {
+    width: 100%;
+    position: relative;
+    top: -$spacing * 5;
+  }
+
+  &_info {
+    @include dynamicAlign(center, center, $direction: column, $gap: $spacing);
+    @include dynamicPosition(
+      $pos: absolute,
+      $top: 35%,
+      $left: 50%,
+      $transform: translateX(-50%)
+    );
+    width: 100%;
+    h2,
+    h3 {
+      font-size: $spacing * 2;
+
+      width: max-content;
+      color: $color_white;
+      font-family: "Press Start 2P", cursive;
+    }
+    h3 {
+      font-size: $spacing * 5;
+      margin: $spacing * 2 0;
+    }
+    hr {
+      width: 90%;
+      height: 0.1rem;
+      background: $color_white;
+    }
+    .wish {
+      margin: $spacing 0;
+    }
+    p {
+      color: $color_white;
+      text-align: center;
+    }
+    .scroll_down {
+      margin-top: $spacing * 2;
+      @include dynamicAlign(center, center);
+      width: $spacing * 5;
+      height: $spacing * 5;
+      color: $color_white;
+      border: 0.1rem solid $color_white;
+      border-radius: 50%;
+      animation: bg 4s alternate-reverse infinite;
+      cursor: pointer;
+      &.fade {
+        display: none;
+      }
+      @keyframes bg {
+        0% {
+          background: $color_gray_dark;
+          transform: scale(0.8);
+          box-shadow: 0 0 $spacing * 3 rgba($color_gray_dark, 0.5);
+        }
+        50% {
+          background: $color_gray;
+          transform: scale(1);
+          box-shadow: 0 0 $spacing * 3 rgba($color_gray, 0.5);
+        }
+        100% {
+          background: $color_pink;
+          transform: scale(1.3);
+          box-shadow: 0 0 $spacing * 3 rgba($color_pink, 0.5);
+        }
+      }
+      svg {
+        width: $spacing * 3;
+        height: $spacing * 3;
+        pointer-events: none;
+        path {
+          stroke: $color_white;
+        }
+      }
+    }
+  }
+
+  @include xl {
+    display: none;
+  }
+}

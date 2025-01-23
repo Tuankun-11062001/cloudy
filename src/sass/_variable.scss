@@ -3,7 +3,8 @@
 // =========================================================================
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
-
+// font event
+@import url("https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=swap");
 // =========================================================================
 //   > Variable color
 // =========================================================================
@@ -24,6 +25,11 @@ $color_blue_dark: #14141e;
 $color_gray_dark: #2b2b33;
 $color_blue: #2d7df9;
 $color_pink: #ff6564;
+
+// event
+$event_color_orange_light: #a1161c;
+$event_color_orange_dark: #750808;
+$evnet_bg_image: url("/event_tet.jpg");
 
 // fontsize
 $font_size: 1rem;

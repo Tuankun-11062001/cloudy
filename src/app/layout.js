@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
         <GoogleTag />
         <Adsence />
       </head>
-      <body>
+      <body className="darkmode">
         <Header />
         <div className="app_content">{children}</div>
 

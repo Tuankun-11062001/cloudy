@@ -1,45 +1,118 @@
 .home {
-  // new
-
-  .left {
-    .home_content {
-      width: 100%;
-      margin: auto;
-    }
-  }
-
-  .right {
+  @include dynamicAlign($direction: column);
+  &_app {
     display: none;
-  }
+    &.active {
+      @include dynamicAlign($direction: column, $gap: $spacing * 5);
+    }
+    margin-top: $spacing * 5;
 
-  @include md {
-    position: relative;
-    @include dynamicAlign();
-    .left {
-      flex: 1;
-
-      .home_content {
-        width: 90%;
-        margin: auto;
+    h2 {
+      font-size: $spacing * 2;
+      color: $color_black;
+    }
+    .home_lyrics,
+    .home_ui,
+    .home_myProduct,
+    .home_follow {
+      @include dynamicAlign($direction: column, $gap: $spacing * 2);
+      width: 100%;
+      &_list {
+        @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+        width: 100%;
+        .lyrics_card {
+          width: calc((100% / 2 - $spacing * 2));
+        }
+        .shop_product_card {
+          width: calc((100% / 2 - $spacing * 2));
+        }
+        .blog_card_vertical {
+          width: calc((100% / 5 - $spacing * 2));
+        }
+        .follow_card {
+          width: calc((100% / 2 - $spacing * 2));
+          height: $spacing * 15;
+          border: 0.1rem solid $color_black;
+          border-radius: $spacing * 2;
+          @include dynamicAlign(center, center, $direction: column);
+          svg {
+            width: $spacing * 5;
+            height: $spacing * 5;
+          }
+          span {
+            color: $color_black;
+            font-size: $spacing * 2;
+          }
+        }
       }
     }
-
-    .right {
-      display: block;
-      flex: 0.7;
-      height: 100%;
-    }
+    margin-bottom: $spacing * 20;
   }
-
   @include xl {
-    .left {
-      .home_content {
-        width: 60%;
-        margin: auto;
+    &_app {
+      display: none;
+      &.active {
+        @include dynamicAlign($direction: column, $gap: $spacing * 5);
+      }
+      margin-top: $spacing * 5;
+      margin-bottom: $spacing * 5;
+      h2 {
+        font-size: $spacing * 2;
+        color: $color_black;
+      }
+      .home_lyrics,
+      .home_ui,
+      .home_myProduct,
+      .home_follow {
+        @include dynamicAlign($direction: column, $gap: $spacing * 2);
+        width: 100%;
+        &_list {
+          @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+          width: 100%;
+          .lyrics_card {
+            width: calc((100% / 5 - $spacing * 2));
+          }
+          .shop_product_card {
+            width: calc((100% / 6 - $spacing * 2));
+          }
+          .blog_card_vertical {
+            width: calc((100% / 5 - $spacing * 2));
+          }
+          .follow_card {
+            width: calc((100% / 8 - $spacing * 2));
+            height: $spacing * 15;
+            border: 0.1rem solid $color_black;
+            border-radius: $spacing * 2;
+            @include dynamicAlign(center, center, $direction: column);
+            svg {
+              width: $spacing * 5;
+              height: $spacing * 5;
+            }
+            span {
+              color: $color_black;
+              font-size: $spacing * 2;
+            }
+          }
+        }
       }
     }
-    .right {
-      flex: 0.5;
+  }
+
+  body.darkmode & {
+    &_app {
+      h2 {
+        color: $color_white;
+      }
+      .follow_card {
+        border: 0.1rem solid $color_white;
+        @include transition;
+        &:hover {
+          background: $color_gray_dark;
+        }
+        span {
+          color: $color_white;
+        }
+      }
     }
   }
 }

@@ -37,14 +37,14 @@ const Navigation = () => {
         </Link>
       </div>
 
-      <div className="nav_item">
+      {/* <div className="nav_item">
         <Link href="/book" className={path.startsWith("/book") ? "active" : ""}>
           <div className="border_round_top"></div>
           <div className="border_round_bottom"></div>
           {appSvg.book}
           <p>Sách</p>
         </Link>
-      </div>
+      </div> */}
       <div className="nav_item">
         <Link href="/shop" className={path.startsWith("/shop") ? "active" : ""}>
           <div className="border_round_top"></div>

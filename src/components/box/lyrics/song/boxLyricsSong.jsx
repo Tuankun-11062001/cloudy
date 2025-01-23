@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import BoxTabControl from "./tab/boxTabControl";
+import AdsMyDesign from "../../shop/myDesign/adsMyDesign";
 
 const BoxLyricsSong = ({ data }) => {
   return (
@@ -30,6 +31,7 @@ const BoxLyricsSong = ({ data }) => {
         >
           {/* Word - Sentence */}
         </div>
+        <AdsMyDesign />
       </div>
     </div>
   );

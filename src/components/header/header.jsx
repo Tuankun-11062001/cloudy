@@ -13,12 +13,12 @@ const Header = () => {
         <Link href="/" className="logo">
           <img src="/logowhite.png" loading="lazy" alt={`banner`} />
         </Link>
-        <div className="other">
+        {/* <div className="other">
           <Theme />
-        </div>
+        </div> */}
         <Navigation />
 
-        <Members />
+        {/* <Members /> */}
 
         <User />
       </div>
