@@ -35,8 +35,8 @@ export default function RootLayout({ children }) {
         <div className="app_content">{children}</div>
 
         <Suspense>
-          <AdsBottom />
-          <AdsPopup />
+          {/* <AdsBottom /> */}
+          {/* <AdsPopup /> */}
           <CookieBanner />
         </Suspense>
 

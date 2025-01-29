@@ -47,7 +47,7 @@ const EventBanner = () => {
     };
 
     // frame rate
-    const frameRate = 35;
+    const frameRate = 20;
 
     // grid padding
     const pGrid = 4;
