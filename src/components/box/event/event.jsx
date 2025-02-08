@@ -1,20 +1,8 @@
 "use client";
-import { snakeAPI } from "@/api/event";
 import { appSvg } from "@/data/svg";
 import React, { useEffect, useState } from "react";
 
 const EventBanner = () => {
-  const [over, setOver] = useState(false);
-  const [point, setPoint] = useState(null);
-  const [play, setPlay] = useState(false);
-  const [message, setMessage] = useState("");
-  const [reloadPage, setReloadPage] = useState(false);
-  const [playerInfo, setPlayerInfo] = useState({
-    name: "",
-    stk: "",
-    bank: "",
-  });
-
   useEffect(() => {
     const eventController = document.querySelector(".home_event");
     const eventOver = eventController.querySelector(".home_event_over");
@@ -241,33 +229,6 @@ const EventBanner = () => {
       return gameOver;
     };
 
-    const showGameOver = async () => {
-      // const text = document.createElement("div");
-      // text.setAttribute("id", "game_over");
-      // text.innerHTML = "game over !";
-      // const body = document.querySelector("body");
-      // body.appendChild(text);
-      const player = JSON.parse(localStorage.getItem("infoPlayer"));
-
-      if (player) {
-        try {
-          const newData = {
-            ...player,
-            money: score,
-          };
-          await snakeAPI.createPlayer(newData);
-        } catch (error) {
-          console.log("err", error);
-        }
-        setPoint(score);
-        eventOver.classList.add("active");
-        localStorage.removeItem("infoPlayer");
-      }
-
-      setPoint(score);
-      eventOver.classList.add("active");
-    };
-
     addEventListener("keydown", changeDir);
 
     const PlayButton = (show) => {
@@ -314,7 +275,37 @@ const EventBanner = () => {
     };
 
     const resetGame = () => {
-      location.reload();
+      // Đặt lại các giá trị của trò chơi
+      score = 0; // Reset điểm số
+      tailLength = 4; // Đặt lại độ dài ban đầu của đuôi rắn
+      snakeParts = []; // Xóa các phần của rắn (đuôi)
+
+      // Đặt lại vị trí đầu rắn
+      head.x = 2;
+      head.y = 1;
+      head.vX = 0;
+      head.vY = 0;
+      head.color = randomColor(); // Random lại màu sắc đầu rắn
+
+      // Đặt lại vị trí thực phẩm
+      food.x = 5;
+      food.y = 5;
+
+      // Đảm bảo trò chơi không bị dừng lại khi reset
+      gameActive = false;
+
+      // Đặt lại UI điểm số và thông tin
+      setScore(); // Cập nhật lại điểm số
+
+      // Bắt đầu lại vòng lặp game từ đầu
+      animate(); // Gọi lại vòng lặp game
+
+      // Tắt pause nếu có
+      pauseEl.removeAttribute("class");
+      pauseEl.setAttribute("class", "pause-active");
+
+      // Kích hoạt lại sự kiện di chuyển sau khi reset
+      addEventListener("keydown", changeDir);
     };
 
     resetEl.addEventListener("click", resetGame);
@@ -332,45 +323,6 @@ const EventBanner = () => {
     showGridEl.addEventListener("click", toggleGrid);
     animate();
   }, []);
-
-  useEffect(() => {
-    const playerInfo = JSON.parse(localStorage.getItem("infoPlayer"));
-    if (playerInfo) {
-      setPlayerInfo(playerInfo);
-      setPlay(true);
-    }
-  }, []);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setPlayerInfo((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
-    setMessage("");
-  };
-
-  const register = () => {
-    const registerContainer = document.querySelector(".home_event_register");
-    registerContainer.classList.toggle("active");
-  };
-
-  const playGame = async () => {
-    const player = await snakeAPI.findPlayer(playerInfo);
-
-    if (player.status !== 200) {
-      setMessage(player.response.data.message);
-      return;
-    }
-
-    const registerContainer = document.querySelector(".home_event_register");
-    registerContainer.classList.remove("active");
-
-    await localStorage.setItem("infoPlayer", JSON.stringify(playerInfo));
-    location.reload();
-  };
 
   const handleScroll = (e) => {
     const openDataApp = document.querySelector(".home_app");
@@ -392,22 +344,6 @@ const EventBanner = () => {
           <img src="/event_tet.png" />
           <h1>Happy New Year</h1>
           <h2>2025</h2>
-          <hr />
-          <div className="home_event_info_rule">
-            <p>Hãy cứ luyện tập trước khi chới thật nhé!</p>
-            {play ? (
-              <p>
-                Ráng lấy xiền của tui nhé! <strong>{playerInfo.name}</strong>
-              </p>
-            ) : (
-              <p>
-                Khi bạn đã đủ tự tin hãy đăng ký ở đây!{" "}
-                <strong onClick={register}>Đăng ký nè!</strong>
-              </p>
-            )}
-            <p>10 điểm = 10K VND</p>
-            <p>Ráng mà lấy xiền của tui nhén. Good luck!</p>
-          </div>
           <hr />
 
           <div className="home_event_info_play">
@@ -432,59 +368,6 @@ const EventBanner = () => {
           </p>
         </div>
         <div id="play">Press control keys to start</div>
-        {play ? (
-          <div className="home_event_over">
-            <h3>Game Over!</h3>
-            <p>
-              Bạn đạt được {point} điểm = {Math.floor(point / 1)}K
-            </p>
-            <p>Dưới đây là thông tin nhận tiền của bạn!</p>
-            <p>Tk: {playerInfo.stk}</p>
-            <p>Tên: {playerInfo.name}</p>
-            <p>Cảm ơn bạn đã tham gia!!</p>
-            <p>Chúc bạn năm mới Vui Vẻ - Bình An - Hạnh Phúc</p>
-          </div>
-        ) : (
-          <div className="home_event_over">
-            <h3>Game Over!</h3>
-            <p>Bạn đạt được {point} điểm</p>
-          </div>
-        )}
-      </div>
-      <div className="home_event_register">
-        <h2>Đăng ký lấy xiền</h2>
-        <p className="home_event_register_close" onClick={register}>
-          {appSvg.close}
-        </p>
-        <div className="g">
-          <span>Bro tên chi</span>
-          <input
-            placeholder="Bro tên gì nè!"
-            name="name"
-            value={playerInfo.name}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="g">
-          <span>Tài khoản lấy xiền</span>
-          <input
-            placeholder="038125"
-            name="stk"
-            value={playerInfo.stk}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="g">
-          <span>Ngân hàng</span>
-          <input
-            placeholder="Momo, Vietcombank..."
-            name="bank"
-            value={playerInfo.bank}
-            onChange={handleChange}
-          />
-        </div>
-        <span className="error">{message}</span>
-        <p onClick={playGame}>Nhào zo000 !</p>
       </div>
     </div>
   );
@@ -511,11 +394,7 @@ export const EventBannerMB = () => {
           Tết đến xuân về, chúc bạn một năm mới với nhiều niềm vui, hạnh phúc và
           thịnh vượng. Mong bạn luôn gặp may mắn và đạt được mọi ước mơ!
         </p>
-        <hr />
-        <p>
-          Hãy cùng tham gia trò chơi lì xì tết! Trên thiết bị PC & LapTop nào!
-        </p>
-        <p>storecloudy.com (laptop & PC) </p>
+
         <p className="scroll_down" onClick={handleScroll}>
           {appSvg.arrowDown}
         </p>

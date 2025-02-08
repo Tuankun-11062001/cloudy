@@ -793,3 +793,79 @@
     }
   }
 }
+
+.lyrics_search {
+  @include dynamicAlign($direction: column, $gap: $spacing * 2);
+  margin-top: $spacing * 2;
+  &_input {
+    border-radius: $spacing * 5;
+    border: 0.1rem solid $color_gray;
+    width: 100%;
+    @include dynamicAlign($align: center);
+    padding: 0 $spacing - 0.5 0 $spacing * 2;
+    input {
+      background: transparent;
+      border: none;
+      &::placeholder {
+        color: $color_gray;
+      }
+      color: $color_black;
+      padding-block: $spacing * 1.5;
+      flex: 1;
+      outline: none;
+      font-size: $spacing * 1.2;
+    }
+    &_btn {
+      padding: $spacing $spacing * 2;
+      border-radius: $spacing * 2;
+      font-size: $spacing * 1.2;
+      color: $color_black;
+      background: $color_gray_light;
+    }
+  }
+  &_result,
+  &_latest {
+    @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+    width: 100%;
+    .lyrics_card {
+      width: calc((100% / 2) - $spacing * 2);
+    }
+  }
+  @include xl {
+    margin-top: unset;
+
+    @include dynamicAlign($direction: column, $gap: $spacing * 2);
+    &_input {
+      width: 50%;
+      font-size: $spacing * 1.6;
+      &_btn {
+        font-size: $spacing * 1.6;
+      }
+    }
+    &_result,
+    &_latest {
+      @include dynamicAlign($wrap: wrap, $gap: $spacing * 2);
+      width: 100%;
+      .lyrics_card {
+        width: calc((100% / 6) - $spacing * 2);
+      }
+    }
+  }
+  body.darkmode & {
+    input {
+      color: $color_white;
+    }
+    h3 {
+      color: $color_white;
+    }
+    .lyrics_search_input_btn {
+      color: $color_white;
+      background: $color_gray_dark;
+      @include transition;
+      &:hover {
+        color: $color_white;
+        background: $color_pink;
+      }
+    }
+  }
+}
