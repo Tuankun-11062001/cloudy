@@ -4,7 +4,7 @@ import { ShopCategoryDetailSlider } from "@/components/box/shop/slider/shopSlide
 import React from "react";
 
 const ShopCategoryDetail = async ({ searchParams }) => {
-  const { id } = await searchParams;
+  const { id, name } = await searchParams;
   const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
   const resProduct = await fetch(`${baseUrl}/shop/category/${id}`, {
