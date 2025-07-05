@@ -672,6 +672,121 @@
       }
     }
 
+    .shop_order {
+      &_info {
+        @include dynamicPosition($pos: absolute, $left: 0, $top: 0, $right: 0);
+        z-index: -1;
+        opacity: 0;
+        margin: $spacing * 2;
+
+        &.active {
+          @include dynamicPosition(
+            $pos: absolute,
+            $left: 0,
+            $top: 108%,
+            $right: 0
+          );
+          opacity: 1;
+          z-index: 10;
+        }
+        @include transition;
+
+        &_head {
+          width: 100%;
+          @include dynamicAlign($align: center, $justify: space-between);
+          padding-bottom: $spacing;
+          border-bottom: 0.1rem solid $color_gray_light;
+          h3 {
+            color: $color_white;
+            font-size: $spacing 1.6;
+          }
+          .close {
+            width: $spacing * 2.5;
+            height: $spacing * 2.5;
+            background: $color_white;
+            border-radius: $spacing * 4;
+            @include dynamicAlign(center, center);
+            cursor: pointer;
+            svg {
+              width: 100%;
+              object-fit: contain;
+            }
+          }
+        }
+
+        background: $color_gray_dark;
+        padding: $spacing;
+        border-radius: $spacing;
+        @include dynamicAlign($direction: column);
+
+        .g {
+          @include dynamicAlign($direction: column);
+
+          width: 100%;
+          label {
+            color: $color_white;
+          }
+
+          input {
+            background: $color_blue_dark;
+            width: 100%;
+            padding: $spacing;
+            border-radius: $spacing * 2;
+            @include transition();
+            border: none;
+            outline: none;
+
+            font-size: $spacing * 1.6;
+            width: 100%;
+            &:focus {
+              background: $color_gray;
+              svg {
+                path,
+                circle,
+                rect {
+                  stroke: $color_blue_dark;
+                }
+              }
+            }
+          }
+        }
+
+        .list_product {
+          @include dynamicAlign($wrap: wrap);
+
+          img {
+            width: $spacing * 10;
+            height: $spacing * 10;
+            object-fit: cover;
+          }
+        }
+        textarea {
+          background: $color_blue_dark;
+          width: 100%;
+          resize: none;
+          height: $spacing * 15;
+          padding: $spacing;
+          border-radius: $spacing * 2;
+          @include transition();
+          border: none;
+          outline: none;
+
+          font-size: $spacing * 1.6;
+          width: 100%;
+          &:focus {
+            background: $color_gray;
+            svg {
+              path,
+              circle,
+              rect {
+                stroke: $color_blue_dark;
+              }
+            }
+          }
+        }
+      }
+    }
+
     &_below {
       position: relative;
       width: 100%;
@@ -824,6 +939,7 @@
 
       &_act {
         @include dynamicAlign($align: flex-end, $gap: $spacing * 3);
+        position: relative;
         h2 {
           text-align: start;
           font-size: $spacing * 3;
@@ -832,6 +948,19 @@
 
       &_below {
         padding: $spacing * 3;
+      }
+
+      .shop_order {
+        &_info {
+          &.active {
+            @include dynamicPosition(
+              $pos: absolute,
+              $left: 0,
+              $top: 120%,
+              $right: 0
+            );
+          }
+        }
       }
 
       .shop_mydesign {

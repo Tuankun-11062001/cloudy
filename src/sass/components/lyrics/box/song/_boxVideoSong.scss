@@ -2,7 +2,7 @@
   background: $color_white;
   padding: $spacing;
   border-radius: $spacing * 2;
-  @include dynamicAlign($direction: column);
+  @include dynamicAlign($direction: column, $justify: center, $align: center);
   margin-top: $spacing * 2;
   @include transition();
   .large_video_song {

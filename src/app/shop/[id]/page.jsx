@@ -1,6 +1,7 @@
 import { ShopBack } from "@/components/box/shop/button/shopButton";
 import DetailControl from "@/components/box/shop/detailProduct/detailControl";
 import { ShopMyDesign } from "@/components/box/shop/myDesign/shopMyDesign";
+// import Order from "@/components/box/shop/order/order";
 import { ShopRelativeProduct } from "@/components/box/shop/relativeProduct/shopRelativeProduct";
 import { ShopDetailSlider } from "@/components/box/shop/slider/shopSlider";
 import { appSvg } from "@/data/svg";
@@ -71,8 +72,9 @@ const ShopDetail = async ({ params }) => {
         <div className="shop_detail_content_act">
           <h2>{data.price}</h2>
           <a href={data.linkProduct} target="_blank">
-            <p>Buy it now!</p>
+            <p>Buy Affilate!</p>
           </a>
+          {/* <Order data={data} /> */}
         </div>
 
         <div

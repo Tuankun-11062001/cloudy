@@ -45,6 +45,7 @@ export const LyricsSliderCard = ({ data, index }) => {
         </div>
         <h2>{data.title}</h2>
         <p>{data.description}</p>
+
         <Link
           href={{
             pathname: `lyrics/${data._id}`,

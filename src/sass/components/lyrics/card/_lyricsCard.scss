@@ -184,6 +184,10 @@
         opacity: 1;
         margin-left: 0;
       }
+      .check {
+        opacity: 1;
+        margin-left: 0;
+      }
     }
   }
 
@@ -242,6 +246,10 @@
         $font_size: $spacing * 1.2,
         $padding: $spacing - 0.3 $spacing
       );
+      opacity: 0;
+      transition: 1s;
+      transition-delay: 1.7s;
+      margin-left: $spacing * 3;
     }
   }
 
@@ -267,6 +275,10 @@
           $font_size: $spacing * 1.4,
           $padding: $spacing
         );
+        opacity: 0;
+        transition: 1s;
+        transition-delay: 1.7s;
+        margin-left: $spacing * 3;
       }
     }
   }
@@ -299,12 +311,18 @@
       }
       .check {
         width: max-content;
+
         @include button(
           $color: $color_gray_normal,
           $background_hover: $color_pink,
           $color_hover: $color_white,
           $font_size: $spacing * 1.6
         );
+
+        opacity: 0;
+        transition: 1s;
+        transition-delay: 2s;
+        margin-left: $spacing * 3;
       }
     }
   }
